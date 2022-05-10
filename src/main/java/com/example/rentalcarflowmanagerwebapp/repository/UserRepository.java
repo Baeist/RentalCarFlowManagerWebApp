@@ -1,8 +1,8 @@
-package repository;
+package com.example.rentalcarflowmanagerwebapp.repository;
 
-import model.UserModel;
+import com.example.rentalcarflowmanagerwebapp.model.UserModel;
 import org.springframework.stereotype.Repository;
-import utility.ConnectionManager;
+import com.example.rentalcarflowmanagerwebapp.utility.ConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

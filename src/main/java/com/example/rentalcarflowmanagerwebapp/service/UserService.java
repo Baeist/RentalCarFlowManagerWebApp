@@ -1,8 +1,8 @@
-package service;
+package com.example.rentalcarflowmanagerwebapp.service;
 
-import model.UserModel;
+import com.example.rentalcarflowmanagerwebapp.model.UserModel;
 import org.springframework.stereotype.Service;
-import repository.UserRepository;
+import com.example.rentalcarflowmanagerwebapp.repository.UserRepository;
 
 @Service
 public class UserService {

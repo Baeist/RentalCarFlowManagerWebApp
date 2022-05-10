@@ -1,11 +1,11 @@
-package controller;
+package com.example.rentalcarflowmanagerwebapp.controller;
 
-import model.UserModel;
+import com.example.rentalcarflowmanagerwebapp.model.UserModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import service.UserService;
+import com.example.rentalcarflowmanagerwebapp.service.UserService;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping("/")
     public String index(HttpSession session){
         boolean isLoggedIn = false;
-        System.out.println("hej");
+
         if(session.getAttribute("isLoggedIn") == null) {
             session.setAttribute("isLoggedIn", false);
             }
