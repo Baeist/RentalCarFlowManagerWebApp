@@ -1,13 +1,18 @@
 package controller;
 
+import model.UserModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import service.UserService;
 
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
+
+    UserService US;
 
     @GetMapping("/")
     public String index(HttpSession session){
@@ -28,15 +33,18 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public String logIn(HttpSession session){
+    public String logIn(HttpSession session, @RequestParam("log_in_name") String logInName, @RequestParam("employee_password") String employeePassword){
 
-        // mangler check for log in
+        UserModel user = US.getUserFromLogInNameAndPassword(logInName, employeePassword);
 
-        session.setAttribute("isLoggedIn", true); // mangler sætte session attributes for user
+        // mangler check for log in og set session emplyee type
+
+        session.setAttribute("logInName", logInName);
+        session.setAttribute("isLoggedIn", true);
 
 
 
-        return "redirect:/administrator";
+        return "redirect:/administrator"; // redirect to type of employee that logged in
     }
 
 
