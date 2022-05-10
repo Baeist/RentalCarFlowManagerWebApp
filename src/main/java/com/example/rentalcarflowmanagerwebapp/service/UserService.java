@@ -7,11 +7,15 @@ import repository.UserRepository;
 @Service
 public class UserService {
 
-    UserRepository UR;
+    UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public UserModel getUserFromLogInNameAndPassword(String logInName, String employeePassword){
 
-        return UR.getUserFromLogInNameAndPassword(logInName, employeePassword);
+        return userRepository.getUserFromLogInNameAndPassword(logInName, employeePassword);
     }
 
 }

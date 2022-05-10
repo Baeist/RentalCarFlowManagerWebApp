@@ -1,7 +1,5 @@
 package model;
 
-import org.apache.catalina.User;
-
 public class UserModel {
 
     private int employeeID;
