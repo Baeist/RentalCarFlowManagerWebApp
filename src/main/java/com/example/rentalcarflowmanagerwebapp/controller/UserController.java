@@ -66,7 +66,7 @@ public class UserController {
 
         model.addAttribute("logInName", logInName);
         model.addAttribute("fullName", session.getAttribute("employeeFullName"));
-
+        model.addAttribute("user", userService.getAllEmployees());
         return "administrator";
     }
 

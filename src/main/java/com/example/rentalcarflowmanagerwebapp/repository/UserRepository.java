@@ -1,12 +1,16 @@
 package com.example.rentalcarflowmanagerwebapp.repository;
 
 import com.example.rentalcarflowmanagerwebapp.model.UserModel;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Repository;
 import com.example.rentalcarflowmanagerwebapp.utility.ConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class UserRepository {
@@ -41,6 +45,35 @@ public class UserRepository {
            e.printStackTrace();
         }
         return null;
+    }
+
+    public List<UserModel> getAllEmployees(){
+        List<UserModel> employees = new ArrayList<>();
+
+        try{
+            connection = ConnectionManager.getConnection();
+
+            Statement statement = connection.createStatement();
+            final String SQL_QUERY = "SELECT * FROM employee";
+            ResultSet resultSet = statement.executeQuery(SQL_QUERY);
+
+            while (resultSet.next()) {
+
+                int id = resultSet.getInt(1);
+                String firstName = resultSet.getString(2);
+                String lastName = resultSet.getString(3);
+                String userName = resultSet.getString(4);
+                String password = resultSet.getString(5);
+                String employeeType = resultSet.getString(6);
+
+                employees.add(new UserModel(id, firstName, lastName, userName, password, employeeType));
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return employees;
     }
 
 

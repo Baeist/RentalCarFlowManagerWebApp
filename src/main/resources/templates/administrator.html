@@ -8,6 +8,26 @@
 <header th:replace="fragments/headers :: header-normal">
 header will be here
 </header>
-admin
+
+<table>
+    <thead>
+        <tr>
+            <th>Medarbejder fornavn</th>
+            <th>Medarbejder efternavn</th>
+            <th>Medarbejder afdeling</th>
+            <th>Medarbejder brugernavn</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="UserModel : ${user}">
+            <td th:text="${UserModel.firstName}">first name</td>
+            <td th:text="${UserModel.lastName}">last name</td>
+            <td th:text="${UserModel.employeeType}">department</td>
+            <td th:text="${UserModel.logInName}">user name</td>
+        </tr>
+    </tbody>
+</table>
+
+
 </body>
 </html>

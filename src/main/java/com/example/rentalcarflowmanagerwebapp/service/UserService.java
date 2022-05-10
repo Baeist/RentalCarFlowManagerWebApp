@@ -4,6 +4,10 @@ import com.example.rentalcarflowmanagerwebapp.model.UserModel;
 import org.springframework.stereotype.Service;
 import com.example.rentalcarflowmanagerwebapp.repository.UserRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Service
 public class UserService {
 
@@ -18,4 +22,7 @@ public class UserService {
         return userRepository.getUserFromLogInNameAndPassword(logInName, employeePassword);
     }
 
+    public List<UserModel> getAllEmployees(){
+        return userRepository.getAllEmployees();
+    }
 }
