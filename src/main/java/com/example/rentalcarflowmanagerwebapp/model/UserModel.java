@@ -21,4 +21,52 @@ public class UserModel {
         this.employeeType = employeeType;
 
     }
+
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setLogInName(String logInName) {
+        this.logInName = logInName;
+    }
+
+    public void setEmployeePassword(String employeePassword) {
+        this.employeePassword = employeePassword;
+    }
+
+    public void setEmployeeType(String employeeType) {
+        this.employeeType = employeeType;
+    }
+
+    public int getEmployeeID() {
+        return employeeID;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getLogInName() {
+        return logInName;
+    }
+
+    public String getEmployeePassword() {
+        return employeePassword;
+    }
+
+    public String getEmployeeType() {
+        return employeeType;
+    }
 }
