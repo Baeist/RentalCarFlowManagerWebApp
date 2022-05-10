@@ -32,6 +32,7 @@ public class UserController {
         }
 
         if(isLoggedIn){
+            if(session.getAttribute("employeeType") == "admin")
             return "redirect:/administrator/" + session.getAttribute("logInName"); // skal fixes til rigtig url efter hvilken type medarbejder vi har med at gøre
         }
         return "index";
@@ -52,7 +53,6 @@ public class UserController {
             return "redirect:/administrator/" + session.getAttribute("logInName"); // redirect to type of employee that logged in
         }
 
-
         return "index";
     }
 
@@ -60,10 +60,9 @@ public class UserController {
     public String administrator(@PathVariable("logInName") String logInName, HttpSession session, Model model){
 
         // bør nok være i de fleste side kald, tjekker man ikke bare hopper ind gennem url uden log in
-        if(!((boolean) session.getAttribute("isLoggedIn"))){
+        if(session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))){
             return "index";
         }
-
 
         model.addAttribute("logInName", logInName);
         model.addAttribute("fullName", session.getAttribute("employeeFullName"));

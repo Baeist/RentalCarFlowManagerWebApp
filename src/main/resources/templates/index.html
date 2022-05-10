@@ -5,6 +5,9 @@
     <title>landing_page</title>
 </head>
 <body>
+<header th:replace="fragments/headers :: header-normal">
+    header will be here
+</header>
 <form method="post" action="/">
     <input type="text" name="log_in_name" placeholder="brugernavn" required>
     <input type="password" name="employee_password" placeholder="kodeord" required>

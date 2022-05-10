@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>header</title>
+</head>
+<body>
+<header th:fragment="header-normal">
+    <!-- not logged in -->
+    <nav th:unless="${session.isLoggedIn}">
+        not logged in
+
+    </nav>
+
+    <!-- is logged in -->
+    <nav th:if="${session.isLoggedIn}">
+
+        <p th:text="${session.employeeFullName}">employee name here</p>
+        <p th:text="${session.employeeType}">employee name here</p>
+
+    </nav>
+</header>
+</body>
+</html>
