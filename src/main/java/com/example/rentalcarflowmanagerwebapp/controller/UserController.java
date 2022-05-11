@@ -80,4 +80,28 @@ public class UserController {
         return "index";
     }
 
+    @GetMapping("change_password")
+    public String changePassword(HttpSession session, Model model){
+
+        if(session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))){
+            return "index";
+        }
+
+        model.addAttribute("logInName", session.getAttribute("logInName"));
+
+        return "/setpassword";
+    }
+
+    @PostMapping("/setpassword")
+    public String passwordChanged(HttpSession session, @RequestParam("old_password") String oldPassword,
+                                  @RequestParam("first_new_password") String firstNewPassword,
+                                  @RequestParam("second_new_password") String secondNewPassword){
+
+        if(session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))){
+            return "index";
+        }
+
+
+        return "redirect:/administrator/" + session.getAttribute("logInName");
+    }
 }
