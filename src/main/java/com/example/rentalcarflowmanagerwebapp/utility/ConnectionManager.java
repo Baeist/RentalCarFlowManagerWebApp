@@ -1,4 +1,4 @@
-package utility;
+package com.example.rentalcarflowmanagerwebapp.utility;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package model;
+package com.example.rentalcarflowmanagerwebapp.model;
 
 import java.util.Date;
 
