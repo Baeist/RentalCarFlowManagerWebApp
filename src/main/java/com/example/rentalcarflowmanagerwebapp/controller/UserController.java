@@ -51,6 +51,7 @@ public class UserController {
             session.setAttribute("employeeType", user.getEmployeeType());
             session.setAttribute("logInName", logInName);
             session.setAttribute("isLoggedIn", true);
+            session.setAttribute("password", employeePassword);
 
             return "redirect:/administrator/" + session.getAttribute("logInName"); // redirect to type of employee that logged in, mangler for alle typer medarbejdere
         }
@@ -101,7 +102,15 @@ public class UserController {
             return "index";
         }
 
+        if(oldPassword.equals(session.getAttribute("password")) && firstNewPassword.equals(secondNewPassword)){
 
-        return "redirect:/administrator/" + session.getAttribute("logInName");
+            userService.updatePassword((String)session.getAttribute("logInName"), firstNewPassword);
+
+            session.setAttribute("password", firstNewPassword);
+
+            return "redirect:/administrator/" + session.getAttribute("logInName");
+        }
+
+        return "/setpassword";
     }
 }

@@ -76,5 +76,18 @@ public class UserRepository {
         return employees;
     }
 
+    public void updatePassword(String logInName, String firstNewPassword){
+
+        try{
+            connection = ConnectionManager.getConnection();
+            final String SQL_QUERY = "UPDATE employee SET employee_password = ? WHERE employee_username ='" + logInName + "';";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            preparedStatement.setString(1, firstNewPassword);
+            preparedStatement.executeUpdate();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }
