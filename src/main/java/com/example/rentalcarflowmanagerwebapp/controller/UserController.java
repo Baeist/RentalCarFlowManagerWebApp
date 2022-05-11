@@ -22,18 +22,21 @@ public class UserController {
 
     @GetMapping("/")
     public String index(HttpSession session){
-        boolean isLoggedIn = false;
+        boolean isLoggedIn;
 
         if(session.getAttribute("isLoggedIn") == null) {
             session.setAttribute("isLoggedIn", false);
+            isLoggedIn = false;
             }
         else{
-            isLoggedIn = (boolean)session.getAttribute("isLoggedIn");
+            isLoggedIn = true;
         }
 
-        if(isLoggedIn){
-            if(session.getAttribute("employeeType") == "admin")
-            return "redirect:/administrator/" + session.getAttribute("logInName"); // skal fixes til rigtig url efter hvilken type medarbejder vi har med at gøre
+        if(isLoggedIn) {
+            if (session.getAttribute("employeeType").equals("admin")) {
+
+                return "redirect:/administrator/" + session.getAttribute("logInName"); // skal fixes til rigtig url efter hvilken type medarbejder vi har med at gøre
+            }
         }
         return "index";
     }
