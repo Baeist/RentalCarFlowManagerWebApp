@@ -29,13 +29,12 @@ public class UserController {
             isLoggedIn = false;
             }
         else{
-            isLoggedIn = true;
+            isLoggedIn = (boolean)session.getAttribute("isLoggedIn");
         }
 
         if(isLoggedIn) {
             if (session.getAttribute("employeeType").equals("admin")) {
-
-                return "redirect:/administrator/" + session.getAttribute("logInName"); // skal fixes til rigtig url efter hvilken type medarbejder vi har med at gøre
+                return "redirect:/administrator/" + session.getAttribute("logInName"); // mangler else if for resten af medarbejder typerne
             }
         }
         return "index";
@@ -53,7 +52,7 @@ public class UserController {
             session.setAttribute("logInName", logInName);
             session.setAttribute("isLoggedIn", true);
 
-            return "redirect:/administrator/" + session.getAttribute("logInName"); // redirect to type of employee that logged in
+            return "redirect:/administrator/" + session.getAttribute("logInName"); // redirect to type of employee that logged in, mangler for alle typer medarbejdere
         }
 
         return "index";
@@ -71,6 +70,14 @@ public class UserController {
         model.addAttribute("fullName", session.getAttribute("employeeFullName"));
         model.addAttribute("user", userService.getAllEmployees());
         return "administrator";
+    }
+
+    @GetMapping("logout")
+    public String logOut(HttpSession session){
+
+        session.invalidate();
+
+        return "index";
     }
 
 }
