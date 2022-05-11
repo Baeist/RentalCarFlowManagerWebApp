@@ -1,6 +1,6 @@
 package model;
 
-public class CarModel {
+public class Car {
 
     private int carID;
     private String chassisNumber;
@@ -10,6 +10,6 @@ public class CarModel {
     private String carName;
     private double carPricePerMonthDKK;
 
-    public CarModel(){}
+    public Car(){}
 
 }
