@@ -92,4 +92,45 @@ public class UserRepository {
         }
     }
 
+    public void updateIsUserActiveFalse(String logInName){
+        try{
+            connection = ConnectionManager.getConnection();
+            final String SQL_QUERY = "UPDATE employee SET is_user_active = false WHERE employee_username ='" + logInName + "';";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            preparedStatement.executeUpdate();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public UserModel getUserFromLogInName(String logInName){
+
+            try{
+                connection = ConnectionManager.getConnection();
+
+                final String SQL_QUERY = "SELECT * FROM employee WHERE employee_username = ?";
+                PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+                ps.setString(1, logInName);
+                ResultSet rs = ps.executeQuery();
+
+                if(rs.next()) {
+                    int employeeID = rs.getInt(1);
+                    String firstName = rs.getString(2);
+                    String lastName = rs.getString(3);
+                    logInName = rs.getString(4);
+                    String employeePassword = rs.getString(5);
+                    String employeeType = rs.getString(6);
+                    boolean isUserActive = rs.getBoolean(7);
+
+                    UserModel user = new UserModel(employeeID, firstName, lastName, logInName, employeePassword, employeeType, isUserActive);
+
+                    return user;
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            return null;
+    }
 }

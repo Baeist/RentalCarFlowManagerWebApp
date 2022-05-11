@@ -80,6 +80,10 @@ public class UserController {
             return "index";
         }
 
+
+        model.addAttribute("userToBeDeleted", userService.getUserFromLogInName((String)session.getAttribute("deleteUser")));
+
+
         model.addAttribute("logInName", logInName);
         model.addAttribute("fullName", session.getAttribute("employeeFullName"));
         model.addAttribute("user", userService.getAllActiveEmployees());
@@ -133,9 +137,26 @@ public class UserController {
         return "index";
     }
 
-    @GetMapping("/delete_user/{logInName}")
-    public String deleteUser(@PathVariable("logInName") String logInName, HttpSession session){
+    @PostMapping("/delete_user/{logInName}")
+    public String deleteUser(@PathVariable("logInName") String logInName, HttpSession session, @RequestParam("delete") String delete){
 
-        return "index";
+
+
+        session.setAttribute("delete", delete);
+        session.setAttribute("deleteUser", logInName);
+
+
+        return "redirect:/administrator/" + session.getAttribute("logInName");
+    }
+
+    @GetMapping("/final_delete_user/{logInName}")
+            public String finalDeleteUser(@PathVariable("logInName") String logInName, HttpSession session){
+
+        userService.updateIsUserActiveFalse(logInName);
+
+        session.removeAttribute("delete");
+        session.removeAttribute("deleteUser");
+
+        return "redirect:/administrator/" + session.getAttribute("logInName");
     }
 }

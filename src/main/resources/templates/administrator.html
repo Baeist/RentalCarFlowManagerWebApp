@@ -18,6 +18,14 @@ header will be here
             <th th:if="${session.isTypeAdmin}">Medarbejder brugernavn</th>
         </tr>
     </thead>
+    <tbody th:if="${session.delete}">
+    <tr th:each="UserModel : ${userToBeDeleted}">
+        <td th:text="${UserModel.firstName}">first name</td>
+        <td th:text="${UserModel.lastName}">last name</td>
+        <td th:text="${UserModel.employeeType}">department</td>
+        <td th:text="${UserModel.logInName}">user name</td>
+        <td><button><a th:href="@{'/final_delete_user/' + ${UserModel.logInName}}">SLET</a></button></td>
+    </tbody>
     <tbody th:unless="${session.isTypeAdmin}">
     <tr th:each="UserModel : ${user}">
         <td th:text="${UserModel.firstName}">first name</td>
@@ -32,7 +40,7 @@ header will be here
             <td th:text="${UserModel.employeeType}">department</td>
             <td th:text="${UserModel.logInName}">user name</td>
             <td><button><a th:href="@{'/update_user/' + ${UserModel.logInName}}">rediger</a></button></td>
-            <td><button><a th:href="@{'/delete_user/' + ${UserModel.logInName}}">SLET</a></button></td>
+            <td th:unless="${session.delete}"><form method="post" th:action="@{'/delete_user/' + ${UserModel.logInName}}"><button><input type="text" value="true" name="delete" hidden><a th:href="@{'/delete_user/' + ${UserModel.logInName}}">SLET</a></button></form></td>
         </tr>
         <td><button><a href="/create_user">opret bruger</a></button></td>
 

@@ -29,4 +29,11 @@ public class UserService {
     public void updatePassword(String logInName, String firstNewPassword){
         userRepository.updatePassword(logInName, firstNewPassword);
     }
+    public UserModel getUserFromLogInName(String logInName){
+
+        return userRepository.getUserFromLogInName(logInName);
+    }
+    public void updateIsUserActiveFalse(String logInName){
+        userRepository.updateIsUserActiveFalse(logInName);
+    }
 }
