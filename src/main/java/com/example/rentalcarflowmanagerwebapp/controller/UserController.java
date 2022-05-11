@@ -52,6 +52,19 @@ public class UserController {
             session.setAttribute("logInName", logInName);
             session.setAttribute("isLoggedIn", true);
             session.setAttribute("password", employeePassword);
+            session.setAttribute("isTypeDamage", false);
+            session.setAttribute("isTypeBusiness", false);
+            session.setAttribute("isTypeRegistering", false);
+            session.setAttribute("isTypeAdmin", false);
+
+            if(user.getEmployeeType().equals("admin"))
+                session.setAttribute("isTypeAdmin", true);
+            if(user.getEmployeeType().equals("dataregistrering"))
+                session.setAttribute("isTypeRegistering", true);
+            if(user.getEmployeeType().equals("forretningsudvikler"))
+                session.setAttribute("isTypeBusiness", true);
+            if(user.getEmployeeType().equals("skade og -mangler"))
+                session.setAttribute("isTypeDamage", true);
 
             return "redirect:/administrator/" + session.getAttribute("logInName"); // redirect to type of employee that logged in, mangler for alle typer medarbejdere
         }
@@ -112,5 +125,17 @@ public class UserController {
         }
 
         return "/setpassword";
+    }
+
+    @GetMapping("/update_user/{logInName}")
+    public String updateUser(@PathVariable("logInName") String logInName, HttpSession session){
+
+        return "index";
+    }
+
+    @GetMapping("/delete_user/{logInName}")
+    public String deleteUser(@PathVariable("logInName") String logInName, HttpSession session){
+
+        return "index";
     }
 }
