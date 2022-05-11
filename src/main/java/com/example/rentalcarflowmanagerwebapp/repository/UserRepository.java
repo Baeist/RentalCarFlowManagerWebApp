@@ -48,14 +48,14 @@ public class UserRepository {
         return null;
     }
 
-    public List<UserModel> getAllEmployees(){
+    public List<UserModel> getAllActiveEmployees(){
         List<UserModel> employees = new ArrayList<>();
 
         try{
             connection = ConnectionManager.getConnection();
 
             Statement statement = connection.createStatement();
-            final String SQL_QUERY = "SELECT * FROM employee";
+            final String SQL_QUERY = "SELECT * FROM employee WHERE is_user_active = true";
             ResultSet resultSet = statement.executeQuery(SQL_QUERY);
 
             while (resultSet.next()) {

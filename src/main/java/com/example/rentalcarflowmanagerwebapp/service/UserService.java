@@ -22,8 +22,8 @@ public class UserService {
         return userRepository.getUserFromLogInNameAndPassword(logInName, employeePassword);
     }
 
-    public List<UserModel> getAllEmployees(){
-        return userRepository.getAllEmployees();
+    public List<UserModel> getAllActiveEmployees(){
+        return userRepository.getAllActiveEmployees();
     }
 
     public void updatePassword(String logInName, String firstNewPassword){
