@@ -25,6 +25,7 @@ header will be here
         <td th:text="${UserModel.employeeType}">department</td>
         <td th:text="${UserModel.logInName}">user name</td>
         <td><button><a th:href="@{'/final_delete_user/' + ${UserModel.logInName}}">SLET</a></button></td>
+        <td><button><a th:href="@{'/regret_delete_user/' + ${UserModel.logInName}}">FORTRYD</a></button></td>
     </tbody>
     <tbody th:unless="${session.isTypeAdmin}">
     <tr th:each="UserModel : ${user}">

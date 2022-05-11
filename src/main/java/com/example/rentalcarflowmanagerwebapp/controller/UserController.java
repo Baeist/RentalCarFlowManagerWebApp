@@ -159,4 +159,12 @@ public class UserController {
 
         return "redirect:/administrator/" + session.getAttribute("logInName");
     }
+    @GetMapping("/regret_delete_user/{logInName}")
+    public String regretDeleteUser(@PathVariable("logInName") String logInName, HttpSession session){
+
+        session.removeAttribute("delete");
+        session.removeAttribute("deleteUser");
+
+        return "redirect:/administrator/" + session.getAttribute("logInName");
+    }
 }
