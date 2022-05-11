@@ -8,10 +8,11 @@ public class UserModel {
     private String logInName;
     private String employeePassword;
     private String employeeType;
+    private boolean isUserActive;
 
     public UserModel(){}
 
-    public UserModel(int employeeID, String firstName, String lastName, String logInName, String employeePassword, String employeeType){
+    public UserModel(int employeeID, String firstName, String lastName, String logInName, String employeePassword, String employeeType, boolean isUserActive){
 
         this.employeeID = employeeID;
         this.firstName = firstName;
@@ -19,6 +20,7 @@ public class UserModel {
         this.logInName = logInName;
         this.employeePassword = employeePassword;
         this.employeeType = employeeType;
+        this.isUserActive = isUserActive;
 
     }
 
@@ -44,6 +46,14 @@ public class UserModel {
 
     public void setEmployeeType(String employeeType) {
         this.employeeType = employeeType;
+    }
+
+    public void setUserActive(boolean userActive) {
+        isUserActive = userActive;
+    }
+
+    public boolean isUserActive() {
+        return isUserActive;
     }
 
     public int getEmployeeID() {

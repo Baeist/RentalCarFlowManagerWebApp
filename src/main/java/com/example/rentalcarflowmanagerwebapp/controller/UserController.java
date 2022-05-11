@@ -45,7 +45,7 @@ public class UserController {
 
         UserModel user = userService.getUserFromLogInNameAndPassword(logInName, employeePassword);
 
-        if(user != null){
+        if(user != null && user.isUserActive()){
 
             session.setAttribute("employeeFullName", user.getFirstName() + " " + user.getLastName());
             session.setAttribute("employeeType", user.getEmployeeType());

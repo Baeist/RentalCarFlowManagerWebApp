@@ -35,8 +35,9 @@ public class UserRepository {
                     logInName = rs.getString(4);
                     employeePassword = rs.getString(5);
                     String employeeType = rs.getString(6);
+                    boolean isUserActive = rs.getBoolean(7);
 
-                    UserModel user = new UserModel(employeeID, firstName, lastName, logInName, employeePassword, employeeType);
+                    UserModel user = new UserModel(employeeID, firstName, lastName, logInName, employeePassword, employeeType, isUserActive);
 
                     return user;
                 }
@@ -65,8 +66,9 @@ public class UserRepository {
                 String userName = resultSet.getString(4);
                 String password = resultSet.getString(5);
                 String employeeType = resultSet.getString(6);
+                boolean isUserActive = resultSet.getBoolean(7);
 
-                employees.add(new UserModel(id, firstName, lastName, userName, password, employeeType));
+                employees.add(new UserModel(id, firstName, lastName, userName, password, employeeType, isUserActive));
             }
         }
         catch (Exception e){
