@@ -40,7 +40,7 @@ header will be here
             <td th:text="${UserModel.employeeType}">department</td>
             <td th:text="${UserModel.logInName}">user name</td>
             <td><button><a th:href="@{'/update_user/' + ${UserModel.logInName}}">rediger</a></button></td>
-            <td th:unless="${session.delete}"><form method="post" th:action="@{'/delete_user/' + ${UserModel.logInName}}"><button><input type="text" value="true" name="delete" hidden><a th:href="@{'/delete_user/' + ${UserModel.logInName}}">SLET</a></button></form></td>
+            <td th:unless="${session.delete}"><form method="post" th:action="@{'/delete_user/' + ${UserModel.logInName}}"><input type="text" value="true" name="delete" hidden><button>SLET</button></form></td></form>
         </tr>
         <td><button><a href="/create_user">opret bruger</a></button></td>
 
