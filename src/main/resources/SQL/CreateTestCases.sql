@@ -13,7 +13,9 @@ INSERT INTO car(car_id, chassis_number, color, car_manufactorer, car_type, car_n
 INSERT INTO car(car_id, chassis_number, color, car_manufactorer, car_type, car_name, car_rental_price_per_month_dkk) Values (default, 'uio56t123frg123fr', 'white', 'Honda', 'cabriolet', 'PORPO', 2760);
 INSERT INTO car(car_id, chassis_number, color, car_manufactorer, car_type, car_name, car_rental_price_per_month_dkk) Values (default, 'cxe32t123frg123fr', 'grey', 'Honda', 'stationcar', 'RED10', 2290);
 
-INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type) VALUES (default, 'Jen', 'Hansen', 'jen', '1', 'admin');
-INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type) VALUES (default, 'Dan', 'Jensen', 'dan', '2', 'dataregistrering');
-INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type) VALUES (default, 'Tim', 'Prosen', 'tim', '3', 'forretningsudvikler');
-INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type) VALUES (default, 'Pil', 'Tisen', 'pil', '4', 'skade- og mangler');
+
+INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type, is_user_active) VALUES (default, 'Jen', 'Hansen', 'jen', '1', 'admin', true);
+INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type, is_user_active) VALUES (default, 'Dan', 'Jensen', 'dan', '2', 'dataregistrering', true);
+INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type, is_user_active) VALUES (default, 'Tim', 'Prosen', 'tim', '3', 'forretningsudvikler', true);
+INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type, is_user_active) VALUES (default, 'Pil', 'Tisen', 'pil', '4', 'skade- og mangler', true);
+INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type, is_user_active) VALUES (default, 'Mik', 'Dyring', 'mik', '5', 'skade- og mangler', false);
