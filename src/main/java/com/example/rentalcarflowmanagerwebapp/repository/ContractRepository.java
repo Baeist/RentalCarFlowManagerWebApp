@@ -29,11 +29,11 @@ public class ContractRepository {
             e.printStackTrace();
         }
     }
+
     public Contract getContract(int contractID){
         Contract contract = new Contract();
 
-        final String SQL =  "SELECT * FROM contract" +
-                            "WHERE contract_id = ?";
+        final String SQL =  "SELECT * FROM contract WHERE contract_id = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
@@ -41,18 +41,20 @@ public class ContractRepository {
 
             ResultSet resultSet = ps.executeQuery();
 
+            resultSet.next();
+            int contractIDSQL = resultSet.getInt(1);
             int customerID = resultSet.getInt(2);
             int employeeID = resultSet.getInt(3);
 
-            contract = new Contract(contractID ,customerID, employeeID);
-
+            contract = new Contract(contractIDSQL ,customerID, employeeID);
 
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
         }
-
         return contract;
     }
+
     public ArrayList<Contract> getAllContract(){
         ArrayList<Contract> contracts = new ArrayList<>();
 
@@ -79,14 +81,16 @@ public class ContractRepository {
         }
         return contracts;
     }
+
     public void deleteContract(int contractID){
 
-        final String SQL =  "DELETE FROM contract" +
-                "WHERE contract_id = ?";
+        final String SQL =  "DELETE FROM contract WHERE contract_id = ?;";
 
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, contractID);
+
+            ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
