@@ -17,9 +17,9 @@ public class UserRepository {
 
     Connection connection;
 
-    public UserModel getUserFromLogInNameAndPassword(String logInName, String employeePassword){
+    public UserModel getUserFromLogInNameAndPassword(String logInName, String employeePassword) {
 
-        try{
+        try {
             connection = ConnectionManager.getConnection();
 
             final String SQL_QUERY = "SELECT * FROM employee WHERE employee_username = ? AND employee_password = ?";
@@ -28,30 +28,29 @@ public class UserRepository {
             ps.setString(2, employeePassword);
             ResultSet rs = ps.executeQuery();
 
-                if(rs.next()) {
-                    int employeeID = rs.getInt(1);
-                    String firstName = rs.getString(2);
-                    String lastName = rs.getString(3);
-                    logInName = rs.getString(4);
-                    employeePassword = rs.getString(5);
-                    String employeeType = rs.getString(6);
-                    boolean isUserActive = rs.getBoolean(7);
+            if (rs.next()) {
+                int employeeID = rs.getInt(1);
+                String firstName = rs.getString(2);
+                String lastName = rs.getString(3);
+                logInName = rs.getString(4);
+                employeePassword = rs.getString(5);
+                String employeeType = rs.getString(6);
+                boolean isUserActive = rs.getBoolean(7);
 
-                    UserModel user = new UserModel(employeeID, firstName, lastName, logInName, employeePassword, employeeType, isUserActive);
+                UserModel user = new UserModel(employeeID, firstName, lastName, logInName, employeePassword, employeeType, isUserActive);
 
-                    return user;
-                }
-        }
-        catch (Exception e){
-           e.printStackTrace();
+                return user;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
 
-    public List<UserModel> getAllActiveEmployees(){
+    public List<UserModel> getAllActiveEmployees() {
         List<UserModel> employees = new ArrayList<>();
 
-        try{
+        try {
             connection = ConnectionManager.getConnection();
 
             Statement statement = connection.createStatement();
@@ -70,30 +69,28 @@ public class UserRepository {
 
                 employees.add(new UserModel(id, firstName, lastName, userName, password, employeeType, isUserActive));
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return employees;
     }
 
-    public void updatePassword(String logInName, String firstNewPassword){
+    public void updatePassword(String logInName, String firstNewPassword) {
 
-        try{
+        try {
             connection = ConnectionManager.getConnection();
             final String SQL_QUERY = "UPDATE employee SET employee_password = ? WHERE employee_username ='" + logInName + "';";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             preparedStatement.setString(1, firstNewPassword);
             preparedStatement.executeUpdate();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void updateIsUserActiveFalse(String logInName){
-        try{
+    public void updateIsUserActiveFalse(String logInName) {
+        try {
             connection = ConnectionManager.getConnection();
             final String SQL_QUERY = "UPDATE employee SET is_user_active = false WHERE employee_username ='" + logInName + "';";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);

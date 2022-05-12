@@ -17,3 +17,5 @@ INSERT INTO employee(employee_id, employee_first_name, employee_last_name, emplo
 INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type, is_user_active) VALUES (default, 'Dan', 'Jensen', 'dan', '2', 'dataregistrering', true);
 INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type, is_user_active) VALUES (default, 'Tim', 'Prosen', 'tim', '3', 'forretningsudvikler', true);
 INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type, is_user_active) VALUES (default, 'Pil', 'Tisen', 'pil', '4', 'skade- og mangler', true);
+INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type, is_user_active) VALUES (default, 'Mik', 'Dyring', 'mik', '5', 'skade- og mangler', false);
+
