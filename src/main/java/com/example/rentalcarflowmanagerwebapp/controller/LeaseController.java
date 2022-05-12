@@ -9,6 +9,7 @@ public class LeaseController {
 
     @GetMapping("/dashboard/lease")
     public String dashboardLease(){
+
         return "lease_dashboard";
     }
 
