@@ -140,11 +140,8 @@ public class UserController {
     @PostMapping("/delete_user/{logInName}")
     public String deleteUser(@PathVariable("logInName") String logInName, HttpSession session, @RequestParam("delete") String delete){
 
-
-
         session.setAttribute("delete", delete);
         session.setAttribute("deleteUser", logInName);
-
 
         return "redirect:/administrator/" + session.getAttribute("logInName");
     }
