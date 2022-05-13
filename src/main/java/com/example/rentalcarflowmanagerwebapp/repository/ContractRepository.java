@@ -2,6 +2,7 @@ package com.example.rentalcarflowmanagerwebapp.repository;
 
 import com.example.rentalcarflowmanagerwebapp.model.Contract;
 import com.example.rentalcarflowmanagerwebapp.utility.ConnectionManager;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+@Repository
 public class ContractRepository {
 
     private Connection con = ConnectionManager.getConnection();
@@ -31,11 +33,12 @@ public class ContractRepository {
     }
 
     public Contract getContract(int contractID){
-        Contract contract = new Contract();
+
 
         final String SQL =  "SELECT * FROM contract WHERE contract_id = ?";
 
         try {
+
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, contractID);
 
@@ -46,13 +49,13 @@ public class ContractRepository {
             int customerID = resultSet.getInt(2);
             int employeeID = resultSet.getInt(3);
 
-            contract = new Contract(contractIDSQL ,customerID, employeeID);
+            Contract contract = new Contract(contractIDSQL ,customerID, employeeID);
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-        return contract;
+        return null;
     }
 
     public ArrayList<Contract> getAllContract(){

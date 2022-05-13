@@ -2,12 +2,14 @@ package com.example.rentalcarflowmanagerwebapp.repository;
 
 import com.example.rentalcarflowmanagerwebapp.model.Lease;
 import com.example.rentalcarflowmanagerwebapp.utility.ConnectionManager;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.time.*;
 
+@Repository
 public class LeaseRepository {
 
     private Connection con = ConnectionManager.getConnection();
@@ -74,10 +76,11 @@ public class LeaseRepository {
 
     }
     public Lease getLease(int leaseID){
-        Lease lease = new Lease();
+
 
         final String SQL =  "SELECT * FROM lease " +
                             "WHERE leaseID = ?;";
+
 
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
@@ -92,13 +95,13 @@ public class LeaseRepository {
             LocalDate startDate = resultSet.getDate(4).toLocalDate();
             int leasePeriodDays = resultSet.getInt(5);
 
-            lease = new Lease(leaseID, startDate, contractID, leasePeriodDays, carID);
+            Lease lease = new Lease(leaseID, startDate, contractID, leasePeriodDays, carID);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return lease;
+        return null;
     }
     public ArrayList<Lease> getAllLease(){
         ArrayList<Lease> leases = new ArrayList<>();

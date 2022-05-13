@@ -12,19 +12,8 @@ public class Lease {
     private int carID;
 
 
-    public Lease(){
-
-    }
-
     public Lease(int leaseID, LocalDate startDate, int contractID, int leasePeriodDays, int carID) {
         this.leaseID = leaseID;
-        this.startDate = startDate;
-        this.contractID = contractID;
-        this.leasePeriodDays = leasePeriodDays;
-        this.carID = carID;
-    }
-
-    public Lease(LocalDate startDate, int contractID, int leasePeriodDays, int carID) {
         this.startDate = startDate;
         this.contractID = contractID;
         this.leasePeriodDays = leasePeriodDays;

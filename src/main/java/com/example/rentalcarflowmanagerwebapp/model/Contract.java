@@ -5,17 +5,8 @@ public class Contract {
     private int customerID;
     private int employeeID;
 
-    public Contract(){
-
-    }
-
     public Contract(int contractID, int customerID, int employeeID) {
         this.contractID = contractID;
-        this.customerID = customerID;
-        this.employeeID = employeeID;
-    }
-
-    public Contract(int customerID, int employeeID) {
         this.customerID = customerID;
         this.employeeID = employeeID;
     }
