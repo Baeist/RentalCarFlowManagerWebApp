@@ -75,7 +75,7 @@ public class UserController {
     @GetMapping("/administrator/{logInName}")
     public String administrator(@PathVariable("logInName") String logInName, HttpSession session, Model model) {
 
-        // TODO bør nok være i de fleste side kald, tjekker man ikke bare hopper ind gennem url uden log in
+        // TODO bør være i de fleste side kald, tjekker man ikke bare hopper ind gennem url uden log in
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
@@ -134,6 +134,10 @@ public class UserController {
     @GetMapping("/update_user/{logInName}")
     public String updateUser(@PathVariable("logInName") String logInName, HttpSession session) {
 
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         session.setAttribute("update_user", true);
         session.setAttribute("user_update", userService.getUserFromLogInName(logInName));
 
@@ -144,6 +148,10 @@ public class UserController {
     public String changeUserInfo(HttpSession session, @RequestParam("user_id") int employeeID, @RequestParam("first_name") String firstName, @RequestParam("last_name") String lastName,
                                  @RequestParam("log_in_name") String logInName, @RequestParam("user_type") String employeeType){
 
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         session.removeAttribute("update_user");
         userService.updateUserInfo(employeeID, firstName, lastName, logInName, employeeType);
 
@@ -151,6 +159,10 @@ public class UserController {
     }
     @GetMapping("/cancel_update_user")
     public String cancelUpdateUser(HttpSession session){
+
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
 
         session.removeAttribute("update_user");
 
@@ -160,6 +172,10 @@ public class UserController {
     @PostMapping("/delete_user/{logInName}")
     public String deleteUser(@PathVariable("logInName") String logInName, HttpSession session, @RequestParam("delete") String delete) {
 
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         session.setAttribute("delete", delete);
         session.setAttribute("deleteUser", logInName);
 
@@ -168,6 +184,10 @@ public class UserController {
 
     @GetMapping("/final_delete_user/{logInName}")
     public String finalDeleteUser(@PathVariable("logInName") String logInName, HttpSession session) {
+
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
 
         userService.updateIsUserActiveFalse(logInName);
 
@@ -180,6 +200,10 @@ public class UserController {
     @GetMapping("/regret_delete_user/{logInName}")
     public String regretDeleteUser(@PathVariable("logInName") String logInName, HttpSession session) {
 
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         session.removeAttribute("delete");
         session.removeAttribute("deleteUser");
 
@@ -187,6 +211,10 @@ public class UserController {
     }
     @GetMapping("/create_user")
     public String createUser(HttpSession session){
+
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
 
         session.setAttribute("create", true);
 
@@ -197,6 +225,10 @@ public class UserController {
                                       @RequestParam("log_in_name") String logInName, @RequestParam("user_type") String employeeType,
                                       @RequestParam("user_password") String employeePassword){
 
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         session.removeAttribute("create");
 
         userService.createNewUser(firstName, lastName, logInName, employeeType, employeePassword);
@@ -206,6 +238,11 @@ public class UserController {
 
     @GetMapping("/cancel_create_user")
     public String cancelCreate(HttpSession session){
+
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         session.removeAttribute("create");
 
         return "redirect:/administrator/" + session.getAttribute("logInName");
