@@ -19,23 +19,25 @@ header will be here
             <th th:if="${session.create}">Medarbejder password</th>
         </tr>
     </thead>
+    <!-- update user -->
     <tbody th:if="${session.update_user}">
-    <form method="post" action="/update_user_information">
+    <form method="post" action="/update_user_information"><tr>
         <input type="number" name="user_id" th:value="${user_update.employeeID}" hidden>
-        <input type="text" name="first_name" th:value="${user_update.firstName}" required>
-        <input type="text" name="last_name" th:value="${user_update.lastName}" required>
-        <input type="text" name="log_in_name" th:value="${user_update.logInName}" required>
-        <input list="user_types" name="user_type" th:placeholder="${user_update.employeeType}" required>
-        <datalist id="user_types">
+        <td><input type="text" name="first_name" th:value="${user_update.firstName}" required></td>
+        <td><input type="text" name="last_name" th:value="${user_update.lastName}" required></td>
+        <td><input type="text" name="log_in_name" th:value="${user_update.logInName}" required></td>
+        <td><input list="type_of_user" name="user_type" th:placeholder="${user_update.employeeType}" required></td>
+        <datalist id="type_of_user">
             <option value="admin">
             <option value="dataregistrering">
             <option value="forretningsudvikler">
             <option value="skade- og mangler">
         </datalist>
-        <input type="submit" value="accepter">
-        <button><a href="/cancel_update_user">fortryd</a></button>
+        <td><input type="submit" value="accepter"></td>
+        <td><button><a href="/cancel_update_user">fortryd</a></button></td></tr>
     </form>
     </tbody>
+    <!-- create user -->
     <tbody th:if="${session.create}">
     <form method="post" action="/user_created"><tr>
         <td><input  type="text" name="first_name" required></td>
@@ -49,9 +51,10 @@ header will be here
         </datalist>
         <td><input  type="text" name="log_in_name" required></td>
         <td><input  type="text" name="user_password" required></td>
-        <td><input type="submit" value="opret"></td></form>
-    <td><button><a href="/cancel_create_user">fortryd</a></button></td>
+        <td><input type="submit" value="opret"></td>
+    <td><button><a href="/cancel_create_user">fortryd</a></button></td></tr></form>
     </tbody>
+    <!-- delete user -->
     <tbody th:if="${session.delete}">
     <tr th:each="UserModel : ${userToBeDeleted}">
         <td th:text="${UserModel.firstName}">first name</td>
@@ -61,6 +64,7 @@ header will be here
         <td><button><a th:href="@{'/final_delete_user/' + ${UserModel.logInName}}">SLET</a></button></td>
         <td><button><a th:href="@{'/regret_delete_user/' + ${UserModel.logInName}}">FORTRYD</a></button></td>
     </tbody>
+    <!-- view for non admin user -->
     <tbody th:unless="${session.isTypeAdmin}">
     <tr th:each="UserModel : ${user}">
         <td th:text="${UserModel.firstName}">first name</td>
@@ -68,16 +72,17 @@ header will be here
         <td th:text="${UserModel.employeeType}">department</td>
     </tr>
     </tbody>
+    <!-- admin view -->
     <tbody th:if="${session.isTypeAdmin}">
         <tr th:each="UserModel : ${user}">
             <td th:text="${UserModel.firstName}">first name</td>
             <td th:text="${UserModel.lastName}">last name</td>
             <td th:text="${UserModel.employeeType}">department</td>
             <td th:text="${UserModel.logInName}">user name</td>
-            <td><button><a th:href="@{'/update_user/' + ${UserModel.logInName}}">rediger</a></button></td>
-            <td th:unless="${session.delete}"><form method="post" th:action="@{'/delete_user/' + ${UserModel.logInName}}"><input type="text" value="true" name="delete" hidden><button>SLET</button></form></td></form>
+            <td th:unless="${session.delete} or ${session.create} or ${session.update_user}"><button><a th:href="@{'/update_user/' + ${UserModel.logInName}}">rediger</a></button></td>
+            <td th:unless="${session.delete} or ${session.create} or ${session.update_user}"><form method="post" th:action="@{'/delete_user/' + ${UserModel.logInName}}"><input type="text" value="true" name="delete" hidden><button>SLET</button></form></td></form>
         </tr>
-        <td><button><a href="/create_user">opret bruger</a></button></td>
+        <td th:unless="${session.delete} or ${session.create} or ${session.update_user}"><button><a href="/create_user">opret bruger</a></button></td>
 
     </tbody>
 </table>
