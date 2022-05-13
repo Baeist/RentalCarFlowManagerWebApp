@@ -132,9 +132,11 @@ public class UserController {
     }
 
     @GetMapping("/update_user/{logInName}")
-    public String updateUser(@PathVariable("logInName") String logInName, HttpSession session) {
+    public String updateUser(@PathVariable("logInName") String logInName, HttpSession session, Model model) {
 
-        return "index";
+        model.addAttribute("user", userService.getUserFromLogInName(logInName));
+
+        return "/update_user_information";
     }
 
     @PostMapping("/delete_user/{logInName}")
