@@ -66,7 +66,7 @@ public class UserController {
             if (user.getEmployeeType().equals("skade og -mangler"))
                 session.setAttribute("isTypeDamage", true);
 
-            return "redirect:/administrator/" + session.getAttribute("logInName"); // redirect to type of employee that logged in, mangler for alle typer medarbejdere
+            return "redirect:/administrator/" + session.getAttribute("logInName"); // TODO redirect to type of employee that logged in, mangler for alle typer medarbejdere
         }
 
         return "index";
