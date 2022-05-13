@@ -19,6 +19,23 @@ header will be here
             <th th:if="${session.create}">Medarbejder password</th>
         </tr>
     </thead>
+    <tbody th:if="${session.update_user}">
+    <form method="post" action="/update_user_information">
+        <input type="number" name="user_id" th:value="${user_update.employeeID}" hidden>
+        <input type="text" name="first_name" th:value="${user_update.firstName}" required>
+        <input type="text" name="last_name" th:value="${user_update.lastName}" required>
+        <input type="text" name="log_in_name" th:value="${user_update.logInName}" required>
+        <input list="user_types" name="user_type" th:placeholder="${user_update.employeeType}" required>
+        <datalist id="user_types">
+            <option value="admin">
+            <option value="dataregistrering">
+            <option value="forretningsudvikler">
+            <option value="skade- og mangler">
+        </datalist>
+        <input type="submit" value="accepter">
+        <button><a href="/cancel_update_user">fortryd</a></button>
+    </form>
+    </tbody>
     <tbody th:if="${session.create}">
     <form method="post" action="/user_created"><tr>
         <td><input  type="text" name="first_name" required></td>

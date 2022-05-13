@@ -82,6 +82,8 @@ public class UserController {
 
         model.addAttribute("userToBeDeleted", userService.getUserFromLogInName((String) session.getAttribute("deleteUser")));
 
+        model.addAttribute("user_update", session.getAttribute("user_update"));
+
         model.addAttribute("logInName", logInName);
         model.addAttribute("fullName", session.getAttribute("employeeFullName"));
         model.addAttribute("user", userService.getAllActiveEmployees());
@@ -130,18 +132,27 @@ public class UserController {
     }
 
     @GetMapping("/update_user/{logInName}")
-    public String updateUser(@PathVariable("logInName") String logInName, HttpSession session, Model model) {
+    public String updateUser(@PathVariable("logInName") String logInName, HttpSession session) {
 
-        model.addAttribute("user", userService.getUserFromLogInName(logInName));
+        session.setAttribute("update_user", true);
+        session.setAttribute("user_update", userService.getUserFromLogInName(logInName));
 
-        return "/update_user_information";
+        return "redirect:/administrator/" + session.getAttribute("logInName");
     }
 
     @PostMapping("/update_user_information")
     public String changeUserInfo(HttpSession session, @RequestParam("user_id") int employeeID, @RequestParam("first_name") String firstName, @RequestParam("last_name") String lastName,
                                  @RequestParam("log_in_name") String logInName, @RequestParam("user_type") String employeeType){
 
+        session.removeAttribute("update_user");
         userService.updateUserInfo(employeeID, firstName, lastName, logInName, employeeType);
+
+        return "redirect:/administrator/" + session.getAttribute("logInName");
+    }
+    @GetMapping("/cancel_update_user")
+    public String cancelUpdateUser(HttpSession session){
+
+        session.removeAttribute("update_user");
 
         return "redirect:/administrator/" + session.getAttribute("logInName");
     }
