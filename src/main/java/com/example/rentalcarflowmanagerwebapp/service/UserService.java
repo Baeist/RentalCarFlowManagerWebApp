@@ -40,4 +40,8 @@ public class UserService {
     public void updateUserInfo(int employeeID, String firstName, String lastName, String logInName, String employeeType){
      userRepository.updateUserInfo(employeeID, firstName, lastName, logInName, employeeType);
     }
+
+    public void createNewUser(String firstName, String lastName, String logInName, String employeeType, String employeePassword){
+        userRepository.createNewUser(firstName, lastName, logInName, employeeType, employeePassword);
+    }
 }

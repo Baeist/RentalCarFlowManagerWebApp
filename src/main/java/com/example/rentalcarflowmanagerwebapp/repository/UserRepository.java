@@ -145,4 +145,20 @@ public class UserRepository {
             e.printStackTrace();
         }
     }
+    public void createNewUser(String firstName, String lastName, String logInName, String employeeType, String employeePassword) {
+
+        try {
+            connection = ConnectionManager.getConnection();
+            final String SQL_QUERY = "INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type, is_user_active) VALUES(default, ?, ?, ?, ?, ?, true)";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, logInName);
+            preparedStatement.setString(4, employeePassword);
+            preparedStatement.setString(5, employeeType);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

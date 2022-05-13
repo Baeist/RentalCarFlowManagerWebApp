@@ -75,14 +75,12 @@ public class UserController {
     @GetMapping("/administrator/{logInName}")
     public String administrator(@PathVariable("logInName") String logInName, HttpSession session, Model model) {
 
-        // bør nok være i de fleste side kald, tjekker man ikke bare hopper ind gennem url uden log in
+        // TODO bør nok være i de fleste side kald, tjekker man ikke bare hopper ind gennem url uden log in
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
 
-
         model.addAttribute("userToBeDeleted", userService.getUserFromLogInName((String) session.getAttribute("deleteUser")));
-
 
         model.addAttribute("logInName", logInName);
         model.addAttribute("fullName", session.getAttribute("employeeFullName"));
@@ -140,7 +138,7 @@ public class UserController {
     }
 
     @PostMapping("/update_user_information")
-    public String changeUserInfo(HttpSession session,@RequestParam("user_id") int employeeID, @RequestParam("first_name") String firstName, @RequestParam("last_name") String lastName,
+    public String changeUserInfo(HttpSession session, @RequestParam("user_id") int employeeID, @RequestParam("first_name") String firstName, @RequestParam("last_name") String lastName,
                                  @RequestParam("log_in_name") String logInName, @RequestParam("user_type") String employeeType){
 
         userService.updateUserInfo(employeeID, firstName, lastName, logInName, employeeType);
@@ -173,6 +171,31 @@ public class UserController {
 
         session.removeAttribute("delete");
         session.removeAttribute("deleteUser");
+
+        return "redirect:/administrator/" + session.getAttribute("logInName");
+    }
+    @GetMapping("/create_user")
+    public String createUser(HttpSession session){
+
+        session.setAttribute("create", true);
+
+        return "redirect:/administrator/" + session.getAttribute("logInName");
+    }
+    @PostMapping("/user_created")
+    public String confirmUserCreation(HttpSession session, @RequestParam("first_name") String firstName, @RequestParam("last_name") String lastName,
+                                      @RequestParam("log_in_name") String logInName, @RequestParam("user_type") String employeeType,
+                                      @RequestParam("user_password") String employeePassword){
+
+        session.removeAttribute("create");
+
+        userService.createNewUser(firstName, lastName, logInName, employeeType, employeePassword);
+
+        return "redirect:/administrator/" + session.getAttribute("logInName");
+    }
+
+    @GetMapping("/cancel_create_user")
+    public String cancelCreate(HttpSession session){
+        session.removeAttribute("create");
 
         return "redirect:/administrator/" + session.getAttribute("logInName");
     }

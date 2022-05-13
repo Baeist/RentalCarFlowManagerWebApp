@@ -16,8 +16,25 @@ header will be here
             <th>Medarbejder efternavn</th>
             <th>Medarbejder afdeling</th>
             <th th:if="${session.isTypeAdmin}">Medarbejder brugernavn</th>
+            <th th:if="${session.create}">Medarbejder password</th>
         </tr>
     </thead>
+    <tbody th:if="${session.create}">
+    <form method="post" action="/user_created"><tr>
+        <td><input  type="text" name="first_name" required></td>
+        <td><input  type="text" name="last_name" required></td>
+        <td><input  list="user_types" name="user_type" required></td>
+        <datalist id="user_types">
+            <option value="admin">
+            <option value="dataregistrering">
+            <option value="forretningsudvikler">
+            <option value="skade- og mangler">
+        </datalist>
+        <td><input  type="text" name="log_in_name" required></td>
+        <td><input  type="text" name="user_password" required></td>
+        <td><input type="submit" value="opret"></td></form>
+    <td><button><a href="/cancel_create_user">fortryd</a></button></td>
+    </tbody>
     <tbody th:if="${session.delete}">
     <tr th:each="UserModel : ${userToBeDeleted}">
         <td th:text="${UserModel.firstName}">first name</td>
