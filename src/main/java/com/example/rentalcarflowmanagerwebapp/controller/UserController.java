@@ -139,6 +139,15 @@ public class UserController {
         return "/update_user_information";
     }
 
+    @PostMapping("/update_user_information")
+    public String changeUserInfo(HttpSession session,@RequestParam("user_id") int employeeID, @RequestParam("first_name") String firstName, @RequestParam("last_name") String lastName,
+                                 @RequestParam("log_in_name") String logInName, @RequestParam("user_type") String employeeType){
+
+        userService.updateUserInfo(employeeID, firstName, lastName, logInName, employeeType);
+
+        return "redirect:/administrator/" + session.getAttribute("logInName");
+    }
+
     @PostMapping("/delete_user/{logInName}")
     public String deleteUser(@PathVariable("logInName") String logInName, HttpSession session, @RequestParam("delete") String delete) {
 

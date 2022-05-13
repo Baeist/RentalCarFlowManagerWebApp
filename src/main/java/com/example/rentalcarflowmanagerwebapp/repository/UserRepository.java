@@ -130,4 +130,19 @@ public class UserRepository {
             }
             return null;
     }
+    public void updateUserInfo(int employeeID, String firstName, String lastName, String logInName, String employeeType) {
+
+        try {
+            connection = ConnectionManager.getConnection();
+            final String SQL_QUERY = "UPDATE employee SET employee_first_name = ?, employee_last_name = ?, employee_username = ?, employee_type = ? WHERE employee_id =" + employeeID + ";";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, logInName);
+            preparedStatement.setString(4, employeeType);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

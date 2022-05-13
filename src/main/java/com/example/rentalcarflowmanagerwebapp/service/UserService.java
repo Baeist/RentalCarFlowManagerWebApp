@@ -36,4 +36,8 @@ public class UserService {
     public void updateIsUserActiveFalse(String logInName){
         userRepository.updateIsUserActiveFalse(logInName);
     }
+
+    public void updateUserInfo(int employeeID, String firstName, String lastName, String logInName, String employeeType){
+     userRepository.updateUserInfo(employeeID, firstName, lastName, logInName, employeeType);
+    }
 }
