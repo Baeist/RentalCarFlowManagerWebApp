@@ -10,35 +10,42 @@
 
 <body class="body">
     <div class="container-fluid">
-
-        <table class="table summary-table">
             <th:block th:each="Contract : ${allContracts}">
-
-                <table class="table table-dark" style="margin-bottom: 0px">
+                <table class="table table-dark" style="margin-bottom: 0px; margin-top: 10px">
                     <tr>
-                        <td>Contract</td>
-                        <td>[[${Contract.contractID}]]</td>
+                        <td>ContractID: [[${Contract.contractID}]]</td>
                         <td>[[${Contract.customerID}]]</td>
                         <td>[[${Contract.employeeID}]]</td>
                     </tr>
                 </table>
 
+                                        <!--Not an error-->
                 <th:block th:each="Lease : ${allLeases}"  >
-                    <table th:if="${Contract.contractID} == ${Lease.contractID}" class="table table-light table-sm" style="margin-bottom: 0px;">
+                    <table th:if="${Contract.contractID} == ${Lease.contractID}" class="table table-sm"
+                    style="margin-bottom: 0px">
                         <tr>
-                            <td>Contract</td>
-                            <td>[[${Lease.leaseID}]]</td>
-                            <td>[[${Lease.startDate}]]</td>
-                            <td>[[${Lease.contractID}]]</td>
+                            <td>LeaseID: [[${Lease.leaseID}]]</td>
+                            <td>Startdate: [[${Lease.startDate}]]</td>
                             <td>[[${Lease.leasePeriodDays}]]</td>
                             <td>[[${Lease.carID}]]</td>
+
+
+                            <td>
+                                <a th:href="@{'/dashboard/lease/edit/' + ${Lease.leaseID}}">
+                                    <button class="btn btn-sm btn-primary">Edit</button>
+                                </a>
+                            </td>
+
+                            <td>
+                                <a th:href="@{'/dashboard/lease/delete/' + ${Lease.leaseID}}">
+                                    <button th class="btn btn-sm btn-danger">Slet</button>
+                                </a>
+                            </td>
+
                         </tr>
                     </table>
                 </th:block>
             </th:block>
-        </table>
-
-
     </div>
 
 

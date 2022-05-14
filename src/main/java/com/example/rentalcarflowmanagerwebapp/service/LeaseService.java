@@ -20,4 +20,8 @@ public class LeaseService {
     public ArrayList<Lease> getAllLeases() {
         return leaseRepository.getAllLease();
     }
+
+    public void deleteLease(int leaseID) {
+        leaseRepository.deleteLease(leaseID);
+    }
 }

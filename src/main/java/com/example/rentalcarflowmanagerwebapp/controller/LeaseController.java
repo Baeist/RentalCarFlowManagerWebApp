@@ -8,6 +8,8 @@ import com.example.rentalcarflowmanagerwebapp.service.LeaseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -34,5 +36,17 @@ public class LeaseController {
     }
 
 
+    @GetMapping("/dashboard/lease/delete/{leaseID}")
+    public String deleteLease(@PathVariable("leaseID") int leaseID){
+        leaseService.deleteLease(leaseID);
+        return "redirect:/dashboard/lease";
+    }
+
+    @GetMapping("/dashboard/lease/edit/{leaseID}")
+    public String editLease(@PathVariable("leaseID") int leaseID){
+
+
+        return "redirect:/dashboard/lease";
+    }
 
 }
