@@ -5,12 +5,11 @@ import java.util.Date;
 
 public class Lease {
 
-    private Integer leaseID;
+    private int leaseID;
     private LocalDate startDate;
     private int contractID;
     private int leasePeriodDays;
     private int carID;
-
 
     public Lease(int leaseID, LocalDate startDate, int contractID, int leasePeriodDays, int carID) {
         this.leaseID = leaseID;
@@ -23,7 +22,7 @@ public class Lease {
     public Integer getLeaseID() {
         return leaseID;
     }
-    public void setLeaseID(Integer leaseID) {
+    public void setLeaseID(int leaseID) {
         this.leaseID = leaseID;
     }
 

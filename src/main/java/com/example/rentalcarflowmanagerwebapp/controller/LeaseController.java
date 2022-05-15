@@ -9,8 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -36,6 +40,22 @@ public class LeaseController {
     }
 
 
+    @PostMapping("/lease/save")
+    public String saveLease(@RequestParam("leaseID") int leaseID,
+                            @RequestParam("startDate") String startDate,
+                            @RequestParam("contractID") int contractID,
+                            @RequestParam("leasePeriodDays") int periodDays,
+                            @RequestParam("carID") int carID
+                            ){
+
+        LocalDate startLocalDate = leaseService.convertStringtoLocalDate(startDate);
+
+        Lease lease = new Lease(leaseID, startLocalDate, contractID, periodDays, carID);
+        leaseService.saveLease(lease);
+
+        return "redirect:/dashboard/lease";
+    }
+
     @GetMapping("/dashboard/lease/delete/{leaseID}")
     public String deleteLease(@PathVariable("leaseID") int leaseID){
         leaseService.deleteLease(leaseID);
@@ -43,10 +63,22 @@ public class LeaseController {
     }
 
     @GetMapping("/dashboard/lease/edit/{leaseID}")
-    public String editLease(@PathVariable("leaseID") int leaseID){
+    public String editLease(@PathVariable("leaseID") int leaseID, Model model){
+        model.addAttribute("pageTitle", "Ændrer lease: " + leaseID);
+        model.addAttribute("leaseID", leaseID);
 
-
-        return "redirect:/dashboard/lease";
+        return "Forms/lease_form";
     }
+
+    @GetMapping("/dashboard/lease/create")
+    public String createLease(Model model){
+        model.addAttribute("pageTitle", "Opret lejeaftale");
+        // gives none existing id
+        model.addAttribute("leaseID", -1);
+
+
+        return "Forms/lease_form";
+    }
+
 
 }
