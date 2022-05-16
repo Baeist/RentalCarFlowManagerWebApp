@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -65,16 +62,15 @@ public class LeaseController {
     public String editLease(@PathVariable("leaseID") int leaseID, Model model){
         model.addAttribute("pageTitle", "Ændrer lease: " + leaseID);
         model.addAttribute("leaseID", leaseID);
-
         return "Forms/lease_form";
     }
 
     @GetMapping("/dashboard/lease/create")
     public String createLease(Model model){
         model.addAttribute("pageTitle", "Opret lejeaftale");
+
         // gives none existing id
         model.addAttribute("leaseID", -1);
-
 
         return "Forms/lease_form";
     }

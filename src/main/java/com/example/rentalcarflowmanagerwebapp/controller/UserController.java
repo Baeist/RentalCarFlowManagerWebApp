@@ -1,7 +1,7 @@
 package com.example.rentalcarflowmanagerwebapp.controller;
 
 
-import com.example.rentalcarflowmanagerwebapp.model.UserModel;
+import com.example.rentalcarflowmanagerwebapp.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +43,7 @@ public class UserController {
     @PostMapping("/")
     public String logIn(HttpSession session, @RequestParam("log_in_name") String logInName, @RequestParam("employee_password") String employeePassword) {
 
-        UserModel user = userService.getUserFromLogInNameAndPassword(logInName, employeePassword);
+        User user = userService.getUserFromLogInNameAndPassword(logInName, employeePassword);
 
         if (user != null && user.isUserActive()) {
             // sets user information when logging in
