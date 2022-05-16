@@ -1,6 +1,7 @@
 package com.example.rentalcarflowmanagerwebapp.repository;
 
 import com.example.rentalcarflowmanagerwebapp.model.User;
+import com.example.rentalcarflowmanagerwebapp.utility.PasswordEncryption;
 import org.springframework.stereotype.Repository;
 import com.example.rentalcarflowmanagerwebapp.utility.ConnectionManager;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class UserRepository {
 
     Connection connection;
+    PasswordEncryption pwe = new PasswordEncryption();
 
     public User getUserFromLogInNameAndPassword(String logInName, String employeePassword) {
 
@@ -33,10 +35,11 @@ public class UserRepository {
                 String lastName = rs.getString(3);
                 logInName = rs.getString(4);
                 employeePassword = rs.getString(5);
-                String employeeType = rs.getString(6);
-                boolean isUserActive = rs.getBoolean(7);
+                String salt = rs.getString(6);
+                String employeeType = rs.getString(7);
+                boolean isUserActive = rs.getBoolean(8);
 
-                User user = new User(employeeID, firstName, lastName, logInName, employeePassword, employeeType, isUserActive);
+                User user = new User(employeeID, firstName, lastName, logInName, employeePassword, salt, employeeType, isUserActive);
 
                 return user;
             }
@@ -63,10 +66,11 @@ public class UserRepository {
                 String lastName = resultSet.getString(3);
                 String userName = resultSet.getString(4);
                 String password = resultSet.getString(5);
-                String employeeType = resultSet.getString(6);
-                boolean isUserActive = resultSet.getBoolean(7);
+                String salt = resultSet.getString(6);
+                String employeeType = resultSet.getString(7);
+                boolean isUserActive = resultSet.getBoolean(8);
 
-                employees.add(new User(id, firstName, lastName, userName, password, employeeType, isUserActive));
+                employees.add(new User(id, firstName, lastName, userName, password, salt, employeeType, isUserActive));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -116,10 +120,11 @@ public class UserRepository {
                     String lastName = rs.getString(3);
                     logInName = rs.getString(4);
                     String employeePassword = rs.getString(5);
-                    String employeeType = rs.getString(6);
-                    boolean isUserActive = rs.getBoolean(7);
+                    String salt = rs.getString(6);
+                    String employeeType = rs.getString(7);
+                    boolean isUserActive = rs.getBoolean(8);
 
-                    User user = new User(employeeID, firstName, lastName, logInName, employeePassword, employeeType, isUserActive);
+                    User user = new User(employeeID, firstName, lastName, logInName, employeePassword, salt, employeeType, isUserActive);
 
                     return user;
                 }
@@ -146,15 +151,20 @@ public class UserRepository {
     }
     public void createNewUser(String firstName, String lastName, String logInName, String employeeType, String employeePassword) {
 
+        String employeeSalt = pwe.getSalt(30);
+        String employeeSafePassword = pwe.giveSafePassword(employeePassword, employeeSalt);
+
+
         try {
             connection = ConnectionManager.getConnection();
-            final String SQL_QUERY = "INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type, is_user_active) VALUES(default, ?, ?, ?, ?, ?, true)";
+            final String SQL_QUERY = "INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_password_salt, employee_type, is_user_active) VALUES(default, ?, ?, ?, ?, ?, ?, true)";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
             preparedStatement.setString(3, logInName);
-            preparedStatement.setString(4, employeePassword);
-            preparedStatement.setString(5, employeeType);
+            preparedStatement.setString(4, employeeSafePassword);
+            preparedStatement.setString(5, employeeSalt);
+            preparedStatement.setString(6, employeeType);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

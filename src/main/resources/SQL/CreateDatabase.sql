@@ -14,6 +14,7 @@ create table if not exists employee
     employee_last_name varchar(45) not null,
     employee_username varchar(45) not null unique,
     employee_password varchar(256) not null,
+    employee_password_salt varchar(30) not null,
     employee_type varchar(45) not null,
     is_user_active boolean not null
     );
