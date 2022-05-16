@@ -1,34 +1,35 @@
 package com.example.rentalcarflowmanagerwebapp.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Lease {
 
-    private Integer leaseID;
-    private Date startDate;
+    private int leaseID;
+    private LocalDate startDate;
     private int contractID;
     private int leasePeriodDays;
-    private Car car;
+    private int carID;
 
-    public Lease(int leaseID, Date startDate, int contractID, int leasePeriodDays, Car car) {
+    public Lease(int leaseID, LocalDate startDate, int contractID, int leasePeriodDays, int carID) {
         this.leaseID = leaseID;
         this.startDate = startDate;
         this.contractID = contractID;
         this.leasePeriodDays = leasePeriodDays;
-        this.car = car;
+        this.carID = carID;
     }
 
     public Integer getLeaseID() {
         return leaseID;
     }
-    public void setLeaseID(Integer leaseID) {
+    public void setLeaseID(int leaseID) {
         this.leaseID = leaseID;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
@@ -46,14 +47,14 @@ public class Lease {
         this.leasePeriodDays = leasePeriodDays;
     }
 
-    public Car getCar() {
-        return car;
+    public int getCarID() {
+        return carID;
     }
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarID(int carID) {
+        this.carID = carID;
     }
 
     public String toString(){
-        return "lease ID: " + leaseID + " | Car " + car;
+        return "lease ID: " + leaseID;
     }
 }

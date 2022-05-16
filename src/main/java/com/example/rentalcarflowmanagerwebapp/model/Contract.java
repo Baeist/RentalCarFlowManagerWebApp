@@ -1,17 +1,12 @@
 package com.example.rentalcarflowmanagerwebapp.model;
 
 public class Contract {
-    private Integer contractID;
+    private int contractID;
     private int customerID;
     private int employeeID;
 
-    public Contract(Integer contractID, int customerID, int employeeID) {
+    public Contract(int contractID, int customerID, int employeeID) {
         this.contractID = contractID;
-        this.customerID = customerID;
-        this.employeeID = employeeID;
-    }
-
-    public Contract(int customerID, int employeeID) {
         this.customerID = customerID;
         this.employeeID = employeeID;
     }
