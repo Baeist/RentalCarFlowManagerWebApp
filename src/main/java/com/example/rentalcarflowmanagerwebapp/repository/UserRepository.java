@@ -1,7 +1,6 @@
 package com.example.rentalcarflowmanagerwebapp.repository;
 
-import com.example.rentalcarflowmanagerwebapp.model.UserModel;
-import org.apache.catalina.User;
+import com.example.rentalcarflowmanagerwebapp.model.User;
 import org.springframework.stereotype.Repository;
 import com.example.rentalcarflowmanagerwebapp.utility.ConnectionManager;
 
@@ -17,7 +16,7 @@ public class UserRepository {
 
     Connection connection;
 
-    public UserModel getUserFromLogInNameAndPassword(String logInName, String employeePassword) {
+    public User getUserFromLogInNameAndPassword(String logInName, String employeePassword) {
 
         try {
             connection = ConnectionManager.getConnection();
@@ -37,7 +36,7 @@ public class UserRepository {
                 String employeeType = rs.getString(6);
                 boolean isUserActive = rs.getBoolean(7);
 
-                UserModel user = new UserModel(employeeID, firstName, lastName, logInName, employeePassword, employeeType, isUserActive);
+                User user = new User(employeeID, firstName, lastName, logInName, employeePassword, employeeType, isUserActive);
 
                 return user;
             }
@@ -47,8 +46,8 @@ public class UserRepository {
         return null;
     }
 
-    public List<UserModel> getAllActiveEmployees() {
-        List<UserModel> employees = new ArrayList<>();
+    public List<User> getAllActiveEmployees() {
+        List<User> employees = new ArrayList<>();
 
         try {
             connection = ConnectionManager.getConnection();
@@ -67,7 +66,7 @@ public class UserRepository {
                 String employeeType = resultSet.getString(6);
                 boolean isUserActive = resultSet.getBoolean(7);
 
-                employees.add(new UserModel(id, firstName, lastName, userName, password, employeeType, isUserActive));
+                employees.add(new User(id, firstName, lastName, userName, password, employeeType, isUserActive));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -101,7 +100,7 @@ public class UserRepository {
         }
     }
 
-    public UserModel getUserFromLogInName(String logInName){
+    public User getUserFromLogInName(String logInName){
 
             try{
                 connection = ConnectionManager.getConnection();
@@ -120,7 +119,7 @@ public class UserRepository {
                     String employeeType = rs.getString(6);
                     boolean isUserActive = rs.getBoolean(7);
 
-                    UserModel user = new UserModel(employeeID, firstName, lastName, logInName, employeePassword, employeeType, isUserActive);
+                    User user = new User(employeeID, firstName, lastName, logInName, employeePassword, employeeType, isUserActive);
 
                     return user;
                 }

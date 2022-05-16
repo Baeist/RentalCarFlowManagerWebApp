@@ -1,10 +1,9 @@
 package com.example.rentalcarflowmanagerwebapp.service;
 
-import com.example.rentalcarflowmanagerwebapp.model.UserModel;
+import com.example.rentalcarflowmanagerwebapp.model.User;
 import org.springframework.stereotype.Service;
 import com.example.rentalcarflowmanagerwebapp.repository.UserRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,19 +16,19 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserModel getUserFromLogInNameAndPassword(String logInName, String employeePassword){
+    public User getUserFromLogInNameAndPassword(String logInName, String employeePassword){
 
         return userRepository.getUserFromLogInNameAndPassword(logInName, employeePassword);
     }
 
-    public List<UserModel> getAllActiveEmployees(){
+    public List<User> getAllActiveEmployees(){
         return userRepository.getAllActiveEmployees();
     }
 
     public void updatePassword(String logInName, String firstNewPassword){
         userRepository.updatePassword(logInName, firstNewPassword);
     }
-    public UserModel getUserFromLogInName(String logInName){
+    public User getUserFromLogInName(String logInName){
 
         return userRepository.getUserFromLogInName(logInName);
     }
