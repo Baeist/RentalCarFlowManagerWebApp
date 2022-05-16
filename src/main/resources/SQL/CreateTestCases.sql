@@ -17,3 +17,5 @@ INSERT INTO employee(employee_id, employee_first_name, employee_last_name, emplo
 INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type) VALUES (default, 'Dan', 'Jensen', 'dan', '2', 'dataregistrering');
 INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type) VALUES (default, 'Tim', 'Prosen', 'tim', '3', 'forretningsudvikler');
 INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type) VALUES (default, 'Pil', 'Tisen', 'pil', '4', 'skade- og mangler');
+
+INSERT INTO contract(contract_id, employee_id, customer_id) VALUES (1, 1, 1);

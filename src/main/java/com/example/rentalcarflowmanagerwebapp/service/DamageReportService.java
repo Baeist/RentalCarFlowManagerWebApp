@@ -19,7 +19,10 @@ public class DamageReportService {
   public void createDamageReport(int contract_id, int carId, String description, int damage_price_dkk, String garage_name) {
     damageReportRepository.createDamageReport(contract_id, carId, description, damage_price_dkk, garage_name);
   }
-  public void deleteDamageReport(int contract_id, int carId) {
-    damageReportRepository.deleteDamageReport(contract_id, carId);
+  public void editDamageReport(int damage_report_id, String description, int damage_price_dkk, String garage_name) {
+    damageReportRepository.editDamageReport(damage_report_id, description, damage_price_dkk, garage_name);
+  }
+  public void deleteDamageReport(int damage_report_id) {
+    damageReportRepository.deleteDamageReport(damage_report_id);
   }
 }

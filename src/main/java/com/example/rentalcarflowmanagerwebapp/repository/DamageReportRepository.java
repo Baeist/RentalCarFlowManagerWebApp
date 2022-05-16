@@ -53,13 +53,26 @@ public class DamageReportRepository {
       e.printStackTrace();
     }
   }
-  public void deleteDamageReport(int contract_id, int carId) {
+  public void editDamageReport(int damage_report_id, String description, int damage_price_dkk, String garage_name) {
     try {
       Connection connection = ConnectionManager.getConnection();
-      String SQL_QUERY = "DELETE FROM damage_report WHERE contract_id = ? AND car_id = ?";
+      String SQL_QUERY = "UPDATE damage_report SET description = ?, damage_price_dkk = ?, garage_name = ? WHERE damage_report_id = ?";
       PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
-      ps.setInt(1, contract_id);
-      ps.setInt(2, carId);
+      ps.setString(1, description);
+      ps.setInt(2, damage_price_dkk);
+      ps.setString(3, garage_name);
+      ps.setInt(4, damage_report_id);
+      ps.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  public void deleteDamageReport(int damage_report_id) {
+    try {
+      Connection connection = ConnectionManager.getConnection();
+      String SQL_QUERY = "DELETE FROM damage_report WHERE damage_report_id = ?";
+      PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+      ps.setInt(1, damage_report_id);
       ps.executeUpdate();
     } catch (Exception e) {
       e.printStackTrace();

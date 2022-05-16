@@ -50,8 +50,8 @@ create table if not exists damage_report
 (
     damage_report_id   int auto_increment unique
     primary key,
-    contract_id int not null unique,
-    car_id int not null unique,
+    contract_id int not null,
+    car_id int not null,
     dedscription varchar(400),
     damage_price_dkk double not null,
     garage_name varchar(45),
