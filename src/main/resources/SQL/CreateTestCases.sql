@@ -17,3 +17,18 @@ INSERT INTO employee(employee_id, employee_first_name, employee_last_name, emplo
 INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type) VALUES (default, 'Dan', 'Jensen', 'dan', '2', 'dataregistrering');
 INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type) VALUES (default, 'Tim', 'Prosen', 'tim', '3', 'forretningsudvikler');
 INSERT INTO employee(employee_id, employee_first_name, employee_last_name, employee_username, employee_password, employee_type) VALUES (default, 'Pil', 'Tisen', 'pil', '4', 'skade- og mangler');
+
+INSERT INTO contract(employee_id, customer_id) VALUES (1, 1);
+INSERT INTO contract(employee_id, customer_id) VALUES (1, 2);
+INSERT INTO contract(employee_id, customer_id) VALUES (1, 3);
+INSERT INTO contract(employee_id, customer_id) VALUES (1, 4);
+INSERT INTO contract(employee_id, customer_id) VALUES (1, 5);
+INSERT INTO contract(employee_id, customer_id) VALUES (1, 6);
+INSERT INTO contract(employee_id, customer_id) VALUES (1, 7);
+
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) VALUES (1, 1, "2022-05-16", 90);
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) VALUES (2, 2, "2021-05-16", 365);
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) VALUES (3, 3, "2022-09-16", 120);
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) VALUES (4, 4, "2021-05-16", 730);
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) VALUES (5, 5, "2022-01-16", 90);
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) VALUES (6, 6, "2022-04-16", 90);
