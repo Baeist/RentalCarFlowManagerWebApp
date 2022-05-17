@@ -46,12 +46,13 @@ public class UserController {
         User user = userService.getUserFromLogInNameAndPassword(logInName, employeePassword);
 
         if (user != null && user.isUserActive()) {
-
+            // sets user information when logging in
             session.setAttribute("employeeFullName", user.getFirstName() + " " + user.getLastName());
             session.setAttribute("employeeType", user.getEmployeeType());
             session.setAttribute("logInName", logInName);
             session.setAttribute("isLoggedIn", true);
             session.setAttribute("password", employeePassword);
+
             session.setAttribute("isTypeDamage", false);
             session.setAttribute("isTypeBusiness", false);
             session.setAttribute("isTypeRegistering", false);
@@ -66,7 +67,12 @@ public class UserController {
             if (user.getEmployeeType().equals("skade og -mangler"))
                 session.setAttribute("isTypeDamage", true);
 
-            return "redirect:/administrator/" + session.getAttribute("logInName"); // TODO redirect to type of employee that logged in, mangler for alle typer medarbejdere
+
+            if(session.getAttribute("isTypeAdmin").equals(true)) {
+                return "redirect:/administrator/" + session.getAttribute("logInName"); // TODO redirect to type of employee that logged in, mangler for alle typer medarbejdere
+            }
+            if(session.getAttribute("isTypeRegistering").equals(true))
+                return "redirect:/dashboard/lease";
         }
 
         return "index";
@@ -107,10 +113,10 @@ public class UserController {
 
         model.addAttribute("logInName", session.getAttribute("logInName"));
 
-        return "/setpassword";
+        return "/forms/setpassword";
     }
 
-    @PostMapping("/setpassword")
+    @PostMapping("/forms/setpassword")
     public String passwordChanged(HttpSession session, @RequestParam("old_password") String oldPassword,
                                   @RequestParam("first_new_password") String firstNewPassword,
                                   @RequestParam("second_new_password") String secondNewPassword) {
@@ -128,7 +134,7 @@ public class UserController {
             return "redirect:/administrator/" + session.getAttribute("logInName");
         }
 
-        return "/setpassword";
+        return "/forms/setpassword";
     }
 
     @GetMapping("/update_user/{logInName}")
@@ -198,7 +204,7 @@ public class UserController {
     }
 
     @GetMapping("/regret_delete_user/{logInName}")
-    public String regretDeleteUser(@PathVariable("logInName") String logInName, HttpSession session) {
+    public String regretDeleteUser(HttpSession session) {
 
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
