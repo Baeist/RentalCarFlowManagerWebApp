@@ -16,7 +16,9 @@ public class Car {
 
     public Car(){}
 
-    public Car(int carID, String chassisNumber, String color, String manufacturer, String carType, String carName, int gearLevel, double steelPriceDKK, double registrationFeeDKK, double CO2EmissionPerKM, double carPricePerMonthDKK) {
+    public Car(int carID, String chassisNumber, String color, String manufacturer, String carType,
+               String carName, int gearLevel, double steelPriceDKK, double registrationFeeDKK,
+               double CO2EmissionPerKM, double carPricePerMonthDKK) {
         this.carID = carID;
         this.chassisNumber = chassisNumber;
         this.color = color;
