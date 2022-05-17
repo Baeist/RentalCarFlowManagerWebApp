@@ -1,10 +1,19 @@
 package com.example.rentalcarflowmanagerwebapp.service;
 
+import com.example.rentalcarflowmanagerwebapp.model.CarModel;
+import com.example.rentalcarflowmanagerwebapp.repository.LeaseRepository;
+
+import java.util.ArrayList;
+
 import static org.springframework.http.HttpHeaders.FROM;
 
 public class LeaseService {
 
-    public void viewRentableCars(){
+
+    public static ArrayList<CarModel> testMetodetilBilID(){
+
+        return LeaseRepository.hentBilerUdlejet();
+
 
     }
 
