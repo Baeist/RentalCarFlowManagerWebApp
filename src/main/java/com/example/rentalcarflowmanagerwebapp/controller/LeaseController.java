@@ -14,12 +14,18 @@ import java.util.ArrayList;
 public class LeaseController {
 
 
-@RequestMapping(value="/bilstatistik", method= RequestMethod.GET)
+@RequestMapping(value="/bilstatistik/udlejet", method= RequestMethod.GET)
 public String bilStatistik(Model model){
-  ArrayList<CarModel> biler = LeaseService.testMetodetilBilID();
+  ArrayList<CarModel> biler = LeaseService.seUdlejedeBiler();
   model.addAttribute("biler", biler);
   return "/bilstatistik";
 }
+  @RequestMapping(value="/bilstatistik/ledige", method= RequestMethod.GET)
+  public String bilStatistikLedige(Model model){
+    ArrayList<CarModel> biler = LeaseService.seLedigeBiler();
+    model.addAttribute("biler", biler);
+    return "/bilstatistik";
+  }
 
 
 }

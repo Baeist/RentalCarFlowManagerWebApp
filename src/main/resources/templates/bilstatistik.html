@@ -12,7 +12,15 @@
 
         <table>
             <tr th:each="bil: ${biler}">
-                <td th:text="${bil.color}"> </td>
+                <!--/*@thymesVar id="bil" type="com.example.rentalcarflowmanagerwebapp.model.CarModel"*/-->
+                <td th:text="${bil.getCarID()}"> </td>
+                <td th:text="${bil.getColor()}"> </td>
+                <td th:text="${bil.getManufacturer()}"> </td>
+                <td th:text="${bil.getCarType()}"> </td>
+                <td th:text="${bil.getCarName()}"> </td>
+                <td th:text="${bil.getCarPricePerMonthDKK()}"> </td>
+                <td th:text="${bil.getChassisNumber()}"> </td>
+
 
             </tr>
         </table>

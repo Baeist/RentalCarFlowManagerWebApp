@@ -10,12 +10,15 @@ import static org.springframework.http.HttpHeaders.FROM;
 public class LeaseService {
 
 
-    public static ArrayList<CarModel> testMetodetilBilID(){
+    public static ArrayList<CarModel> seUdlejedeBiler(){
 
-        return LeaseRepository.hentBilerUdlejet();
+        return LeaseRepository.seUdlejedeBiler();
 
 
     }
 
+    public static ArrayList<CarModel> seLedigeBiler(){
+        return LeaseRepository.seLedigeBiler();
+    }
 
 }
