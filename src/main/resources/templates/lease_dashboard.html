@@ -14,6 +14,9 @@
 <header th:replace="fragments/headers :: header-normal">
     header will be here
 </header>
+<div th:replace="fragments/page_menu :: normal_menu">
+    link menu will be here
+</div>
 <div class="container-fluid">
 
     <table class="table">
@@ -31,13 +34,13 @@
                     <td>Total days: [[${Lease.leasePeriodDays}]]</td>
                     <td>[[${Lease.carID}]]</td>
 
-                    <td>
+                    <td th:if="${session.isTypeRegistering}">
                         <a th:href="@{'/dashboard/lease/edit/' + ${Lease.leaseID}}">
                             <button class="btn btn-sm btn-primary">Edit</button>
                         </a>
                     </td>
 
-                    <td>
+                    <td th:if="${session.isTypeRegistering}">
                         <a th:href="@{'/dashboard/lease/delete/' + ${Lease.leaseID}}">
                             <button th class="btn btn-sm btn-danger">Slet</button>
                         </a>
@@ -49,9 +52,11 @@
     </table>
 
 
-    <a th:href="@{'/dashboard/lease/create'}">
+    <div th:if="${session.isTypeRegistering}">
+        <a th:href="@{'/dashboard/lease/create'}">
         <h1>Create Lease</h1>
     </a>
+    </div>
 
 </div>
 
