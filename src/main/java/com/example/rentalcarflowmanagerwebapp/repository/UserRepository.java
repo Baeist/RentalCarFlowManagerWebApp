@@ -81,11 +81,15 @@ public class UserRepository {
 
     public void updatePassword(String logInName, String firstNewPassword) {
 
+        String salt = pwe.getSalt(30);
+        String safePassword = pwe.giveSafePassword(firstNewPassword, salt);
+
         try {
             connection = ConnectionManager.getConnection();
-            final String SQL_QUERY = "UPDATE employee SET employee_password = ? WHERE employee_username ='" + logInName + "';";
+            final String SQL_QUERY = "UPDATE employee SET employee_password = ?, employee_password_salt = ? WHERE employee_username ='" + logInName + "';";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
-            preparedStatement.setString(1, firstNewPassword);
+            preparedStatement.setString(1, safePassword);
+            preparedStatement.setString(2, salt);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
