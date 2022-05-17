@@ -41,7 +41,7 @@ create table if not exists lease
 (
     lease_id   int auto_increment
     primary key unique,
-    contract_id int not null unique,
+    contract_id int not null,
     car_id int not null unique,
     lease_start_date date not null,
     lease_period_number_of_days int not null,
