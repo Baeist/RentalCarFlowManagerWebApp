@@ -20,8 +20,8 @@
         <div th:each="Contract : ${allContracts}">
             <tr class="table-dark">
                 <td>ContractID: [[${Contract.contractID}]]</td>
-                <td>CustomerID: [[${Contract.customerID}]]</td>
-                <td th:colspan="4"> EmployeeID: [[${Contract.employeeID}]]</td>
+                <td>[[${Contract.customerID}]]</td>
+                <td th:colspan="4">[[${Contract.employeeID}]]</td>
             </tr>
 
             <div th:each="Lease : ${allLeases}">
