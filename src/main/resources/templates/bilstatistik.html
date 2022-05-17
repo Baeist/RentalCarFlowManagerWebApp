@@ -10,6 +10,7 @@
 <body>
     <div class="container-fluid">
 
+        <div class="scrollable" style="height:150px; overflow-y: auto">
         <table>
             <tr th:each="bil: ${biler}">
                 <!--/*@thymesVar id="bil" type="com.example.rentalcarflowmanagerwebapp.model.CarModel"*/-->
@@ -24,6 +25,7 @@
 
             </tr>
         </table>
+        </div>
     </div>
 </body>
 </html>
