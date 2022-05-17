@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>bilstatistik</title>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <table>
+            <tr th:each="bil: ${biler}">
+                <td th:text="${bil.color}"> </td>
+
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
