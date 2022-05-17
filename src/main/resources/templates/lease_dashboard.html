@@ -21,14 +21,7 @@
             <tr class="table-dark">
                 <td>ContractID: [[${Contract.contractID}]]</td>
                 <td>[[${Contract.customerID}]]</td>
-                <td th:colspan="3">[[${Contract.employeeID}]]</td>
-                <td>
-                    <a th:href="@{'/dashboard/lease/create'}">
-                        <button class="btn btn-sm btn-primary">create</button>
-                    </a>
-                </td>
-
-
+                <td th:colspan="4">[[${Contract.employeeID}]]</td>
             </tr>
 
             <div th:each="Lease : ${allLeases}">
@@ -46,7 +39,7 @@
 
                     <td>
                         <a th:href="@{'/dashboard/lease/delete/' + ${Lease.leaseID}}">
-                            <button class="btn btn-sm btn-danger">Slet</button>
+                            <button th class="btn btn-sm btn-danger">Slet</button>
                         </a>
                     </td>
                 </tr>
@@ -56,6 +49,9 @@
     </table>
 
 
+    <a th:href="@{'/dashboard/lease/create'}">
+        <h1>Create Lease</h1>
+    </a>
 
 </div>
 
