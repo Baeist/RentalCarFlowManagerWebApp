@@ -1,6 +1,12 @@
 :root {
-    --ElementBagground: #cef9ff;
-    --white: #ffffff;
+    --ElementBagground: #ffc5c5;
+    --menuBagground: #342323;
+    --Bagground: #ffffff;
+
+
+    --whiteText: #ffffff;
+    --darkText: #000000;
+
 }
 
 /* Login CSS */
@@ -44,5 +50,34 @@
     background: var(--ElementBagground);
     padding-left: 4em;
     padding-right: 4em;
-
 }
+
+/* MENU( */
+.menu-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu{
+    height: 75px;
+    display: inline;
+    text-align: center;
+    background: var(--menuBagground);
+    width: 20%;
+}
+
+.menu h4 {
+    margin-top: 25px;
+    color: var(--whiteText);
+}
+
+.menu-select{
+    background: var(--Bagground);
+    color: var(--darkText);
+}
+
+.menu-select h4{
+    color: var(--darkText);
+}
+
+
