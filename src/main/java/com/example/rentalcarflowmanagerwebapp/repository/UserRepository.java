@@ -20,13 +20,16 @@ public class UserRepository {
 
     public User getUserFromLogInNameAndPassword(String logInName, String employeePassword) {
 
+        String salt = getSaltFromLogInName(logInName);
+        String safePassword = pwe.giveSafePassword(employeePassword, salt);
+
         try {
             connection = ConnectionManager.getConnection();
 
             final String SQL_QUERY = "SELECT * FROM employee WHERE employee_username = ? AND employee_password = ?";
             PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
             ps.setString(1, logInName);
-            ps.setString(2, employeePassword);
+            ps.setString(2, safePassword);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -35,7 +38,7 @@ public class UserRepository {
                 String lastName = rs.getString(3);
                 logInName = rs.getString(4);
                 employeePassword = rs.getString(5);
-                String salt = rs.getString(6);
+                salt = rs.getString(6);
                 String employeeType = rs.getString(7);
                 boolean isUserActive = rs.getBoolean(8);
 
@@ -173,5 +176,26 @@ public class UserRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public String getSaltFromLogInName(String logInName){
+
+        try{
+            connection = ConnectionManager.getConnection();
+
+            final String SQL_QUERY = "SELECT employee_password_salt FROM employee WHERE employee_username = ?";
+            PreparedStatement ps = connection.prepareStatement(SQL_QUERY);
+            ps.setString(1, logInName);
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()) {
+                String salt = rs.getString(1);
+
+                return salt;
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }
