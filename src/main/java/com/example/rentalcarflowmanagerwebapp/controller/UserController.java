@@ -43,7 +43,7 @@ public class UserController {
     @PostMapping("/")
     public String logIn(HttpSession session, @RequestParam("log_in_name") String logInName, @RequestParam("employee_password") String employeePassword) {
 
-        User user = userService.getUserFromLogInName(logInName);
+        User user = userService.getUserFromLogInNameAndPassword(logInName, employeePassword);
 
 
 
