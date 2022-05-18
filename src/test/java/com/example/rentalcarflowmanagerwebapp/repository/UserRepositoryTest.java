@@ -12,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserRepositoryTest {
 
+    // needs a reset of the test database data before running
+
     @Test
     void getUserFromLogInNameAndPassword() {
 
@@ -139,6 +141,26 @@ class UserRepositoryTest {
     @Test
     void createNewUser() {
 
+        UserRepository ur = new UserRepository();
 
+        String newFirstName = "Tammy";
+        String newLastName = "Toryr";
+        String newLogInName = "tam";
+        String newEmployeeType = "admin";
+        String newPassword = "6";
+        int expectedEmployeeID = 6;
+        String expectedLastName = "Toryr";
+
+        ur.createNewUser(newFirstName, newLastName, newLogInName, newEmployeeType, newPassword);
+
+        User numberSix = ur.getUserFromLogInName("tam");
+
+        int actualID = numberSix.getEmployeeID();
+        String actualLastName = numberSix.getLastName();
+
+        assertEquals(expectedEmployeeID, actualID);
+        assertEquals(expectedLastName, actualLastName);
+
+        ur.updateIsUserActiveFalse(numberSix.getLogInName());
     }
 }
