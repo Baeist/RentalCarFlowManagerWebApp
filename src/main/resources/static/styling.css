@@ -1,0 +1,48 @@
+:root {
+    --ElementBagground: #cef9ff;
+    --white: #ffffff;
+}
+
+/* Login CSS */
+
+#loginContainer{
+    padding-top: 100px;
+}
+
+#login{
+    background: var(--ElementBagground);
+    border-radius: 1em;
+    padding: 3em;
+    width: 450px;
+    margin: 0 auto
+}
+
+.form-group{
+    margin-bottom: 1em;
+}
+
+.form-header h1{
+    font-weight: bold;
+}
+
+.form-group label{
+    font-weight: bold;
+}
+
+.form-group input{
+    border-style: none;
+}
+
+
+/* HEADER */
+
+.navbar-brand{
+    font-weight: bolder;
+}
+
+.navbar-light{
+    background: var(--ElementBagground);
+    padding-left: 4em;
+    padding-right: 4em;
+
+}
