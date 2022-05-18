@@ -11,9 +11,7 @@ public class Car {
     private int gearLevel;      // no clue what this is, we are using an int, but really it could be anything
     private double steelPriceDKK;      // price before taxes and any other fees
     private double registrationFeeDKK;
-
     private double CO2EmissionPerKM;     // no idea about which unit here ppm/something??
-
     private double carPricePerMonthDKK;
 
     public Car(){}
