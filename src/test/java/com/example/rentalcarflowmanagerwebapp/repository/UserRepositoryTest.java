@@ -54,11 +54,11 @@ class UserRepositoryTest {
         User userAfterUpdate;
         UserRepository ur = new UserRepository();
 
-        String logInName = "jen";
-        String newPassword = "2";
+        String logInName = "pil";
+        String newPassword = "5";
 
-        String userFirstNameExpected = "Jen";
-        String userLastNameExpected = "Hansen";
+        String userFirstNameExpected = "Pil";
+        String userLastNameExpected = "Tisen";
 
         ur.updatePassword(logInName, newPassword);
 
@@ -73,17 +73,72 @@ class UserRepositoryTest {
 
     @Test
     void updateIsUserActiveFalse() {
+
+        List<User> activeUsers = new ArrayList<>();
+        UserRepository ur = new UserRepository();
+
+        String logInName = "tim";
+
+        ur.updateIsUserActiveFalse(logInName);
+
+        int expectedListsizeAfter = 3;
+        activeUsers = ur.getAllActiveEmployees();
+
+        int actualListSizeAfter = activeUsers.size();
+
+        assertEquals(expectedListsizeAfter, actualListSizeAfter);
     }
 
     @Test
     void getUserFromLogInName() {
+
+        UserRepository ur = new UserRepository();
+        User user;
+        String logInName = "dan";
+
+        String userExpectedFirstName = "Dan";
+        String lastNameUserExpected = "Jensen";
+
+        user = ur.getUserFromLogInName(logInName);
+
+        String userFirstNameFound = user.getFirstName();
+        String userLastNameFound = user.getLastName();
+
+        assertEquals(userExpectedFirstName, userFirstNameFound);
+        assertEquals(lastNameUserExpected, userLastNameFound);
+
     }
 
     @Test
     void updateUserInfo() {
+
+        UserRepository ur = new UserRepository();
+
+        String oldLogInName = "jen";
+        User oldInfoUser = ur.getUserFromLogInName(oldLogInName);
+        int oldInfoUserEmployeeID = oldInfoUser.getEmployeeID();
+
+        String newFirstName = "Don";
+        String newLastName = "Mathisen";
+        String newLogInName = "don";
+        String newEmployeeType = "skade- og mangler";
+        int expectedEmployeeID = 1;
+
+        ur.updateUserInfo(oldInfoUserEmployeeID, newFirstName, newLastName, newLogInName, newEmployeeType);
+
+        User newUserInfo = ur.getUserFromLogInName("don");
+
+        int newInfoEmployeeID = newUserInfo.getEmployeeID();
+        String foundEmployeeType = newUserInfo.getEmployeeType();
+
+        assertEquals(expectedEmployeeID, newInfoEmployeeID);
+        assertEquals(newEmployeeType, foundEmployeeType);
+
     }
 
     @Test
     void createNewUser() {
+
+
     }
 }
