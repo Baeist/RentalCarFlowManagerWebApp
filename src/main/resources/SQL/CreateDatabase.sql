@@ -14,7 +14,9 @@ create table if not exists employee
     employee_last_name varchar(45) not null,
     employee_username varchar(45) not null unique,
     employee_password varchar(256) not null,
-    employee_type varchar(45) not null
+    employee_password_salt varchar(30) not null,
+    employee_type varchar(45) not null,
+    is_user_active boolean not null
     );
 create table if not exists car
 (
@@ -39,8 +41,8 @@ create table if not exists lease
 (
     lease_id   int auto_increment
     primary key unique,
-    contract_id int not null unique,
-    car_id int not null unique,
+    contract_id int not null,
+    car_id int not null,
     lease_start_date date not null,
     lease_period_number_of_days int not null,
     foreign key (contract_id) references contract(contract_id),
