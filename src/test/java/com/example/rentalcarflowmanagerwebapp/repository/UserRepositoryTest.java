@@ -5,21 +5,18 @@ import com.example.rentalcarflowmanagerwebapp.utility.PasswordEncryption;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserRepositoryTest {
 
-    @BeforeEach
-    public void setup(){
-        User user = new User();
-    }
-
     @Test
     void getUserFromLogInNameAndPassword() {
 
-    User user = new User();
+    User user;
     UserRepository ur = new UserRepository();
-    PasswordEncryption pwe = new PasswordEncryption();
 
     String logInName = "jen";
     String password = "1";
@@ -39,10 +36,39 @@ class UserRepositoryTest {
 
     @Test
     void getAllActiveEmployees() {
+
+        List<User> activeUsers = new ArrayList<>();
+        UserRepository ur = new UserRepository();
+
+        int expectedListsize = 4;
+        activeUsers = ur.getAllActiveEmployees();
+
+        int actualListSize = activeUsers.size();
+
+        assertEquals(expectedListsize, actualListSize);
     }
 
     @Test
     void updatePassword() {
+
+        User userAfterUpdate;
+        UserRepository ur = new UserRepository();
+
+        String logInName = "jen";
+        String newPassword = "2";
+
+        String userFirstNameExpected = "Jen";
+        String userLastNameExpected = "Hansen";
+
+        ur.updatePassword(logInName, newPassword);
+
+        userAfterUpdate = ur.getUserFromLogInNameAndPassword(logInName, newPassword);
+
+        String firstNameFound = userAfterUpdate.getFirstName();
+        String lastNameFound = userAfterUpdate.getLastName();
+
+        assertEquals(userFirstNameExpected, firstNameFound);
+        assertEquals(userLastNameExpected, lastNameFound);
     }
 
     @Test
