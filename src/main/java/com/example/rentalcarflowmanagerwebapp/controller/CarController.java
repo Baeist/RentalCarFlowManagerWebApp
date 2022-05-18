@@ -19,14 +19,24 @@ public class CarController {
   @GetMapping("/bilstatistik/udlejet")
   public String bilStatistik(Model model){
     ArrayList<Car> cars = carService.rentedOutCars();
-    model.addAttribute("biler", cars);
+    model.addAttribute("cars", cars);
 
     return "car_stats";
   }
   @GetMapping("/bilstatistik/ledige")
   public String bilStatistikLedige(Model model){
     ArrayList<Car> cars = carService.availableCars();
-    model.addAttribute("biler", cars);
+    model.addAttribute("cars", cars);
+    return "car_stats";
+  }
+
+  @GetMapping("/all_cars")
+  public String showAllCars(Model model){
+
+    ArrayList<Car> cars = carService.getAllCars();
+
+    model.addAttribute("cars", cars);
+
     return "car_stats";
   }
 }
