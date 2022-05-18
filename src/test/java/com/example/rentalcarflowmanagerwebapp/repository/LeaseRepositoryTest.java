@@ -31,14 +31,12 @@ class LeaseRepositoryTest {
         LocalDate localDate = LocalDate.of(2022, 5, 17);
 
         Lease lease = new Lease(5000, localDate, 1, 120, 12);
-        Lease leaseSameCarID = new Lease(0, localDate, 1, 120, 5000);
         Lease leaseNoContract = new Lease(0, localDate, -5, 120, -5);
         Lease leaseNoExistingCarID = new Lease(0, localDate, 1, 120, -5);
 
         // should be able to record a lease in database.
         // NOTE: Running the test multiple times will result in failure. check that leaseID is uniqe on lease.
         assertTrue(leaseRepository.saveLease(lease));
-        assertFalse(leaseRepository.saveLease(leaseSameCarID));
         assertFalse(leaseRepository.saveLease(leaseNoContract));
         assertFalse(leaseRepository.saveLease(leaseNoExistingCarID));
     }
@@ -47,7 +45,7 @@ class LeaseRepositoryTest {
     void updateLease() {
         LocalDate newDate = LocalDate.of(9999, 9, 9);
 
-        Lease oldLease1 = leaseRepository.getLease(1);
+        Lease oldLease1 = leaseRepository.getLease(2);
 
         Lease updatedLease = new Lease(1, newDate, 2, 999, 14);
         Lease updatedLeaseSameCarID = new Lease(2, newDate, 1, 120, 5000);
@@ -59,10 +57,6 @@ class LeaseRepositoryTest {
         // checks if both objects have same lease ID
         assertEquals(oldLease1.getLeaseID(), updatedLease.getLeaseID());
         //checks that leasePeriod has changed
-
-        System.out.println(oldLease1.getLeasePeriodDays());
-        System.out.println(updatedLease.getLeasePeriodDays());
-
         assertNotEquals(oldLease1.getLeasePeriodDays(), updatedLease.getLeasePeriodDays());
     }
 

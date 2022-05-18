@@ -17,11 +17,6 @@ import java.util.List;
 @Controller
 public class LeaseController {
 
-
-
-
-
-
     private LeaseService leaseService;
     private ContractService contractService;
 

@@ -2,6 +2,7 @@ package com.example.rentalcarflowmanagerwebapp.repository;
 
 import com.example.rentalcarflowmanagerwebapp.model.Car;
 import com.example.rentalcarflowmanagerwebapp.utility.ConnectionManager;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+@Repository
 public class CarRepository {
 
   Connection con = ConnectionManager.getConnection();
