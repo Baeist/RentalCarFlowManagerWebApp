@@ -9,11 +9,45 @@
 </head>
 <body>
 <header th:fragment="header-normal">
+
+
+
+    <nav class="navbar navbar-light bg-light p-3">
+        <div class="d-inline">
+            <a class="navbar-brand">Navbar</a>
+        </div>
+
+        <div>
+            <p class="d-inline" th:text="${session.employeeFullName}">employee name here</p>
+            <p class="d-inline" th:text="${session.employeeType}">employee type here</p>
+
+            <button class="btn btn-sm btn-primary d-inline" th:href="/logout">log ud</button>
+            <button class="btn btn-sm btn-primary d-inline" th:href="/change_password">skift kode</button>
+        </div>
+
+
+
+    </nav>
+
+
+
+
     <!-- not logged in -->
     <nav th:unless="${session.isLoggedIn}">
         not logged in
 
     </nav>
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- is logged in -->
     <nav th:if="${session.isLoggedIn}">
@@ -23,6 +57,12 @@
         <button><a href="/logout">log ud</a></button>
         <button><a href="/change_password">skift kode</a> </button>
     </nav>
+
+
+
+
+
+
 </header>
 </body>
 </html>
