@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CarService {
 
-  @Autowired
-  private CarRepository carRepository;
+   private CarRepository carRepository;
 
   public CarService(CarRepository carRepository){
     this.carRepository = carRepository;
@@ -23,6 +23,10 @@ public class CarService {
     return carRepository.rentedOutCars();
 
 
+  }
+
+  public ArrayList<Car> getAllCars(){
+    return carRepository.getAllCars();
   }
 
   public ArrayList<Car> availableCars(){

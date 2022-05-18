@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 
@@ -12,15 +12,18 @@
 
         <div class="scrollable" style="height:150px; overflow-y: auto">
         <table>
-            <tr th:each="bil: ${biler}">
-                <!--/*@thymesVar id="bil" type="com.example.rentalcarflowmanagerwebapp.model.CarModel"*/-->
-                <td th:text="${bil.getCarID()}"> </td>
-                <td th:text="${bil.getColor()}"> </td>
-                <td th:text="${bil.getManufacturer()}"> </td>
-                <td th:text="${bil.getCarType()}"> </td>
-                <td th:text="${bil.getCarName()}"> </td>
-                <td th:text="${bil.getCarPricePerMonthDKK()}"> </td>
-                <td th:text="${bil.getChassisNumber()}"> </td>
+            <tr th:each="Car : ${cars}">
+                <td th:text="${Car.carID}"> test  id</td>
+                <td th:text="${Car.color}"> color</td>
+                <td th:text="${Car.manufacturer}"> </td>
+                <td th:text="${Car.carType}"> </td>
+                <td th:text="${Car.carName}"> </td>
+                <td th:text="${Car.carPricePerMonthDKK}"> </td>
+                <td th:text="${Car.chassisNumber}"> </td>
+                <td th:text="${Car.gearLevel}"> </td>
+                <td th:text="${Car.steelPriceDKK}"> </td>
+                <td th:text="${Car.registrationFeeDKK}"> </td>
+                <td th:text="${Car.CO2EmissionPerKM}"> </td>
             </tr>
         </table>
         </div>
