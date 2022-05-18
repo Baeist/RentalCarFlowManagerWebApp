@@ -17,7 +17,14 @@ public class CarRepository {
     public ArrayList<Car> rentedOutCars() {
         try {
             ArrayList<Car> cars = new ArrayList<>();
-            String queryString = "SELECT * FROM car WHERE car_id IN (SELECT car_id FROM udlejet)";
+            String queryString = "SELECT * FROM car WHERE car_id IN (SELECT car_id FROM (SELECT \n" +
+                "    car_id\n" +
+                "FROM\n" +
+                "    lease\n" +
+                "WHERE\n" +
+                "    lease_start_date <= CURDATE()\n" +
+                "        AND DATE_ADD(lease_start_date,\n" +
+                "        INTERVAL lease_period_number_of_days DAY) > CURDATE()))";
             PreparedStatement query = con.prepareStatement(queryString);
             ResultSet rs = query.executeQuery();
             while (rs.next()) {
@@ -47,7 +54,14 @@ public class CarRepository {
     public ArrayList<Car> availableCars() {
         try {
             ArrayList<Car> cars = new ArrayList<>();
-            String queryString = "SELECT * FROM car WHERE car_id NOT IN (SELECT car_id FROM udlejet)";
+            String queryString = "SELECT * FROM car WHERE car_id NOT IN (SELECT car_id FROM (SELECT \n" +
+                "    car_id\n" +
+                "FROM\n" +
+                "    lease\n" +
+                "WHERE\n" +
+                "    lease_start_date <= CURDATE()\n" +
+                "        AND DATE_ADD(lease_start_date,\n" +
+                "        INTERVAL lease_period_number_of_days DAY) > CURDATE()))";
             PreparedStatement query = con.prepareStatement(queryString);
             ResultSet rs = query.executeQuery();
             while (rs.next()) {
