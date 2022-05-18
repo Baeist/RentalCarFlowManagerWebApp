@@ -1,17 +1,37 @@
 package com.example.rentalcarflowmanagerwebapp.service;
 
-
+import com.example.rentalcarflowmanagerwebapp.model.Car;
+import com.example.rentalcarflowmanagerwebapp.repository.LeaseRepository;
 import com.example.rentalcarflowmanagerwebapp.model.Lease;
 import com.example.rentalcarflowmanagerwebapp.repository.LeaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Scanner;
+import static org.springframework.http.HttpHeaders.FROM;
+
+
+
+
+
 
 @Service
 public class LeaseService {
+
+
+    public static ArrayList<Car> seUdlejedeBiler(){
+
+        return LeaseRepository.seUdlejedeBiler();
+
+
+    }
+
+    public static ArrayList<Car> seLedigeBiler(){
+        return LeaseRepository.seLedigeBiler();
+    }
+
 
 
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>bilstatistik</title>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <div class="scrollable" style="height:150px; overflow-y: auto">
+        <table>
+            <tr th:each="bil: ${biler}">
+                <!--/*@thymesVar id="bil" type="com.example.rentalcarflowmanagerwebapp.model.CarModel"*/-->
+                <td th:text="${bil.getCarID()}"> </td>
+                <td th:text="${bil.getColor()}"> </td>
+                <td th:text="${bil.getManufacturer()}"> </td>
+                <td th:text="${bil.getCarType()}"> </td>
+                <td th:text="${bil.getCarName()}"> </td>
+                <td th:text="${bil.getCarPricePerMonthDKK()}"> </td>
+                <td th:text="${bil.getChassisNumber()}"> </td>
+
+
+            </tr>
+        </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,4 +1,5 @@
 package com.example.rentalcarflowmanagerwebapp.repository;
+import org.springframework.stereotype.Repository;
 
 import com.example.rentalcarflowmanagerwebapp.model.Contract;
 import com.example.rentalcarflowmanagerwebapp.utility.ConnectionManager;

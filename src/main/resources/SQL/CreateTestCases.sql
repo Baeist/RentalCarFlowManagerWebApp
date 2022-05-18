@@ -1,4 +1,3 @@
--- Cars
 INSERT INTO car(car_id, chassis_number, color, car_manufactorer, car_type, car_name, car_rental_price_per_month_dkk) Values (default, '123frt123frg123fr', 'blue', 'Nissan', 'stationcar', 'NX2020', 2650);
 INSERT INTO car(car_id, chassis_number, color, car_manufactorer, car_type, car_name, car_rental_price_per_month_dkk) Values (default, '456frt123frg123fr', 'red', 'Nissan', 'stationcar', 'NX2019', 2650);
 INSERT INTO car(car_id, chassis_number, color, car_manufactorer, car_type, car_name, car_rental_price_per_month_dkk) Values (default, '789frt123frg123fr', 'black', 'Nissan', 'cabriolet', 'NT2018', 2800);

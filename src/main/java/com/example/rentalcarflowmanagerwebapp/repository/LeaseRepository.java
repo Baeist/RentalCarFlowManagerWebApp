@@ -3,12 +3,19 @@ package com.example.rentalcarflowmanagerwebapp.repository;
 import com.example.rentalcarflowmanagerwebapp.model.Lease;
 import com.example.rentalcarflowmanagerwebapp.utility.ConnectionManager;
 import org.springframework.stereotype.Repository;
+import com.example.rentalcarflowmanagerwebapp.model.Car;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
 import java.time.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
 
 @Repository
 public class LeaseRepository {
@@ -166,4 +173,55 @@ public class LeaseRepository {
 
 
 
+
+  public static ArrayList<Car> seUdlejedeBiler(){
+    try{
+    ArrayList<Car> biler = new ArrayList<>();
+    String queryString = "SELECT * FROM car WHERE car_id IN (SELECT car_id FROM udlejet)";
+    PreparedStatement query = con.prepareStatement(queryString);
+      ResultSet rs = query.executeQuery();
+      while (rs.next()){
+        Car car = new Car(
+            rs.getInt("car_id"),
+            rs.getString("chassis_number"),
+            rs.getString("color"),
+            rs.getString("car_manufactorer"),
+            rs.getString("car_type"),
+            rs.getString("car_name"),
+            rs.getDouble("car_rental_price_per_month_dkk")
+        );
+        biler.add(car);
+      }
+      return biler;
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+
+    return null;
+  }
+  public static ArrayList<Car> seLedigeBiler(){
+    try{
+      ArrayList<Car> biler = new ArrayList<>();
+      String queryString = "SELECT * FROM car WHERE car_id NOT IN (SELECT car_id FROM udlejet)";
+      PreparedStatement query = con.prepareStatement(queryString);
+      ResultSet rs = query.executeQuery();
+      while (rs.next()){
+        Car car = new Car(
+            rs.getInt("car_id"),
+            rs.getString("chassis_number"),
+            rs.getString("color"),
+            rs.getString("car_manufactorer"),
+            rs.getString("car_type"),
+            rs.getString("car_name"),
+            rs.getDouble("car_rental_price_per_month_dkk")
+        );
+        biler.add(car);
+      }
+      return biler;
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+
+    return null;
+  }
 }
