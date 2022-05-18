@@ -26,7 +26,7 @@ public String bilStatistik(Model model){
 }
   @GetMapping("/bilstatistik/ledige")
   public String bilStatistikLedige(Model model){
-    ArrayList<Car> biler = LeaseService.seLedigeBiler();
+    ArrayList<Car> biler = leaseService.seLedigeBiler();
     model.addAttribute("biler", biler);
     return "/bilstatistik";
   }

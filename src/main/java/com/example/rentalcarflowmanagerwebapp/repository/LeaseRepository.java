@@ -199,7 +199,7 @@ public class LeaseRepository {
 
     return null;
   }
-  public static ArrayList<Car> seLedigeBiler(){
+  public ArrayList<Car> seLedigeBiler(){
     try{
       ArrayList<Car> biler = new ArrayList<>();
       String queryString = "SELECT * FROM car WHERE car_id NOT IN (SELECT car_id FROM udlejet)";
