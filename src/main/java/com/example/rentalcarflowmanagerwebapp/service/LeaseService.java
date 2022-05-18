@@ -28,8 +28,8 @@ public class LeaseService {
 
     }
 
-    public static ArrayList<Car> seLedigeBiler(){
-        return LeaseRepository.seLedigeBiler();
+    public ArrayList<Car> seLedigeBiler(){
+        return leaseRepository.seLedigeBiler();
     }
 
 
