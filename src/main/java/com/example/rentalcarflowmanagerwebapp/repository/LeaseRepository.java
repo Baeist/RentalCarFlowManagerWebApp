@@ -22,9 +22,9 @@ public class LeaseRepository {
 
     private Connection con = ConnectionManager.getConnection();
 
-    public void saveLease(Lease lease){
-        final String SQL =  "INSERT INTO lease (contract_id, car_id, lease_start_date, lease_period_number_of_days)" +
-                            "VALUES (?, ?, ?, ?);";
+    public boolean saveLease(Lease lease) {
+        final String SQL = "INSERT INTO lease (contract_id, car_id, lease_start_date, lease_period_number_of_days)" +
+                "VALUES (?, ?, ?, ?);";
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
 
@@ -38,19 +38,25 @@ public class LeaseRepository {
 
             ps.execute();
 
+            return true;
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("failed:");
+            System.out.println(e.getMessage());
+            return false;
         }
     }
-    public void saveLeases(ArrayList<Lease> leases){
+
+    public void saveLeases(ArrayList<Lease> leases) {
         for (int i = 0; i < leases.size(); i++) {
             saveLease(leases.get(i));
         }
     }
-    public void updateLease(Lease newLease){
-        final String SQL =  "UPDATE lease " +
-                            "SET contract_id = ?, car_id = ?, lease_start_date = ?, lease_period_number_of_days = ? " +
-                            "WHERE lease_id = ?;";
+
+    public boolean updateLease(Lease newLease) {
+        final String SQL = "UPDATE lease " +
+                "SET contract_id = ?, car_id = ?, lease_start_date = ?, lease_period_number_of_days = ? " +
+                "WHERE lease_id = ?;";
 
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
@@ -65,6 +71,7 @@ public class LeaseRepository {
             ps.setInt(5, newLease.getLeaseID());
 
             ps.execute();
+            return true;
 
         } catch (SQLException e) {
 
@@ -72,10 +79,11 @@ public class LeaseRepository {
             System.out.println(e.getLocalizedMessage());
             System.out.println(e.getMessage());
 
-            e.printStackTrace();
+            return false;
         }
     }
-    public void deleteLease(int leaseID){
+
+    public void deleteLease(int leaseID) {
         final String SQL = "DELETE FROM lease WHERE lease_id = ?";
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
@@ -86,13 +94,13 @@ public class LeaseRepository {
         }
 
 
-
     }
-    public Lease getLease(int leaseID){
 
+    public Lease getLease(int leaseID) {
+        Lease lease;
 
-        final String SQL =  "SELECT * FROM lease " +
-                            "WHERE leaseID = ?;";
+        final String SQL = "SELECT * FROM lease " +
+                "WHERE lease_ID = ?;";
 
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
@@ -102,23 +110,27 @@ public class LeaseRepository {
 
             resultSet.next();
 
+            int leaseFromDatabaseID = resultSet.getInt(1);
             int contractID = resultSet.getInt(2);
             int carID = resultSet.getInt(3);
             LocalDate startDate = resultSet.getDate(4).toLocalDate();
             int leasePeriodDays = resultSet.getInt(5);
 
-            Lease lease = new Lease(leaseID, startDate, contractID, leasePeriodDays, carID);
+            return lease = new Lease(leaseFromDatabaseID, startDate, contractID, leasePeriodDays, carID);
+
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
 
-        return null;
+
     }
-    public ArrayList<Lease> getAllLease(){
+
+    public ArrayList<Lease> getAllLease() {
         ArrayList<Lease> leases = new ArrayList<>();
 
-        final String SQL =  "SELECT * FROM lease;";
+        final String SQL = "SELECT * FROM lease;";
 
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
@@ -126,7 +138,7 @@ public class LeaseRepository {
             ResultSet resultSet = ps.executeQuery();
 
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int leaseID = resultSet.getInt(1);
                 int contractID = resultSet.getInt(2);
                 int carID = resultSet.getInt(3);
@@ -143,10 +155,11 @@ public class LeaseRepository {
 
         return leases;
     }
+
     public boolean leaseExist(int leaseID) {
         boolean leaseExist = false;
 
-        final String SQL =  "SELECT * FROM lease " +
+        final String SQL = "SELECT * FROM lease " +
                 "WHERE lease_ID = ?;";
 
         try {
@@ -156,7 +169,7 @@ public class LeaseRepository {
             ResultSet resultSet = ps.executeQuery();
 
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 leaseExist = true;
             }
 
@@ -167,61 +180,4 @@ public class LeaseRepository {
 
         return leaseExist;
     }
-
-
-
-
-
-
-
-  public ArrayList<Car> seUdlejedeBiler(){
-    try{
-    ArrayList<Car> biler = new ArrayList<>();
-    String queryString = "SELECT * FROM car WHERE car_id IN (SELECT car_id FROM udlejet)";
-    PreparedStatement query = con.prepareStatement(queryString);
-      ResultSet rs = query.executeQuery();
-      while (rs.next()){
-        Car car = new Car(
-            rs.getInt("car_id"),
-            rs.getString("chassis_number"),
-            rs.getString("color"),
-            rs.getString("car_manufactorer"),
-            rs.getString("car_type"),
-            rs.getString("car_name"),
-            rs.getDouble("car_rental_price_per_month_dkk")
-        );
-        biler.add(car);
-      }
-      return biler;
-    } catch (SQLException throwables) {
-      throwables.printStackTrace();
-    }
-
-    return null;
-  }
-  public ArrayList<Car> seLedigeBiler(){
-    try{
-      ArrayList<Car> biler = new ArrayList<>();
-      String queryString = "SELECT * FROM car WHERE car_id NOT IN (SELECT car_id FROM udlejet)";
-      PreparedStatement query = con.prepareStatement(queryString);
-      ResultSet rs = query.executeQuery();
-      while (rs.next()){
-        Car car = new Car(
-            rs.getInt("car_id"),
-            rs.getString("chassis_number"),
-            rs.getString("color"),
-            rs.getString("car_manufactorer"),
-            rs.getString("car_type"),
-            rs.getString("car_name"),
-            rs.getDouble("car_rental_price_per_month_dkk")
-        );
-        biler.add(car);
-      }
-      return biler;
-    } catch (SQLException throwables) {
-      throwables.printStackTrace();
-    }
-
-    return null;
-  }
 }

@@ -19,7 +19,7 @@ public class Lease {
         this.carID = carID;
     }
 
-    public Integer getLeaseID() {
+    public int getLeaseID() {
         return leaseID;
     }
     public void setLeaseID(int leaseID) {

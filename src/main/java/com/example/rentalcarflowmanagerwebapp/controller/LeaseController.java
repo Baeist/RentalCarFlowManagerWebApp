@@ -17,22 +17,6 @@ import java.util.List;
 @Controller
 public class LeaseController {
 
-
-@GetMapping("/bilstatistik/udlejet")
-public String bilStatistik(Model model){
-  ArrayList<Car> biler = leaseService.seUdlejedeBiler();
-  model.addAttribute("biler", biler);
-  return "/bilstatistik";
-}
-  @GetMapping("/bilstatistik/ledige")
-  public String bilStatistikLedige(Model model){
-    ArrayList<Car> biler = leaseService.seLedigeBiler();
-    model.addAttribute("biler", biler);
-    return "/bilstatistik";
-  }
-
-
-
     private LeaseService leaseService;
     private ContractService contractService;
 
