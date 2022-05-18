@@ -1,33 +1,32 @@
 package com.example.rentalcarflowmanagerwebapp.controller;
 
+import com.example.rentalcarflowmanagerwebapp.model.Car;
 import com.example.rentalcarflowmanagerwebapp.model.Contract;
 import com.example.rentalcarflowmanagerwebapp.model.Lease;
 import com.example.rentalcarflowmanagerwebapp.service.ContractService;
 import com.example.rentalcarflowmanagerwebapp.service.LeaseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class LeaseController {
 
 
-@RequestMapping(value="/bilstatistik/udlejet", method= RequestMethod.GET)
+@GetMapping("/bilstatistik/udlejet")
 public String bilStatistik(Model model){
-  ArrayList<CarModel> biler = LeaseService.seUdlejedeBiler();
+  ArrayList<Car> biler = leaseService.seUdlejedeBiler();
   model.addAttribute("biler", biler);
   return "/bilstatistik";
 }
-  @RequestMapping(value="/bilstatistik/ledige", method= RequestMethod.GET)
+  @GetMapping("/bilstatistik/ledige")
   public String bilStatistikLedige(Model model){
-    ArrayList<CarModel> biler = LeaseService.seLedigeBiler();
+    ArrayList<Car> biler = LeaseService.seLedigeBiler();
     model.addAttribute("biler", biler);
     return "/bilstatistik";
   }

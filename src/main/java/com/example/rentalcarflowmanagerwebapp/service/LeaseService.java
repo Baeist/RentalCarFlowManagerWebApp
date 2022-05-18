@@ -21,9 +21,9 @@ import static org.springframework.http.HttpHeaders.FROM;
 public class LeaseService {
 
 
-    public static ArrayList<Car> seUdlejedeBiler(){
+    public ArrayList<Car> seUdlejedeBiler(){
 
-        return LeaseRepository.seUdlejedeBiler();
+        return leaseRepository.seUdlejedeBiler();
 
 
     }

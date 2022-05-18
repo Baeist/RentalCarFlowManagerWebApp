@@ -174,7 +174,7 @@ public class LeaseRepository {
 
 
 
-  public static ArrayList<Car> seUdlejedeBiler(){
+  public ArrayList<Car> seUdlejedeBiler(){
     try{
     ArrayList<Car> biler = new ArrayList<>();
     String queryString = "SELECT * FROM car WHERE car_id IN (SELECT car_id FROM udlejet)";
