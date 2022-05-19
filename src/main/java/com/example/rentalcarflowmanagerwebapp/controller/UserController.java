@@ -1,6 +1,5 @@
 package com.example.rentalcarflowmanagerwebapp.controller;
 
-
 import com.example.rentalcarflowmanagerwebapp.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +43,6 @@ public class UserController {
     public String logIn(HttpSession session, @RequestParam("log_in_name") String logInName, @RequestParam("employee_password") String employeePassword) {
 
         User user = userService.getUserFromLogInNameAndPassword(logInName, employeePassword);
-
 
         if (user != null && user.isUserActive()) {
             // sets user information when logging in
