@@ -46,7 +46,6 @@ public class UserController {
         User user = userService.getUserFromLogInNameAndPassword(logInName, employeePassword);
 
 
-
         if (user != null && user.isUserActive()) {
             // sets user information when logging in
             session.setAttribute("employeeFullName", user.getFirstName() + " " + user.getLastName());
@@ -106,7 +105,7 @@ public class UserController {
         return "index";
     }
 
-    @GetMapping("change_password")
+    @GetMapping("/change_password")
     public String changePassword(HttpSession session, Model model) {
 
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
