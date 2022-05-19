@@ -74,7 +74,7 @@ public class CarRepository {
                         rs.getString("car_name"),
                         rs.getInt("car_gear_level"),
                         rs.getDouble("car_steel_price_dkk"),
-                        rs.getDouble("car_registrations_fee_dkk"),
+                        rs.getDouble("car_registration_fee_dkk"),
                         rs.getDouble("car_co2_emission_per_km"),
                         rs.getDouble("car_rental_price_per_month_dkk")
                 );

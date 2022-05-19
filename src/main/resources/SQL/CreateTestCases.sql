@@ -33,7 +33,7 @@ INSERT INTO contract(employee_id, customer_id) VALUES (4, 8);
 INSERT INTO contract(employee_id, customer_id) VALUES (4, 9);
 
 -- Lease
-INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (1, 1, '2022-12-17', 120);
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (1, 1, '2022-05-17', 500);
 INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (1, 2, '2022-12-17', 120);
 INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (2, 3, '2022-12-17', 150);
 INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (2, 4, '2022-12-17', 120);
