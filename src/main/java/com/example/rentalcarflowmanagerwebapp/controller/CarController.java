@@ -5,6 +5,8 @@ import com.example.rentalcarflowmanagerwebapp.service.CarService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
@@ -38,4 +40,25 @@ public class CarController {
 
     return "car_stats";
   }
-}
+
+  @GetMapping("/create_car")
+    public String createCar(){
+
+      return "/forms/car_form";
+    }
+
+    @PostMapping("/forms/create_car")
+  public String carCreated(@RequestParam("chassis_number") String chassisNumber, @RequestParam("car_color")  String color, @RequestParam("manufacturer")  String manufacturer,
+                           @RequestParam("car_type") String carType, @RequestParam("car_name") String carName, @RequestParam("gear_level")  int gearLevel,
+                           @RequestParam("steel_price") double steelPriceDKK, @RequestParam("registration_fee")  double registrationFeeDKK,
+                           @RequestParam("CO2_emission") double CO2EmissionPerKM, @RequestParam("price_per_month") double carPricePerMonthDKK){
+
+    carService.enterNewCar(chassisNumber, color, manufacturer, carType, carName, gearLevel,
+            steelPriceDKK, registrationFeeDKK, CO2EmissionPerKM, carPricePerMonthDKK);
+
+    return "redirect:/all_cars";
+    }
+
+
+  }
+

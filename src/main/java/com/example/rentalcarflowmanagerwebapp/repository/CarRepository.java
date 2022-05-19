@@ -190,7 +190,7 @@ public class CarRepository {
             try {
                 con = ConnectionManager.getConnection();
                 final String SQL_QUERY = "INSERT INTO car(car_id, chassis_number, color, car_manufactorer, car_type, car_name, car_gear_level," +
-                        " car_steel_price_dkk, car_registration_fee_dkk, + car_co2_emission_per_km," +
+                        " car_steel_price_dkk, car_registration_fee_dkk, car_co2_emission_per_km," +
                         " car_rental_price_per_month_dkk) VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement preparedStatement = con.prepareStatement(SQL_QUERY);
                 preparedStatement.setString(1, chassisNumber);

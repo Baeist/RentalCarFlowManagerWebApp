@@ -12,24 +12,31 @@ import java.util.List;
 @Service
 public class CarService {
 
-   private CarRepository carRepository;
+  private CarRepository carRepository;
 
-  public CarService(CarRepository carRepository){
+  public CarService(CarRepository carRepository) {
     this.carRepository = carRepository;
   }
 
-  public ArrayList<Car> rentedOutCars(){
+  public ArrayList<Car> rentedOutCars() {
 
     return carRepository.rentedOutCars();
 
 
   }
 
-  public ArrayList<Car> getAllCars(){
+  public ArrayList<Car> getAllCars() {
     return carRepository.getAllCars();
   }
 
-  public ArrayList<Car> availableCars(){
+  public ArrayList<Car> availableCars() {
     return carRepository.availableCars();
+  }
+
+  public void enterNewCar(String chassisNumber, String color, String manufacturer, String carType, String carName, int gearLevel,
+                          double steelPriceDKK, double registrationFeeDKK, double CO2EmissionPerKM, double carPricePerMonthDKK){
+
+    carRepository.enterNewCar(chassisNumber, color, manufacturer, carType, carName, gearLevel,
+            steelPriceDKK, registrationFeeDKK, CO2EmissionPerKM, carPricePerMonthDKK);
   }
 }
