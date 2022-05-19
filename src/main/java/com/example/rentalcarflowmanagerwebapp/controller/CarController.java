@@ -34,7 +34,6 @@ public class CarController {
   public String showAllCars(Model model){
 
     ArrayList<Car> cars = carService.getAllCars();
-
     model.addAttribute("cars", cars);
 
     return "car_stats";

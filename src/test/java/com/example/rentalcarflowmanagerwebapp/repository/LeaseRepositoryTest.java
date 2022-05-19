@@ -1,8 +1,11 @@
 package com.example.rentalcarflowmanagerwebapp.repository;
 
 import com.example.rentalcarflowmanagerwebapp.model.Lease;
+import com.example.rentalcarflowmanagerwebapp.utility.ConnectionManager;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
