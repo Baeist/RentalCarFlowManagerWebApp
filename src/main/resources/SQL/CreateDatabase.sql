@@ -39,8 +39,8 @@ create table if not exists lease
 (
     lease_id   int auto_increment
     primary key unique,
-    contract_id int not null unique,
-    car_id int not null unique,
+    contract_id int not null,
+    car_id int not null,
     lease_start_date date not null,
     lease_period_number_of_days int not null,
     foreign key (contract_id) references contract(contract_id),
@@ -52,7 +52,7 @@ create table if not exists damage_report
     primary key,
     contract_id int not null,
     car_id int not null,
-    dedscription varchar(400),
+    description varchar(400),
     damage_price_dkk double not null,
     garage_name varchar(45),
     foreign key (contract_id) references contract(contract_id),

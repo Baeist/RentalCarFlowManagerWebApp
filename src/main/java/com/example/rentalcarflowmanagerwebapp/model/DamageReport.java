@@ -1,7 +1,7 @@
 package com.example.rentalcarflowmanagerwebapp.model;
 // Klasse lavet af Arjaco
-public class DamageReportModel {
-  public DamageReportModel(int damage_report_id, String description, int damage_price_dkk, String garage_name, int contract_id, int car_id) {
+public class DamageReport {
+  public DamageReport(int damage_report_id, String description, int damage_price_dkk, String garage_name, int contract_id, int car_id) {
     this.damage_report_id = damage_report_id;
     this.description = description;
     this.damage_price_dkk = damage_price_dkk;

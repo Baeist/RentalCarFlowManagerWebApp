@@ -1,6 +1,6 @@
 package com.example.rentalcarflowmanagerwebapp.model;
 
-public class UserModel {
+public class User {
 
     private int employeeID;
     private String firstName;
