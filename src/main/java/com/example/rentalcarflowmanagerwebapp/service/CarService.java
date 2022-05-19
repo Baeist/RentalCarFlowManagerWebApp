@@ -39,4 +39,16 @@ public class CarService {
     carRepository.enterNewCar(chassisNumber, color, manufacturer, carType, carName, gearLevel,
             steelPriceDKK, registrationFeeDKK, CO2EmissionPerKM, carPricePerMonthDKK);
   }
+
+  public Car findCarFromChassisNumber(String chassisNumber){
+    return carRepository.findCarFromChassisNumber(chassisNumber);
+  }
+
+  public void updateCarInfo(int carID, String chassisNumber, String color, String manufacturer, String carType,
+                            String carName, int gearLevel, double steelPriceDKK, double registrationFeeDKK,
+                            double CO2EmissionPerKM, double carPricePerMonthDKK){
+    carRepository.updateCarInfo(carID, chassisNumber, color, manufacturer, carType,
+            carName, gearLevel, steelPriceDKK, registrationFeeDKK,
+            CO2EmissionPerKM, carPricePerMonthDKK);
+  }
 }

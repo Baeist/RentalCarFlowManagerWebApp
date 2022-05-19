@@ -132,7 +132,7 @@ public class CarRepository {
             try {
                 con = ConnectionManager.getConnection();
                 final String SQL_QUERY = "UPDATE car SET chassis_number = ?, color = ?, car_manufactorer = ?, car_type = ?," +
-                        " car_name = ?, car_gear_level = ?, car_steel_price_dkk = ?, car_registration_fee_dkk = ?" +
+                        " car_name = ?, car_gear_level = ?, car_steel_price_dkk = ?, car_registration_fee_dkk = ?," +
                         "car_co2_emission_per_km = ?, car_rental_price_per_month_dkk = ? WHERE car_id =" + carID + ";";
                 PreparedStatement preparedStatement = con.prepareStatement(SQL_QUERY);
                 preparedStatement.setString(1, chassisNumber);
@@ -208,7 +208,37 @@ public class CarRepository {
                 e.printStackTrace();
             }
         }
+    public Car findCarFromChassisNumber(String chassisNumber) {
 
+        try {
+            con = ConnectionManager.getConnection();
+            Car car = new Car();
+
+            final String SQL_QUERY = "SELECT * FROM car WHERE chassis_number = ?";
+            PreparedStatement ps = con.prepareStatement(SQL_QUERY);
+            ps.setString(1, chassisNumber);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                car.setCarID(rs.getInt(1));
+                car.setChassisNumber(rs.getString(2));
+                car.setColor(rs.getString(3));
+                car.setManufacturer(rs.getString(4));
+                car.setCarType(rs.getString(5));
+                car.setCarName(rs.getString(6));
+                car.setGearLevel(rs.getInt(7));
+                car.setSteelPriceDKK(rs.getDouble(8));
+                car.setRegistrationFeeDKK(rs.getDouble(9));
+                car.setCO2EmissionPerKM(rs.getDouble(10));
+                car.setCarPricePerMonthDKK(rs.getDouble(11));
+
+                return car;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     }
 
 
