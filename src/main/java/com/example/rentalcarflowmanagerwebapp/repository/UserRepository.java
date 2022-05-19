@@ -21,7 +21,9 @@ public class UserRepository {
     public User getUserFromLogInNameAndPassword(String logInName, String employeePassword) {
 
         String salt = getSaltFromLogInName(logInName);
-        String safePassword = pwe.giveSafePassword(employeePassword, salt);
+        String safePassword = employeePassword;
+        if(salt != null){
+        safePassword = pwe.giveSafePassword(employeePassword, salt);}
 
         try {
             connection = ConnectionManager.getConnection();
