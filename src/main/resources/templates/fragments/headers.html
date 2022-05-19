@@ -21,9 +21,8 @@
             <p class="d-inline m-5" th:text="${session.employeeType}">employee type here</p>
             <p class="d-inline m-2" th:text="${session.employeeFullName}">employee name here</p>
 
-
-            <button class="btn btn-sm btn-primary d-inline" href="/change_password">skift kode</button>
-            <button class="btn btn-sm btn-primary d-inline" href="/logout">log ud</button>
+            <a href="/change_password"><button class="btn btn-sm btn-primary d-inline">skift kode</button></a>
+            <a href="/logout"><button class="btn btn-sm btn-primary d-inline">log ud</button></a>
         </div>
     </nav>
 
