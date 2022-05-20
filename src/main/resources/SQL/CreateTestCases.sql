@@ -46,9 +46,9 @@ INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_
 INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (3, 7, '2022-12-17', 120);
 INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (4, 8, '2022-12-17', 120);
 INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (5, 9, '2022-12-17', 120);
-INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (6, 10, '2022-12-17', 120);
-INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (7, 11, '2021-12-17', 500);
-INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (8, 12, '2022-05-17', 90);
-INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (9, 13, '2022-05-17', 90);
-INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (10, 14, '2022-05-17', 90);
-INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (11, 15, '2022-05-17', 90);
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (6, 9, '2022-12-17', 120);
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (7, 9, '2021-12-17', 500);
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (8, 9, '2022-05-17', 90);
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (9, 9, '2022-05-17', 90);
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (10, 9, '2022-05-17', 90);
+INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (11, 9, '2022-05-17', 90);
