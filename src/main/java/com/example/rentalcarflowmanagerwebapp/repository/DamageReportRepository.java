@@ -44,9 +44,7 @@ public class DamageReportRepository {
       while (rs.next()) {
         int contract_id = rs.getInt("contract_id");
         int car_id = rs.getInt("car_id");
-        Lease lm = new Lease();
-        lm.setContractID(contract_id);
-        lm.setCarID(car_id);
+        Lease lm = new Lease(0, null, contract_id, 0, car_id);
         listOfLeases.add(lm);
       }
     } catch (Exception e) {
