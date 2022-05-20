@@ -1,13 +1,12 @@
 :root {
-    --ElementBagground: #2d2d2d;
-    --menuBagground: #3d3d3d;
+    --element-bagground: #2d2d2d;
+    --menu-bagground: #3d3d3d;
     --menuBaggroundHover: #727272;
     --Bagground: #ffffff;
-
+    --PrimaryFormBagground: #0d6efd;
 
     --whiteText: #ffffff;
     --darkText: #000000;
-
 }
 
 /* LOGIN */
@@ -15,7 +14,7 @@
     padding-top: 100px;
 }
 #login{
-    background: var(--ElementBagground);
+    background: var(--element-bagground);
     border-radius: 1em;
     padding: 3em;
     width: 450px;
@@ -41,7 +40,7 @@
 
 }
 .navbar-light{
-    background: var(--ElementBagground);
+    background: var(--element-bagground);
     padding-left: 4em;
     padding-right: 4em;
     color: var(--whiteText);
@@ -51,7 +50,7 @@
     color: var(--whiteText);
 }
 
-/* MENU( */
+/* MENU */
 .menu-container{
     display: flex;
     justify-content: space-between;
@@ -60,7 +59,7 @@
     height: 75px;
     display: inline;
     text-align: center;
-    background: var(--menuBagground);
+    background: var(--menu-bagground);
     width: 20%;
 }
 .menu:hover{
@@ -81,5 +80,34 @@
     text-decoration: none;
 }
 
+/* CONTENT */
+.content{
+    margin-top: 2em;
+    padding-left: 7em;
+    padding-right: 7em;
+}
+.content h1{
+    font-weight: bolder;
+}
+
+/* LEASE */
+.contract-form{
+    width: 400px;
+    padding: 0em;
+    margin-bottom: 2em;
+}
+.contract-form span{
+    height: 3.5em;
+    color: var(--PrimaryFormBagground);
+}
+.contract-form label{
+    font-weight: bolder;
+    color: var(--whiteText);
+    margin-right: 2em;
+}
+.contract-form input{
+    margin-right: 1em;
+    height: 2em;
+}
 
 
