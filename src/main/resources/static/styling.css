@@ -13,6 +13,9 @@
 #loginContainer{
     padding-top: 100px;
 }
+.fail_log_in{
+    color : red;
+}
 #login{
     background: var(--element-bagground);
     border-radius: 1em;
@@ -26,7 +29,7 @@
 .form-header h1{
     font-weight: bold;
     color: var(--whiteText);
-}ca
+}
 .form-group label{
     font-weight: bold;
 }
@@ -88,13 +91,13 @@
 }
 .content h1{
     font-weight: bolder;
+    margin-bottom: 0.5em;
 }
 
 /* LEASE */
 .contract-form{
     width: 400px;
-    padding: 0em;
-    margin-bottom: 2em;
+    margin-bottom: 0.5em;
 }
 .contract-form span{
     height: 3.5em;
@@ -108,6 +111,10 @@
 .contract-form input{
     margin-right: 1em;
     height: 2em;
+}
+#create-lease{
+    text-align: center;
+    width: 6.5em;
 }
 
 
