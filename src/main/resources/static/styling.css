@@ -13,6 +13,9 @@
 #loginContainer{
     padding-top: 100px;
 }
+.fail_log_in{
+    color : red;
+}
 #login{
     background: var(--element-bagground);
     border-radius: 1em;
