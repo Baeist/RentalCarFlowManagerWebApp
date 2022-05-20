@@ -14,7 +14,9 @@ create table if not exists employee
     employee_last_name varchar(45) not null,
     employee_username varchar(45) not null unique,
     employee_password varchar(256) not null,
-    employee_type varchar(45) not null
+    employee_password_salt varchar(30) not null,
+    employee_type varchar(45) not null,
+    is_user_active boolean not null
     );
 create table if not exists car
 (
@@ -25,6 +27,10 @@ create table if not exists car
     car_manufactorer varchar(45) not null,
     car_type varchar(45) not null,
     car_name varchar(70) not null,
+    car_gear_level int not null,
+    car_steel_price_dkk double not null,
+    car_registration_fee_dkk double not null,
+    car_co2_emission_per_km double not null,
     car_rental_price_per_month_dkk double not null
     );
 create table if not exists contract
