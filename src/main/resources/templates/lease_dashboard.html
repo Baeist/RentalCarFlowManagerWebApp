@@ -35,13 +35,13 @@
                     <td>[[${Lease.carID}]]</td>
 
                     <td th:if="${session.isTypeRegistering}">
-                        <a th:href="@{'/dashboard/lease/edit/' + ${Lease.leaseID}}">
+                        <a th:href="@{'/lease/edit/' + ${Lease.leaseID}}">
                             <button class="btn btn-sm btn-primary">Edit</button>
                         </a>
                     </td>
 
                     <td th:if="${session.isTypeRegistering}">
-                        <a th:href="@{'/dashboard/lease/delete/' + ${Lease.leaseID}}">
+                        <a th:href="@{'/lease/delete/' + ${Lease.leaseID}}">
                             <button th class="btn btn-sm btn-danger">Slet</button>
                         </a>
                     </td>
