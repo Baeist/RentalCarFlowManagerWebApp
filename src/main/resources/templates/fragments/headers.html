@@ -14,7 +14,7 @@
 <header th:fragment="header-normal">
     <nav class="navbar navbar-light" th:if="${session.isLoggedIn}" >
         <div class="nav-item d-inline">
-            <a class="navbar-brand">Rental Car Flow</a>
+            <h5 class="nav-logo">Rental Car Flow</h5>
         </div>
 
         <div class="nav-item">
@@ -26,9 +26,9 @@
         </div>
     </nav>
 
-    <nav class="navbar navbar-light" th:unless="${session.isLoggedIn}" >
+    <nav class="navbar navbar-light " th:unless="${session.isLoggedIn}" >
         <div class="nav-item d-inline">
-            <a class="navbar-brand">Rental Car Flow</a>
+           <h5 class="nav-logo">Rental Car Flow </h5>
         </div>
 
         <div class="nav-item">

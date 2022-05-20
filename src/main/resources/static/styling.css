@@ -1,6 +1,7 @@
 :root {
-    --ElementBagground: #ffc5c5;
-    --menuBagground: #342323;
+    --ElementBagground: #2d2d2d;
+    --menuBagground: #3d3d3d;
+    --menuBaggroundHover: #727272;
     --Bagground: #ffffff;
 
 
@@ -9,12 +10,10 @@
 
 }
 
-/* Login CSS */
-
+/* LOGIN */
 #loginContainer{
     padding-top: 100px;
 }
-
 #login{
     background: var(--ElementBagground);
     border-radius: 1em;
@@ -22,34 +21,34 @@
     width: 450px;
     margin: 0 auto
 }
-
 .form-group{
     margin-bottom: 1em;
 }
-
 .form-header h1{
     font-weight: bold;
+    color: var(--whiteText);
 }
-
 .form-group label{
     font-weight: bold;
 }
-
 .form-group input{
     border-style: none;
 }
 
-
 /* HEADER */
-
 .navbar-brand{
     font-weight: bolder;
-}
 
+}
 .navbar-light{
     background: var(--ElementBagground);
     padding-left: 4em;
     padding-right: 4em;
+    color: var(--whiteText);
+}
+.nav-logo{
+    text-decoration: none;
+    color: var(--whiteText);
 }
 
 /* MENU( */
@@ -57,7 +56,6 @@
     display: flex;
     justify-content: space-between;
 }
-
 .menu{
     height: 75px;
     display: inline;
@@ -65,19 +63,23 @@
     background: var(--menuBagground);
     width: 20%;
 }
-
+.menu:hover{
+    background: var(--menuBaggroundHover);
+}
 .menu h4 {
     margin-top: 25px;
     color: var(--whiteText);
 }
-
 .menu-select{
     background: var(--Bagground);
     color: var(--darkText);
 }
-
 .menu-select h4{
     color: var(--darkText);
 }
+.menu-link{
+    text-decoration: none;
+}
+
 
 

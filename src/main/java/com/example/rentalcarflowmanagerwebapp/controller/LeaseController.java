@@ -25,13 +25,16 @@ public class LeaseController {
         this.contractService = contractService;
     }
 
-    @GetMapping("/dashboard/lease")
+    @GetMapping("/lease")
     public String dashboardLease(Model model){
         List<Lease> allLeases = leaseService.getAllLeases();
         List<Contract> allContracts = contractService.GetAllContracts();
 
         model.addAttribute("allLeases", allLeases);
         model.addAttribute("allContracts", allContracts);
+
+        //for top menu
+        model.addAttribute("location", "lease");
 
         return "lease_dashboard";
     }
@@ -53,20 +56,20 @@ public class LeaseController {
         return "redirect:/dashboard/lease";
     }
 
-    @GetMapping("/dashboard/lease/delete/{leaseID}")
+    @GetMapping("/lease/delete/{leaseID}")
     public String deleteLease(@PathVariable("leaseID") int leaseID){
         leaseService.deleteLease(leaseID);
         return "redirect:/dashboard/lease";
     }
 
-    @GetMapping("/dashboard/lease/edit/{leaseID}")
+    @GetMapping("/lease/edit/{leaseID}")
     public String editLease(@PathVariable("leaseID") int leaseID, Model model){
         model.addAttribute("pageTitle", "Ændrer lease: " + leaseID);
         model.addAttribute("leaseID", leaseID);
         return "Forms/lease_form";
     }
 
-    @GetMapping("/dashboard/lease/create")
+    @GetMapping("/lease/create")
     public String createLease(Model model){
         model.addAttribute("pageTitle", "Opret lejeaftale");
 

@@ -71,7 +71,7 @@ public class UserController {
                 return "redirect:/administrator/" + session.getAttribute("logInName"); // TODO redirect to type of employee that logged in, mangler for alle typer medarbejdere
             }
             if(session.getAttribute("isTypeRegistering").equals(true)){
-                return "redirect:/dashboard/lease";}
+                return "redirect:/lease";}
         }
 
         return "index";
@@ -84,6 +84,9 @@ public class UserController {
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
+
+        // for page menu
+        model.addAttribute("location", "admin");
 
         model.addAttribute("userToBeDeleted", userService.getUserFromLogInName((String) session.getAttribute("deleteUser")));
 
