@@ -20,13 +20,9 @@ public class CarController {
     this.carService = carService;
   }
 
-  @GetMapping("/c")
-  public String bilStatistik(Model model){
 
-    return "car_stats";
-  }
   @GetMapping("/car_stats")
-  public String bilStatistikLedige(Model model){
+  public String carStatistics(Model model){
     ArrayList<Car> carsAvailable = carService.availableCars();
     model.addAttribute("available_cars", carsAvailable);
     ArrayList<Car> carsLeased = carService.rentedOutCars();
