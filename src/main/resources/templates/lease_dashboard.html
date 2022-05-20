@@ -23,7 +23,6 @@
 
     <h1>Alle lease kontraker</h1>
 
-
     <div class="contract-form">
         <form class="">
                 <span class="input-group-text bg-primary" id="inputGroup-sizing-sm"><label>Opret kontrakt</label>
@@ -38,12 +37,18 @@
             <tr class="table-dark">
                 <td>ContractID: [[${Contract.contractID}]]</td>
                 <td>[[${Contract.customerID}]]</td>
-                <td th:colspan="3">[[${Contract.employeeID}]]</td>
+                <td>[[${Contract.employeeID}]]</td>
+                <td ></td>
                 <td>
-                    <a th:if="${session.isTypeRegistering}" th:href="@{'/lease/create'}">
-                        <button class="btn btn-sm btn-primary">ny lease</button>
+                    <a style="width: 15em" th:if="${session.isTypeRegistering}" th:href="@{'/lease/create'}">
+                        <button id="create-lease" class="btn btn-sm btn-primary">opret lease</button>
                     </a>
                 </td>
+                <td></td>
+
+
+
+
             </tr>
 
             <div th:each="Lease : ${allLeases}">
@@ -51,19 +56,21 @@
                     <td>LeaseID: [[${Lease.leaseID}]]</td>
                     <td>Startdate: [[${Lease.startDate}]]</td>
                     <td>Total days: [[${Lease.leasePeriodDays}]]</td>
-                    <td>[[${Lease.carID}]]</td>
+                    <td>Car ID: [[${Lease.carID}]]</td>
 
-                    <td th:if="${session.isTypeRegistering}">
-                        <a th:href="@{'/lease/edit/' + ${Lease.leaseID}}">
-                            <button class="btn btn-sm btn-primary">Edit</button>
+                    <td>
+                        <a th:if="${session.isTypeRegistering}" th:href="@{'/lease/edit/' + ${Lease.leaseID}}">
+                            <button class="btn btn-sm btn-primary" style="width: 6.5em">Rediger</button>
                         </a>
                     </td>
 
-                    <td th:if="${session.isTypeRegistering}">
-                        <a th:href="@{'/lease/delete/' + ${Lease.leaseID}}">
+                    <td>
+                        <a  th:if="${session.isTypeRegistering}" th:href="@{'/lease/delete/' + ${Lease.leaseID}}">
                             <button class="btn btn-sm btn-danger">Slet</button>
                         </a>
                     </td>
+
+
                 </tr>
             </div>
         </div>
