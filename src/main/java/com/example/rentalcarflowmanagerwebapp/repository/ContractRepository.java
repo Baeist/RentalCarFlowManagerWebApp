@@ -16,7 +16,7 @@ public class ContractRepository {
 
     private Connection con = ConnectionManager.getConnection();
 
-    public void saveContract(Contract contract){
+    public boolean saveContract(Contract contract){
 
         final String SQL =  "INSERT INTO Contract(employee_id, customer_id)" +
                             "VALUES (?, ?);";
@@ -27,9 +27,14 @@ public class ContractRepository {
             ps.setInt(2, contract.getCustomerID());
 
             ps.execute();
+            return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("could not create contract");
+            System.out.println(e.getMessage());
+            System.out.println(e.getSQLState());
+
+            return false;
         }
     }
 
@@ -62,7 +67,7 @@ public class ContractRepository {
     public ArrayList<Contract> getAllContract(){
         ArrayList<Contract> contracts = new ArrayList<>();
 
-        final String SQL =  "SELECT * FROM contract;";
+        final String SQL =  "SELECT * FROM contract ORDER BY contract_id DESC;";
 
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
@@ -86,7 +91,7 @@ public class ContractRepository {
         return contracts;
     }
 
-    public void deleteContract(int contractID){
+    public boolean deleteContract(int contractID){
 
         final String SQL =  "DELETE FROM contract WHERE contract_id = ?;";
 
@@ -95,13 +100,51 @@ public class ContractRepository {
             ps.setInt(1, contractID);
 
             ps.execute();
+
+            return true;
+
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Could not delete Contract");
+            System.out.println(e.getMessage());
+            System.out.println(e.getSQLState());
+            return false;
         }
 
 
     }
 
+    public int totalLeasesForContract(int contractID){
+        int total = 0;
+
+        final String SQL =  "SELECT lease_id from contract " +
+                            "INNER JOIN lease " +
+                            "ON lease.contract_id = contract.contract_id " +
+                            "where contract.contract_id = ?;";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, contractID);
+
+
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()){
+                total++;
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Could not delete Contract");
+            System.out.println(e.getMessage());
+            System.out.println(e.getSQLState());
+            total = 0;
+
+        }
+
+
+        return total;
+    }
 
 
 }

@@ -59,7 +59,7 @@ public class LeaseController {
     @GetMapping("/lease/delete/{leaseID}")
     public String deleteLease(@PathVariable("leaseID") int leaseID){
         leaseService.deleteLease(leaseID);
-        return "redirect:/dashboard/lease";
+        return "redirect:/lease";
     }
 
     @GetMapping("/lease/edit/{leaseID}")

@@ -51,6 +51,7 @@ public class UserController {
 
         if (user != null && user.isUserActive()) {
             // sets user information when logging in
+            session.setAttribute("employeeID", user.getEmployeeID());
             session.setAttribute("employeeFullName", user.getFirstName() + " " + user.getLastName());
             session.setAttribute("employeeType", user.getEmployeeType());
             session.setAttribute("logInName", logInName);

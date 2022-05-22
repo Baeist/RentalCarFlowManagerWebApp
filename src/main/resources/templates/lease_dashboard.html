@@ -23,34 +23,49 @@
 
     <h1>Alle lease kontraker</h1>
 
+
+
+
+    <!--Succes or error message-->
+    <div class="alert alert-success text-center" th:if="${succes}">
+            [[${{succes}}]]
+    </div>
+
+    <div class="alert alert-danger text-center" th:if="${fail}">
+            [[${{fail}}]]
+    </div>
+
+
     <div class="contract-form">
-        <form class="">
+        <form th:action="'/create/contract/' + ${session.employeeID}"  method="post">
                 <span class="input-group-text bg-primary" id="inputGroup-sizing-sm"><label>Opret kontrakt</label>
-                    <input class="form-control" placeholder="Indtast kunde id" type="number">
+                    <input class="form-control" placeholder="Indtast kunde id" type="number" name="customerID">
                     <button type="submit" class="btn btn-success btn-sm">Opret</button>
                 </span>
         </form>
     </div>
 
     <table class="table">
+        <!--CONTRACT-->
         <div th:each="Contract : ${allContracts}">
             <tr class="table-dark">
                 <td>ContractID: [[${Contract.contractID}]]</td>
-                <td>[[${Contract.customerID}]]</td>
-                <td>[[${Contract.employeeID}]]</td>
+                <td>CustomerID: [[${Contract.customerID}]]</td>
+                <td>EmployeeID: [[${Contract.employeeID}]]</td>
                 <td ></td>
                 <td>
                     <a style="width: 15em" th:if="${session.isTypeRegistering}" th:href="@{'/lease/create'}">
                         <button id="create-lease" class="btn btn-sm btn-primary">opret lease</button>
                     </a>
                 </td>
-                <td></td>
-
-
-
-
+                <td>
+                    <a style="width: 15em" th:if="${session.isTypeRegistering}" th:href="@{'/delete/contract/' + ${Contract.contractID}}">
+                        <button class="btn btn-sm btn-danger">slet</button>
+                    </a>
+                </td>
             </tr>
 
+            <!--LEASE-->
             <div th:each="Lease : ${allLeases}">
                 <tr class="table-light table-sm" th:if="${Contract.contractID} == ${Lease.contractID}">
                     <td>LeaseID: [[${Lease.leaseID}]]</td>

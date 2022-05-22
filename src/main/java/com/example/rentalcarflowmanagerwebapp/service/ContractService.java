@@ -21,7 +21,19 @@ public class ContractService {
         return contractRepository.getAllContract();
     }
 
+    public boolean deleteContract(int contractID) {
+        int totalLease = contractRepository.totalLeasesForContract(contractID);
 
+        // checks if there exist leases under contract before deleting
+        if(totalLease == 0){
+            contractRepository.deleteContract(contractID);
+            return true;
+        }
 
+        return false;
+    }
 
+    public boolean createContract(Contract contract) {
+        return contractRepository.saveContract(contract);
+    }
 }
