@@ -7,114 +7,135 @@
 
     --whiteText: #ffffff;
     --darkText: #000000;
+
+    --boxShadow: 2px 2px 100px #000000;
 }
 
 /* LOGIN */
-#loginContainer{
+#loginContainer {
     padding-top: 100px;
 }
-.fail_log_in{
-    color : red;
+.fail_log_in {
+    color: red;
 }
-#login{
+#login {
     background: var(--element-bagground);
     border-radius: 1em;
     padding: 3em;
     width: 450px;
-    margin: 0 auto
+    margin: 0 auto;
+    box-shadow: var(--boxShadow);
 }
-.form-group{
+.form-group {
     margin-bottom: 1em;
 }
-.form-header h1{
+.form-header h1 {
     font-weight: bold;
     color: var(--whiteText);
 }
-.form-group label{
+.form-group label {
     font-weight: bold;
 }
-.form-group input{
+.form-group input {
     border-style: none;
 }
 
 /* HEADER */
-.navbar-brand{
+.navbar-brand {
     font-weight: bolder;
 
 }
-.navbar-light{
+.navbar-light {
     background: var(--element-bagground);
     padding-left: 4em;
     padding-right: 4em;
     color: var(--whiteText);
 }
-.nav-logo{
+.nav-logo {
     text-decoration: none;
     color: var(--whiteText);
 }
 
 /* MENU */
-.menu-container{
+.menu-container {
     display: flex;
     justify-content: space-between;
 }
-.menu{
+.menu {
     height: 75px;
     display: inline;
     text-align: center;
     background: var(--menu-bagground);
     width: 20%;
 }
-.menu:hover{
+.menu:hover {
     background: var(--menuBaggroundHover);
 }
 .menu h4 {
     margin-top: 25px;
     color: var(--whiteText);
 }
-.menu-select{
+.menu-select {
     background: var(--Bagground);
     color: var(--darkText);
 }
-.menu-select h4{
+.menu-select h4 {
     color: var(--darkText);
 }
-.menu-link{
+.menu-link {
     text-decoration: none;
 }
 
 /* CONTENT */
-.content{
+.content {
     margin-top: 2em;
     padding-left: 7em;
     padding-right: 7em;
 }
-.content h1{
+.content h1 {
     font-weight: bolder;
     margin-bottom: 0.5em;
 }
 
 /* LEASE */
-.contract-form{
+.contract-form {
     width: 400px;
     margin-bottom: 0.5em;
 }
-.contract-form span{
+.contract-form span {
     height: 3.5em;
     color: var(--PrimaryFormBagground);
 }
-.contract-form label{
+.contract-form label {
     font-weight: bolder;
     color: var(--whiteText);
     margin-right: 2em;
 }
-.contract-form input{
+.contract-form input {
     margin-right: 1em;
     height: 2em;
 }
-#create-lease{
+#create-lease {
     text-align: center;
     width: 6.5em;
 }
 
+.lease-form {
+    background: var(--element-bagground);
+    color: var(--whiteText);
+    border-style: none;
+    border-radius: 1em;
+    box-shadow: var(--boxShadow)
+}
+.lease-form-header {
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+
+}
+.lease-from-foot{
+    text-align: center;
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+}
 
