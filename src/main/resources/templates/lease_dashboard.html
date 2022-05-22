@@ -23,9 +23,6 @@
 
     <h1>Alle lease kontraker</h1>
 
-
-
-
     <!--Succes or error message-->
     <div class="alert alert-success text-center" th:if="${succes}">
             [[${{succes}}]]
@@ -74,7 +71,8 @@
                     <td>Car ID: [[${Lease.carID}]]</td>
 
                     <td>
-                        <a th:if="${session.isTypeRegistering}" th:href="@{'/lease/edit/' + ${Lease.leaseID}}">
+                        <a th:if="${session.isTypeRegistering}"
+                           th:href="@{'/lease/edit/'+ ${Contract.contractID}+'/'+${Lease.leaseID}+'/'+${Lease.startDate}+'/'+${Lease.leasePeriodDays}+'/'+${Lease.carID}} ">
                             <button class="btn btn-sm btn-primary" style="width: 6.5em">Rediger</button>
                         </a>
                     </td>
