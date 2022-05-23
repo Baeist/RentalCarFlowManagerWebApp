@@ -7,7 +7,7 @@ For at andre skal kunne se din hjemmeside på internettet skal den hostes et ell
 3. Gå til [dashboard](https://dashboard.heroku.com/apps).
 4. Klik på "new" og "Create new app".
 5. Giv appen et navn og vælg en region.
-6. Push projektet til Heroku via Git.\
+6. Push projektet til Heroku via Git.
 
 Den nemmeste måde at deploye sit program på Heroku er at tilslutte sit github repository. På tidspunktet af dette skrives er det ikke muligt at deploye via github så vi bruger vi Heroku Git. Se Herokus guide på at deploye via Git [her](https://devcenter.heroku.com/articles/git)
 
