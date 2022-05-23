@@ -68,7 +68,7 @@ public class CarController {
     carService.enterNewCar(chassisNumber, color, manufacturer, carType, carName, gearLevel,
             steelPriceDKK, registrationFeeDKK, CO2EmissionPerKM, carPricePerMonthDKK);
 
-    return "redirect:/all_cars";
+    return "redirect:/car_stats";
     }
 
     @GetMapping("/edit_car/{chassis_number}")
