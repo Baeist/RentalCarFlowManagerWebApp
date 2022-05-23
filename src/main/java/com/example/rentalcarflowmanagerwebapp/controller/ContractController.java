@@ -34,7 +34,6 @@ public class ContractController {
         } else {
             String message = "Kunne ikke oprette en kontrakt";
             ra.addFlashAttribute("fail", message);
-
         }
 
         return "redirect:/lease";

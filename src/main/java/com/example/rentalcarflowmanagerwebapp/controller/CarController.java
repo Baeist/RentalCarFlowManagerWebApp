@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -54,7 +55,15 @@ public class CarController {
   public String carCreated(@RequestParam("chassis_number") String chassisNumber, @RequestParam("car_color")  String color, @RequestParam("manufacturer")  String manufacturer,
                            @RequestParam("car_type") String carType, @RequestParam("car_name") String carName, @RequestParam("gear_level")  int gearLevel,
                            @RequestParam("steel_price") double steelPriceDKK, @RequestParam("registration_fee")  double registrationFeeDKK,
-                           @RequestParam("CO2_emission") double CO2EmissionPerKM, @RequestParam("price_per_month") double carPricePerMonthDKK){
+                           @RequestParam("CO2_emission") double CO2EmissionPerKM, @RequestParam("price_per_month") double carPricePerMonthDKK, RedirectAttributes ra){
+
+
+    if(carService.findCarFromChassisNumber(chassisNumber) != null){
+
+      ra.addFlashAttribute("carExists", "Den oprettede bil eksisterede allerede i databasen.");
+
+      return "redirect:/create_car";
+      }
 
     carService.enterNewCar(chassisNumber, color, manufacturer, carType, carName, gearLevel,
             steelPriceDKK, registrationFeeDKK, CO2EmissionPerKM, carPricePerMonthDKK);

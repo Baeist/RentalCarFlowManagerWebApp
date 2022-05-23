@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>bil_formular</title>
+    <link rel="stylesheet" th:href="@{/static/styling.css}" href="/static/styling.css">
 </head>
 <body>
 <form action="/forms/create_car" method="post"
@@ -82,6 +83,9 @@
         <input type="number" step="0.01" class="form-control" name="price_per_month" required>
     </div>
 </div>
+        <!-- error message if car allready exists -->
+        <p th:text="${carExists}" class="car_exists"></p>
+
         <div class="text-center border-top border-secondary" style="margin: 0; margin-top: 2em;">
             <button type="submit" class="btn btn-primary m-2">Gem</button>
 

@@ -1,10 +1,12 @@
 package com.example.rentalcarflowmanagerwebapp.service;
 
+import com.example.rentalcarflowmanagerwebapp.controller.CarController;
 import com.example.rentalcarflowmanagerwebapp.model.Car;
 import com.example.rentalcarflowmanagerwebapp.repository.CarRepository;
 import com.example.rentalcarflowmanagerwebapp.repository.LeaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
 public class CarService {
 
   private CarRepository carRepository;
+  private CarController carController;
 
   public CarService(CarRepository carRepository) {
     this.carRepository = carRepository;
