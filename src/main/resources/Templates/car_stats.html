@@ -27,6 +27,7 @@
 <div th:replace="fragments/car_stats_frag.html :: car_list(cars=${available_cars})"></div>
 <div>udlejede biler</div>
 <div th:replace="fragments/car_stats_frag.html :: car_list(cars=${leased_out_cars})"></div>
+<div><p th:text="'månedlige indtægter: ' + ${monthly_earnings} + ' DKK'"> </p></div>
 
 <div th:if="${session.isEditCar}">
 <form method="post" action="/edited_car">
@@ -48,7 +49,11 @@
 </form>
 </div>
 
+
 <a href="/create_car"><button type="submit">Opret ny bil</button></a>
 
+
+
+    <button type="submit"><a th:unless="${session.isEditCar}" href="/create_car">Opret ny bil</a></button>
 </body>
 </html>

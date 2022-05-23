@@ -28,9 +28,12 @@ public class CarController {
     model.addAttribute("available_cars", carsAvailable);
     ArrayList<Car> carsLeased = carService.rentedOutCars();
     model.addAttribute("leased_out_cars", carsLeased);
+    double monthlyEarnings = carsLeased.stream().map(Car::getCarPricePerMonthDKK).reduce(0.0,(subtotal,element) -> subtotal + element);
+    model.addAttribute("monthly_earnings", monthlyEarnings);
 
     return "car_stats";
   }
+
 
   @GetMapping("/all_cars")
   public String showAllCars(Model model, HttpSession session){
@@ -79,6 +82,7 @@ public class CarController {
 
     return "car_stats";
     }
+
     @PostMapping("/edited_car")
     public String confirmCarEdit(@RequestParam("chassis_number") String chassisNumber, @RequestParam("color")  String color, @RequestParam("manufacturer")  String manufacturer,
                                  @RequestParam("type") String carType, @RequestParam("name") String carName, @RequestParam("gear_level")  int gearLevel,
