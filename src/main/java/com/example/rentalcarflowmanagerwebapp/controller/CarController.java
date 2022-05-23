@@ -85,11 +85,30 @@ public class CarController {
       CO2EmissionPerKM, carPricePerMonthDKK);
 
       session.removeAttribute("isEditCar");
-      ArrayList<Car> cars = carService.getAllCars();
-      model.addAttribute("cars", cars);
+
+      ArrayList<Car> carsAvailable = carService.availableCars();
+      model.addAttribute("available_cars", carsAvailable);
+      ArrayList<Car> carsLeased = carService.rentedOutCars();
+      model.addAttribute("leased_out_cars", carsLeased);
+      double monthlyEarnings = carsLeased.stream().map(Car::getCarPricePerMonthDKK).reduce(0.0,(subtotal,element) -> subtotal + element);
+      model.addAttribute("monthly_earnings", monthlyEarnings);
 
     return "car_stats";
     }
 
+    @GetMapping("/regret_edit_car")
+    public String regretEditCar(HttpSession session, Model model){
+
+    session.removeAttribute("isEditCar");
+
+      ArrayList<Car> carsAvailable = carService.availableCars();
+      model.addAttribute("available_cars", carsAvailable);
+      ArrayList<Car> carsLeased = carService.rentedOutCars();
+      model.addAttribute("leased_out_cars", carsLeased);
+      double monthlyEarnings = carsLeased.stream().map(Car::getCarPricePerMonthDKK).reduce(0.0,(subtotal,element) -> subtotal + element);
+      model.addAttribute("monthly_earnings", monthlyEarnings);
+
+    return "car_stats";
+    }
   }
 
