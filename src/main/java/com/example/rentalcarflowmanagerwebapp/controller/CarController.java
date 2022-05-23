@@ -21,31 +21,20 @@ public class CarController {
     this.carService = carService;
   }
 
-
   @GetMapping("/car_stats")
   public String carStatistics(Model model){
     ArrayList<Car> carsAvailable = carService.availableCars();
     model.addAttribute("available_cars", carsAvailable);
     ArrayList<Car> carsLeased = carService.rentedOutCars();
     model.addAttribute("leased_out_cars", carsLeased);
-
-    return "car_stats";
-  }
-
-  @GetMapping("/all_cars")
-  public String showAllCars(Model model, HttpSession session){
-
-    session.removeAttribute("isEditCar");
-    ArrayList<Car> cars = carService.getAllCars();
-    model.addAttribute("cars", cars);
+    double monthlyEarnings = carsLeased.stream().map(Car::getCarPricePerMonthDKK).reduce(0.0,(subtotal,element) -> subtotal + element);
+    model.addAttribute("monthly_earnings", monthlyEarnings);
 
     return "car_stats";
   }
 
   @GetMapping("/create_car")
     public String createCar(){
-
-
 
       return "/forms/car_form";
     }
@@ -67,7 +56,7 @@ public class CarController {
     carService.enterNewCar(chassisNumber, color, manufacturer, carType, carName, gearLevel,
             steelPriceDKK, registrationFeeDKK, CO2EmissionPerKM, carPricePerMonthDKK);
 
-    return "redirect:/all_cars";
+    return "redirect:/car_stats";
     }
 
     @GetMapping("/edit_car/{chassis_number}")
@@ -76,11 +65,14 @@ public class CarController {
     model.addAttribute("carToEdit", carService.findCarFromChassisNumber(chassisNumber));
     session.setAttribute("isEditCar", true);
 
-    ArrayList<Car> cars = carService.getAllCars();
-    model.addAttribute("cars", cars);
+    ArrayList<Car> carsAvailable = carService.availableCars();
+    model.addAttribute("available_cars", carsAvailable);
+    ArrayList<Car> carsLeased = carService.rentedOutCars();
+    model.addAttribute("leased_out_cars", carsLeased);
 
     return "car_stats";
     }
+
     @PostMapping("/edited_car")
     public String confirmCarEdit(@RequestParam("chassis_number") String chassisNumber, @RequestParam("color")  String color, @RequestParam("manufacturer")  String manufacturer,
                                  @RequestParam("type") String carType, @RequestParam("name") String carName, @RequestParam("gear_level")  int gearLevel,
@@ -93,11 +85,30 @@ public class CarController {
       CO2EmissionPerKM, carPricePerMonthDKK);
 
       session.removeAttribute("isEditCar");
-      ArrayList<Car> cars = carService.getAllCars();
-      model.addAttribute("cars", cars);
+
+      ArrayList<Car> carsAvailable = carService.availableCars();
+      model.addAttribute("available_cars", carsAvailable);
+      ArrayList<Car> carsLeased = carService.rentedOutCars();
+      model.addAttribute("leased_out_cars", carsLeased);
+      double monthlyEarnings = carsLeased.stream().map(Car::getCarPricePerMonthDKK).reduce(0.0,(subtotal,element) -> subtotal + element);
+      model.addAttribute("monthly_earnings", monthlyEarnings);
 
     return "car_stats";
     }
 
+    @GetMapping("/regret_edit_car")
+    public String regretEditCar(HttpSession session, Model model){
+
+    session.removeAttribute("isEditCar");
+
+      ArrayList<Car> carsAvailable = carService.availableCars();
+      model.addAttribute("available_cars", carsAvailable);
+      ArrayList<Car> carsLeased = carService.rentedOutCars();
+      model.addAttribute("leased_out_cars", carsLeased);
+      double monthlyEarnings = carsLeased.stream().map(Car::getCarPricePerMonthDKK).reduce(0.0,(subtotal,element) -> subtotal + element);
+      model.addAttribute("monthly_earnings", monthlyEarnings);
+
+    return "car_stats";
+    }
   }
 

@@ -243,10 +243,16 @@ public class UserController {
     @PostMapping("/user_created")
     public String confirmUserCreation(HttpSession session, @RequestParam("first_name") String firstName, @RequestParam("last_name") String lastName,
                                       @RequestParam("log_in_name") String logInName, @RequestParam("user_type") String employeeType,
-                                      @RequestParam("user_password") String employeePassword){
+                                      @RequestParam("user_password") String employeePassword, RedirectAttributes ra){
 
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
+        }
+
+        if(userService.getUserFromLogInName(logInName) != null){
+            ra.addFlashAttribute("userExists", "Denne bruger eksisterer allerede i systemet.");
+
+            return "redirect:/create_user";
         }
 
         session.removeAttribute("create");
