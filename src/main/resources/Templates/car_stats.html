@@ -23,37 +23,34 @@
 
 
 <body>
+
+<div th:if="${session.isEditCar}">
+    <form method="post" action="/edited_car">
+        <td>[[${carToEdit.carID}]]</td>
+        <input type="number" name="car_id" th:value="${carToEdit.carID}" hidden>
+        <td><input type="text" name="color" th:value="${carToEdit.color}" required></td>
+        <td><input type="text" name="manufacturer" th:value="${carToEdit.manufacturer}" required></td>
+        <td><input type="text" name="type" th:value="${carToEdit.carType}" required></td>
+        <td><input type="text" name="name" th:value="${carToEdit.carName}" required></td>
+        <td><input type="number" step="0.01" name="price_per_month" th:value="${carToEdit.carPricePerMonthDKK}" required></td>
+        <td><input type="text" name="chassis_number" th:value="${carToEdit.chassisNumber}" required></td>
+        <td><input type="number" name="gear_level" th:value="${carToEdit.gearLevel}" required></td>
+        <td><input type="number" step="0.01" name="steel_price" th:value="${carToEdit.steelPriceDKK}" required></td>
+        <td><input type="number" step="0.01" name="registration_fee" th:value="${carToEdit.registrationFeeDKK}" required></td>
+        <td><input type="number" step="0.01" name="CO2_emission" th:value="${carToEdit.CO2EmissionPerKM}" required></td>
+
+        <td><input type="submit" value="accepter"></td>
+        <td><button><a href="/regret_edit_car">fortryd</a></button></td>
+    </form>
+</div>
+
 <div>ledige biler</div>
 <div th:replace="fragments/car_stats_frag.html :: car_list(cars=${available_cars})"></div>
 <div>udlejede biler</div>
 <div th:replace="fragments/car_stats_frag.html :: car_list(cars=${leased_out_cars})"></div>
-<div><p th:text="'månedlige indtægter: ' + ${monthly_earnings} + ' DKK'"> </p></div>
-
-<div th:if="${session.isEditCar}">
-<form method="post" action="/edited_car">
-    <td>[[${carToEdit.carID}]]</td>
-    <input type="number" name="car_id" th:value="${carToEdit.carID}" hidden>
-    <td><input type="text" name="color" th:value="${carToEdit.color}" required></td>
-    <td><input type="text" name="manufacturer" th:value="${carToEdit.manufacturer}" required></td>
-    <td><input type="text" name="type" th:value="${carToEdit.carType}" required></td>
-    <td><input type="text" name="name" th:value="${carToEdit.carName}" required></td>
-    <td><input type="number" step="0.01" name="price_per_month" th:value="${carToEdit.carPricePerMonthDKK}" required></td>
-    <td><input type="text" name="chassis_number" th:value="${carToEdit.chassisNumber}" required></td>
-    <td><input type="number" name="gear_level" th:value="${carToEdit.gearLevel}" required></td>
-    <td><input type="number" step="0.01" name="steel_price" th:value="${carToEdit.steelPriceDKK}" required></td>
-    <td><input type="number" step="0.01" name="registration_fee" th:value="${carToEdit.registrationFeeDKK}" required></td>
-    <td><input type="number" step="0.01" name="CO2_emission" th:value="${carToEdit.CO2EmissionPerKM}" required></td>
-
-    <td><input type="submit" value="accepter"></td>
-    <td><button><a href="/all_cars">fortryd</a></button></td>
-</form>
-</div>
-
+<div th:unless="${session.isEditCar}"><p th:text="'månedlige indtægter: ' + ${monthly_earnings} + ' DKK'"> </p></div>
 
 <a href="/create_car"><button type="submit">Opret ny bil</button></a>
 
-
-
-    <button type="submit"><a th:unless="${session.isEditCar}" href="/create_car">Opret ny bil</a></button>
 </body>
 </html>
