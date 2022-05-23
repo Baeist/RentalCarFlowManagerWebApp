@@ -45,8 +45,6 @@ public class CarController {
   @GetMapping("/create_car")
     public String createCar(){
 
-
-
       return "/forms/car_form";
     }
 
