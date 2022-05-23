@@ -75,7 +75,7 @@ public class CarController {
     public String editCar(@PathVariable("chassis_number") String chassisNumber, HttpSession session, Model model){
 
     model.addAttribute("carToEdit", carService.findCarFromChassisNumber(chassisNumber));
-    session.setAttribute("isEditCar", false);
+    session.setAttribute("isEditCar", true);
 
     ArrayList<Car> cars = carService.getAllCars();
     model.addAttribute("cars", cars);
