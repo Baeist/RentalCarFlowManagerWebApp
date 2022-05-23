@@ -48,9 +48,29 @@
 </form>
 </div>
 
+<div class="container-fluid">
 
+    <div class="scrollable" style="height:150px; overflow-y: auto">
+        <table>
+            <tr th:each="Car : ${cars}">
+                <td th:text="${Car.carID}"> test  id</td>
+                <td th:text="${Car.color}"> color</td>
+                <td th:text="${Car.manufacturer}"> </td>
+                <td th:text="${Car.carType}"> </td>
+                <td th:text="${Car.carName}"> </td>
+                <td th:text="${Car.carPricePerMonthDKK}"> </td>
+                <td th:text="${Car.chassisNumber}"> </td>
+                <td th:text="${Car.gearLevel}"> </td>
+                <td th:text="${Car.steelPriceDKK}"> </td>
+                <td th:text="${Car.registrationFeeDKK}"> </td>
+                <td th:text="${Car.CO2EmissionPerKM}"> </td>
+                <td><button><a th:href="@{'/edit_car/' + ${Car.chassisNumber}}">rediger</a></button></td>
+                <td><button><a th:href="@{'/delete_car/' + ${Car.chassisNumber}}">slet</a></button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<a href="/create_car"><button type="submit">Opret ny bil</button></a>
 
-
-    <a th:unless="session.isEditCar" href="/create_car"><button type="submit">Opret ny bil</button></a>
 </body>
 </html>

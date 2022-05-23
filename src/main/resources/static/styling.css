@@ -7,6 +7,7 @@
 
     --whiteText: #ffffff;
     --darkText: #000000;
+    --failText: #ff0000;
 
     --boxShadow: 2px 2px 100px #000000;
 }
@@ -16,7 +17,7 @@
     padding-top: 100px;
 }
 .fail_log_in {
-    color: red;
+    color: var(--failText);
 }
 #login {
     background: var(--element-bagground);
@@ -138,4 +139,7 @@
     padding-top: 0.5em;
     padding-bottom: 1em;
 }
-
+/* car */
+.car_exists{
+    color: var(--failText);
+}
