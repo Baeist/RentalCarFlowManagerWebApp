@@ -104,7 +104,6 @@ public class LeaseController {
         model.addAttribute("allContracts", allContracts);
         model.addAttribute("allAvailableCars", allAvailableCars);
 
-
         // gives none existing id
         model.addAttribute("leaseID", -1);
 
