@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="car_list(cars)">
+
+    <div class="scrollable" style="height:150px; overflow-y: auto">
+        <table>
+            <tr>
+                <th>bil id</th>
+                <th>farve</th>
+                <th>producent</th>
+                <th>type</th>
+                <th>navn</th>
+                <th>pris</th>
+                <th>stelnummer</th>
+
+            </tr>
+            <tr th:each="car : ${cars}">
+            <!--/*@thymesVar id="car" type="com.example.rentalcarflowmanagerwebapp.model.Car"*/-->
+                <td th:text="${car.carID}"> test  id</td>
+                <td th:text="${car.color}"> color</td>
+                <td th:text="${car.manufacturer}"> </td>
+                <td th:text="${car.carType}"> </td>
+                <td th:text="${car.carName}"> </td>
+                <td th:text="${car.carPricePerMonthDKK}"> </td>
+                <td th:text="${car.chassisNumber}"> </td>
+                <td th:text="${car.gearLevel}"> </td>
+                <td th:text="${car.steelPriceDKK}"> </td>
+                <td th:text="${car.registrationFeeDKK}"> </td>
+                <td th:text="${car.CO2EmissionPerKM}"> </td>
+                <td><button><a th:href="@{'/edit_car/' + ${car.chassisNumber}}">rediger</a></button></td>
+                <td><button><a th:href="@{'/delete_car/' + ${car.chassisNumber}}">slet</a></button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
