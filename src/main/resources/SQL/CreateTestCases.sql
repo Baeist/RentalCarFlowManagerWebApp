@@ -52,3 +52,9 @@ INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_
 INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (9, 9, '2022-05-17', 90);
 INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (10, 9, '2022-05-17', 90);
 INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (11, 9, '2022-05-17', 90);
+
+-- Damage Report
+INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, damage_price_dkk, garage_name) Values (1, 1, 1, "Bule", 100, "RepairShop");
+INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, damage_price_dkk, garage_name) Values (2, 1, 2, "Punkteret", 400, "RepairShop");
+INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, damage_price_dkk, garage_name) Values (3, 2, 3, "Ridse", 100, "CarlsRepair");
+INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, damage_price_dkk, garage_name) Values (4, 3, 4, "Hul i rude", 1000, "Autorepair");
