@@ -144,6 +144,15 @@
     color: var(--failText);
 }
 
+.status_circle {
+    width: 45px;
+    height: 25px;
+    position: relative;
+    text-align: center;
+    border-radius: 50%;
+    display: inline-block;
+}
+
 /* ADMIN */
 .user-form{
     padding-right: 15em;
