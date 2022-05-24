@@ -1,6 +1,9 @@
 package com.example.rentalcarflowmanagerwebapp.controller;
 
+import com.example.rentalcarflowmanagerwebapp.model.Status;
 import com.example.rentalcarflowmanagerwebapp.model.User;
+import com.example.rentalcarflowmanagerwebapp.repository.StatusRepository;
+import com.example.rentalcarflowmanagerwebapp.service.StatusService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

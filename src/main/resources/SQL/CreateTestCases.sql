@@ -52,3 +52,11 @@ INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_
 INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (9, 9, '2022-05-17', 90);
 INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (10, 9, '2022-05-17', 90);
 INSERT INTO lease(contract_id, car_id, lease_start_date, lease_period_number_of_days) Values (11, 9, '2022-05-17', 90);
+
+-- status
+INSERT INTO status(status_id, car_id, status_description, status_start_date, expected_status_end_date) VALUES (default, 1, 'udlejet', '2022-05-01', '2022-07-29');
+INSERT INTO status(status_id, car_id, status_description, status_start_date) VALUES (default, 2, 'ledig', '2022-05-01');
+INSERT INTO status(status_id, car_id, status_description, status_start_date, expected_status_end_date) VALUES (default, 3, 'reparation', '2022-05-20', '2022-05-26');
+INSERT INTO status(status_id, car_id, status_description, status_start_date, expected_status_end_date) VALUES (default, 4, 'udlejet', '2022-03-10', '2022-08-20');
+INSERT INTO status(status_id, car_id, status_description, status_start_date, expected_status_end_date) VALUES (default, 5, 'ledig', '2022-05-20', '2022-06-10');
+INSERT INTO status(status_id, car_id, status_description, status_start_date, expected_status_end_date) VALUES (default, 6, 'solgt', '2022-05-22', '2022-05-29');
