@@ -23,6 +23,9 @@ public class CarController {
 
   @GetMapping("/car_stats")
   public String carStatistics(Model model){
+
+    model.addAttribute("location", "economy");
+
     ArrayList<Car> carsAvailable = carService.availableCars();
     model.addAttribute("available_cars", carsAvailable);
     ArrayList<Car> carsLeased = carService.rentedOutCars();
