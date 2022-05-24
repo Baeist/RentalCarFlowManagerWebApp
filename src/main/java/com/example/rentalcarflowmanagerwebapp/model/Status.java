@@ -11,9 +11,23 @@ public class Status {
     private String statusDescription;
     private LocalDate startDate;
     private LocalDate endDate;
+    private int daysLeft;
+
+    public int getDaysLeft() {
+        return daysLeft;
+    }
+
+    public void setDaysLeft(int daysLeft) {
+        this.daysLeft = daysLeft;
+    }
 
     public Status(){}
 
+    public Status(int carID, String statusDescription, int daysLeft){
+        this.carID = carID;
+        this.statusDescription = statusDescription;
+        this.daysLeft = daysLeft;
+    }
     public Status(int statusID, int carID, String statusDescription, LocalDate startDate, LocalDate endDate){
         this.statusID = statusID;
         this.carID = carID;

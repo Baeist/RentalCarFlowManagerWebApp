@@ -26,7 +26,7 @@
             <tr th:each="car : ${cars}">
 
                 <td>
-                    <div class="status_circle" style="background-color: orange;">5</div>
+                    <a href="/forms/status_form"><div class="status_circle" style="background-color: orange;">5</div></a>
                 </td>
                 <td th:text="${car.carID}"> test  id</td>
                 <td th:text="${car.color}"> color</td>

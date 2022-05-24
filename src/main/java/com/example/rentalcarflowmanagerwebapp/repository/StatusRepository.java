@@ -2,6 +2,7 @@ package com.example.rentalcarflowmanagerwebapp.repository;
 
 import com.example.rentalcarflowmanagerwebapp.model.Status;
 import com.example.rentalcarflowmanagerwebapp.utility.ConnectionManager;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 
+@Repository
 public class StatusRepository {
 
     Connection connection = ConnectionManager.getConnection();
@@ -28,7 +30,10 @@ public class StatusRepository {
                 status.setCarID(rs.getInt(2));
                 status.setStatusDescription(rs.getString(3));
                 status.setStartDate(rs.getDate(4).toLocalDate());
+
+                if(rs.getDate(5) != null)
                 status.setEndDate(rs.getDate(5).toLocalDate());
+
 
                 return status;
             }
@@ -36,6 +41,7 @@ public class StatusRepository {
         catch (Exception e){
             e.printStackTrace();
         }
+
         return null;
     }
 
