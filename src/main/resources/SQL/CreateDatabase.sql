@@ -64,3 +64,12 @@ create table if not exists damage_report
     foreign key (contract_id) references contract(contract_id),
     foreign key (car_id) references car(car_id)
     );
+create table if not exists status
+(
+  status_id int auto_increment primary key unique,
+  car_id int not null unique,
+  status_description varchar(100) not null,
+  status_start_date date not null,
+  expected_status_end_date date,
+  foreign key (car_id) references car(car_id)
+  );

@@ -120,6 +120,7 @@
     text-align: center;
     width: 6.5em;
 }
+
 .lease-form {
     background: var(--element-bagground);
     color: var(--whiteText);
@@ -138,11 +139,35 @@
     padding-top: 0.5em;
     padding-bottom: 1em;
 }
-
 /* car */
 .car_exists{
     color: var(--failText);
 }
+
+.status_circle {
+    width: 45px;
+    height: 25px;
+    position: relative;
+    text-align: center;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* ADMIN */
+.user-form{
+    padding-right: 15em;
+    margin-bottom: 2em;
+}
+.user-form a{
+    color: var(--whiteText);
+    text-decoration: none;
+}
+button a{
+    color: var(--whiteText);
+    text-decoration: none;
+}
+
+
 
 /* ADMIN */
 .user-form{

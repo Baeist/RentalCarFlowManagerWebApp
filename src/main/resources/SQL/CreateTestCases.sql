@@ -60,3 +60,12 @@ INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, da
 INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, damage_price_dkk, garage_name) Values (4, 3, 4, "Hul i rude", 1000, "Autorepair");
 INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, damage_price_dkk, garage_name) Values (5, 4, 5, "Ødelagt baglygte", 4000, "Autorepair");
 INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, damage_price_dkk, garage_name) Values (6, 4, 6, "Mangler dæk", 500, "Autorepair");
+
+-- status
+INSERT INTO status(status_id, car_id, status_description, status_start_date, expected_status_end_date) VALUES (default, 1, 'udlejet', '2022-05-01', '2022-07-29');
+INSERT INTO status(status_id, car_id, status_description, status_start_date) VALUES (default, 2, 'ledig', '2022-05-01');
+INSERT INTO status(status_id, car_id, status_description, status_start_date, expected_status_end_date) VALUES (default, 3, 'reparation', '2022-05-20', '2022-05-26');
+INSERT INTO status(status_id, car_id, status_description, status_start_date, expected_status_end_date) VALUES (default, 4, 'udlejet', '2022-03-10', '2022-08-20');
+INSERT INTO status(status_id, car_id, status_description, status_start_date, expected_status_end_date) VALUES (default, 5, 'ledig', '2022-05-20', '2022-06-10');
+INSERT INTO status(status_id, car_id, status_description, status_start_date, expected_status_end_date) VALUES (default, 6, 'solgt', '2022-05-22', '2022-05-29');
+

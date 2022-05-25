@@ -1,7 +1,10 @@
 package com.example.rentalcarflowmanagerwebapp.controller;
 
 import com.example.rentalcarflowmanagerwebapp.model.Car;
+import com.example.rentalcarflowmanagerwebapp.repository.StatusRepository;
 import com.example.rentalcarflowmanagerwebapp.service.CarService;
+import com.example.rentalcarflowmanagerwebapp.service.StatusService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +19,10 @@ import java.util.ArrayList;
 @Controller
 public class CarController {
   private CarService carService;
+  private StatusService statusService;
 
-  public CarController(CarService carService){
+  public CarController(CarService carService, StatusService statusService){
+    this.statusService = statusService;
     this.carService = carService;
   }
 
@@ -32,6 +37,12 @@ public class CarController {
     model.addAttribute("leased_out_cars", carsLeased);
     double monthlyEarnings = carsLeased.stream().map(Car::getCarPricePerMonthDKK).reduce(0.0,(subtotal,element) -> subtotal + element);
     model.addAttribute("monthly_earnings", monthlyEarnings);
+
+    ArrayList<Integer> availableCarID = carService.getAvailableCarID();
+    model.addAttribute("available_status_and_days", statusService.getStatusAndDaysLeft(availableCarID));
+
+    ArrayList<Integer> leasedCarID = carService.getLeasedCarID();
+    model.addAttribute("leased_status_and_days", statusService.getStatusAndDaysLeft(leasedCarID));
 
     return "car_stats";
   }
@@ -113,5 +124,21 @@ public class CarController {
 
     return "car_stats";
     }
+
+    @GetMapping("/forms/status_form")
+  public String carStatusForm(){
+
+
+    return "/forms/status_form";
+    }
+
+    @PostMapping("/forms/status_form")
+  public String editedStatus(){
+
+
+
+    return "redirect:/car_stats";
+    }
+
   }
 

@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Økonomi</title>
 
-
+    <link rel="stylesheet" th:href="@{/static/styling.css}" href="src/main/resources/CSS/styling.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/styling.css" th:href="@{/static/styling.css}">
+
 </head>
 
 <header>
@@ -21,69 +21,124 @@
 </header>
 
 <body>
-
-
 <div class="content">
+<div th:if="${session.isEditCar}">
+    <form method="post" action="/edited_car">
+        <td>[[${carToEdit.carID}]]</td>
+        <input type="number" name="car_id" th:value="${carToEdit.carID}" hidden>
+        <td><input type="text" name="color" th:value="${carToEdit.color}" required></td>
+        <td><input type="text" name="manufacturer" th:value="${carToEdit.manufacturer}" required></td>
+        <td><input type="text" name="type" th:value="${carToEdit.carType}" required></td>
+        <td><input type="text" name="name" th:value="${carToEdit.carName}" required></td>
+        <td><input type="number" step="0.01" name="price_per_month" th:value="${carToEdit.carPricePerMonthDKK}" required></td>
+        <td><input type="text" name="chassis_number" th:value="${carToEdit.chassisNumber}" required></td>
+        <td><input type="number" name="gear_level" th:value="${carToEdit.gearLevel}" required></td>
+        <td><input type="number" step="0.01" name="steel_price" th:value="${carToEdit.steelPriceDKK}" required></td>
+        <td><input type="number" step="0.01" name="registration_fee" th:value="${carToEdit.registrationFeeDKK}" required></td>
+        <td><input type="number" step="0.01" name="CO2_emission" th:value="${carToEdit.CO2EmissionPerKM}" required></td>
 
-    <h1>Økonomi</h1>
+        <td><input type="submit" value="accepter"></td>
+        <td><button><a href="/regret_edit_car">fortryd</a></button></td>
+    </form>
+</div>
 
-    <div th:unless="${session.isEditCar}">
-        <p th:text="'Månedlige indtægter: ' + ${monthly_earnings} + ' DKK'"></p>
-    </div>
+<div>ledige biler</div>
+<div class="scrollable" style="height:150px; overflow-y: auto">
+    <table>
+        <tr>
+            <th>status</th>
+            <th>bil id</th>
+            <th>farve</th>
+            <th>producent</th>
+            <th>type</th>
+            <th>navn</th>
+            <th>pris</th>
+            <th>stelnummer</th>
 
-    <div class="create-car">
-        <a href="/create_car">
-            <button type="submit">Opret ny bil</button>
-        </a>
-    </div>
+        </tr>
+        <tr th:each="car,iterStat : ${available_cars}">
 
+            <td th:if="${available_status_and_days[iterStat.index].statusDescription == 'udlejet'}">
+                <a href="/forms/status_form"><div class="status_circle" style="background-color: orange;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a>
+            </td>
+            <td th:if="${available_status_and_days[iterStat.index].statusDescription == 'reparation'}">
+                <a href="/forms/status_form"><div class="status_circle" style="background-color: darkred;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a>
+            </td>
+            <td th:if="${available_status_and_days[iterStat.index].statusDescription == 'solgt'}">
+                <a href="/forms/status_form"><div class="status_circle" style="background-color: mediumpurple;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a>
+            </td>
+            <td th:if="${available_status_and_days[iterStat.index].statusDescription == 'ledig'}">
+                <a href="/forms/status_form"><div class="status_circle" style="background-color: mediumspringgreen;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a>
+            </td>
+            <td th:if="${available_status_and_days[iterStat.index].statusDescription == 'ingen'}">
+                <a href="/forms/status_form"><div class="status_circle" style="background-color: powderblue;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a>
+            </td>
+            <td th:text="${car.carID}"> test  id</td>
+            <td th:text="${car.color}"> color</td>
+            <td th:text="${car.manufacturer}"> </td>
+            <td th:text="${car.carType}"> </td>
+            <td th:text="${car.carName}"> </td>
+            <td th:text="${car.carPricePerMonthDKK}"> </td>
+            <td th:text="${car.chassisNumber}"> </td>
+            <td th:text="${car.gearLevel}"> </td>
+            <td th:text="${car.steelPriceDKK}"> </td>
+            <td th:text="${car.registrationFeeDKK}"> </td>
+            <td th:text="${car.CO2EmissionPerKM}"> </td>
+            <td><button><a th:href="@{'/edit_car/' + ${car.chassisNumber}}">rediger</a></button></td>
+            <td><button><a th:href="@{'/delete_car/' + ${car.chassisNumber}}">slet</a></button></td>
+        </tr>
+    </table>
+</div>
+<div>udlejede biler</div>
+<div class="scrollable" style="height:150px; overflow-y: auto">
+    <table>
+        <tr>
+            <th>status</th>
+            <th>bil id</th>
+            <th>farve</th>
+            <th>producent</th>
+            <th>type</th>
+            <th>navn</th>
+            <th>pris</th>
+            <th>stelnummer</th>
 
-    <div th:if="${session.isEditCar}">
-        <h2>Redigere: BilID: [[${carToEdit.carID}]]</h2>
+        </tr>
+        <tr th:each="car,iterStat : ${leased_out_cars}">
 
-        <form method="post" action="/edited_car" class="car-edit">
-            <table class="table">
-                <tr>
-                    <input type="number" name="car_id" th:value="${carToEdit.carID}" hidden>
-                    <td><input type="text" name="color" th:value="${carToEdit.color}" required></td>
-                    <td><input type="text" name="manufacturer" th:value="${carToEdit.manufacturer}" required></td>
-                    <td><input type="text" name="type" th:value="${carToEdit.carType}" required></td>
-                    <td><input type="text" name="name" th:value="${carToEdit.carName}" required></td>
-                    <td><input type="number" step="0.01" name="price_per_month"
-                               th:value="${carToEdit.carPricePerMonthDKK}" required></td>
-                </tr>
+            <td th:if="${leased_status_and_days[iterStat.index].statusDescription == 'udlejet'}">
+                <a href="/forms/status_form"><div class="status_circle" style="background-color: orange;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a>
+            </td>
+            <td th:if="${leased_status_and_days[iterStat.index].statusDescription == 'reparation'}">
+                <a href="/forms/status_form"><div class="status_circle" style="background-color: darkred;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a>
+            </td>
+            <td th:if="${leased_status_and_days[iterStat.index].statusDescription == 'solgt'}">
+                <a href="/forms/status_form"><div class="status_circle" style="background-color: mediumpurple;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a>
+            </td>
+            <td th:if="${leased_status_and_days[iterStat.index].statusDescription == 'ledig'}">
+                <a href="/forms/status_form"><div class="status_circle" style="background-color: mediumspringgreen;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a>
+            </td>
+            <td th:if="${leased_status_and_days[iterStat.index].statusDescription == 'ingen'}">
+                <a href="/forms/status_form"><div class="status_circle" style="background-color: powderblue;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a>
+            </td>
+            <td th:text="${car.carID}"> test  id</td>
+            <td th:text="${car.color}"> color</td>
+            <td th:text="${car.manufacturer}"> </td>
+            <td th:text="${car.carType}"> </td>
+            <td th:text="${car.carName}"> </td>
+            <td th:text="${car.carPricePerMonthDKK}"> </td>
+            <td th:text="${car.chassisNumber}"> </td>
+            <td th:text="${car.gearLevel}"> </td>
+            <td th:text="${car.steelPriceDKK}"> </td>
+            <td th:text="${car.registrationFeeDKK}"> </td>
+            <td th:text="${car.CO2EmissionPerKM}"> </td>
+            <td><button><a th:href="@{'/edit_car/' + ${car.chassisNumber}}">rediger</a></button></td>
+            <td><button><a th:href="@{'/delete_car/' + ${car.chassisNumber}}">slet</a></button></td>
+        </tr>
+    </table>
+</div>
+<div th:unless="${session.isEditCar}"><p th:text="'månedlige indtægter: ' + ${monthly_earnings} + ' DKK'"> </p></div>
 
-                <tr>
-                    <td><input type="text" name="chassis_number" th:value="${carToEdit.chassisNumber}" required></td>
-                    <td><input type="number" name="gear_level" th:value="${carToEdit.gearLevel}" required></td>
-                    <td><input type="number" step="0.01" name="steel_price" th:value="${carToEdit.steelPriceDKK}"
-                               required>
-                    </td>
-                    <td><input type="number" step="0.01" name="registration_fee"
-                               th:value="${carToEdit.registrationFeeDKK}"
-                               required></td>
-                    <td><input type="number" step="0.01" name="CO2_emission" th:value="${carToEdit.CO2EmissionPerKM}"
-                               required>
-                    </td>
-                </tr>
-            </table>
-
-            <input class="btn btn-success" type="submit" value="accepter">
-            <button class="btn btn-secondary"><a href="/regret_edit_car">fortryd</a></button>
-
-        </form>
-    </div>
-
-    <div>
-        <h2>Ledige Biler</h2>
-        <div th:replace="fragments/car_stats_frag.html :: car_list(cars=${available_cars})"></div>
-    </div>
-
-    <div>
-        <h2>Udlejede biler</h2>
-        <div th:replace="fragments/car_stats_frag.html :: car_list(cars=${leased_out_cars})"></div>
-    </div>
-
+<a href="/create_car"><button type="submit">Opret ny bil</button></a>
 
 </div>
 </body>

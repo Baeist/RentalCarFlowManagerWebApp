@@ -24,8 +24,6 @@ public class CarService {
   public ArrayList<Car> rentedOutCars() {
 
     return carRepository.rentedOutCars();
-
-
   }
 
   public ArrayList<Car> getAllCars() {
@@ -53,5 +51,35 @@ public class CarService {
     carRepository.updateCarInfo(carID, chassisNumber, color, manufacturer, carType,
             carName, gearLevel, steelPriceDKK, registrationFeeDKK,
             CO2EmissionPerKM, carPricePerMonthDKK);
+  }
+
+  public ArrayList<Integer> getAvailableCarID(){
+
+    ArrayList<Integer> availableCarID = new ArrayList<>();
+
+    ArrayList<Car> allCars = availableCars();
+
+    for(int i = 0; i < allCars.size(); i++){
+
+      int carID = allCars.get(i).getCarID();
+
+      availableCarID.add(carID);
+    }
+
+    return availableCarID;
+  }
+  public ArrayList<Integer> getLeasedCarID(){
+
+    ArrayList<Integer> allCarID = new ArrayList<>();
+
+    ArrayList<Car> allCars = rentedOutCars();
+
+    for(int i = 0; i < allCars.size(); i++){
+
+      int carID = allCars.get(i).getCarID();
+
+      allCarID.add(carID);
+    }
+    return allCarID;
   }
 }
