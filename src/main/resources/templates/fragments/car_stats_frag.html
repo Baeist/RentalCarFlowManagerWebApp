@@ -23,10 +23,10 @@
                 <th>stelnummer</th>
 
             </tr>
-            <tr th:each="car : ${cars}">
+            <tr th:each="car,iterStat : ${cars}">
 
                 <td>
-                    <a href="/forms/status_form"><div class="status_circle" style="background-color: orange;">5</div></a>
+                    <a href="/forms/status_form"><div class="status_circle" style="background-color: orange;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a>
                 </td>
                 <td th:text="${car.carID}"> test  id</td>
                 <td th:text="${car.color}"> color</td>
