@@ -124,5 +124,21 @@ public class CarController {
 
     return "car_stats";
     }
+
+    @GetMapping("/forms/status_form")
+  public String carStatusForm(){
+
+
+    return "/forms/status_form";
+    }
+
+    @PostMapping("/forms/status_form")
+  public String editedStatus(){
+
+
+
+    return "redirect:/car_stats";
+    }
+
   }
 
