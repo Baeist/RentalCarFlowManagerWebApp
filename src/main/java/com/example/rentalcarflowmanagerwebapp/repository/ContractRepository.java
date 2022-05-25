@@ -147,4 +147,35 @@ public class ContractRepository {
     }
 
 
+
+    public ArrayList<Contract> getAllContractWithCars() {
+        ArrayList<Contract> contracts = new ArrayList<>();
+
+        final String SQL =  "SELECT * FROM contract WHERE contract.contract_id IN (SELECT contract_id FROM lease) " +
+                            "ORDER BY contract_id DESC;";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()){
+
+                int contractID = resultSet.getInt(1);
+                int customerID = resultSet.getInt(2);
+                int employeeID = resultSet.getInt(3);
+
+                Contract contract = new Contract(contractID ,customerID, employeeID);
+
+                contracts.add(contract);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return contracts;
+    }
+
+
+
 }

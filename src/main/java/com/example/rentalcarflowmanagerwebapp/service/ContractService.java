@@ -21,6 +21,12 @@ public class ContractService {
         return contractRepository.getAllContract();
     }
 
+
+    public ArrayList<Contract> GetAllContractsWithCars(){
+        return contractRepository.getAllContractWithCars();
+    }
+
+
     public boolean deleteContract(int contractID) {
         int totalLease = contractRepository.totalLeasesForContract(contractID);
 

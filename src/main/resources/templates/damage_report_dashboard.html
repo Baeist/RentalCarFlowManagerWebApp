@@ -4,41 +4,90 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Skadesrapport Dashboard</title>
-    <link href="src/main/resources/CSS/styling.css" rel="stylesheet" th:href="@{/styling.css}">
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styling.css" th:href="@{/static/styling.css}">
+
 </head>
+
+
 <body class="body">
-<div class="container-fluid">
-    <table class="table" th:each="ContractID : ${listOfContractIds}">
-        <tr class="table-dark">
-            <td>Kontrakt ID: [[${ContractID}]]</td>
-        </tr>
-        <tr class="table-light table-sm row" th:each="Lease : ${listOfLeases}"
-            th:if="${ContractID} == ${Lease.contractID}">
-            <td class="col-sm-1">Bil ID: [[${Lease.carID}]]</td>
-            <td class="col-sm" th:each="damageReport : ${listOfDamageReports}"
-                th:if="${damageReport.car_id} == ${Lease.CarID}">Skadesrapport ID : [[${damageReport.damage_report_id}]]
-                <a th:href="@{/{contract_id}/{car_id}/damage_report(contract_id = ${damageReport.contract_id}, car_id = ${damageReport.car_id})}">
-                    <button class="btn btn-primary" type="button">Se Skadesrapport</button>
-                </a>
-                <a th:href="@{/{contract_id}/{car_id}/edit_damage_report_form(contract_id = ${damageReport.contract_id}, car_id = ${damageReport.car_id})}">
-                    <button class="btn btn-primary" type="button">Redigere Skadesrapport</button>
-                </a>
-                <a th:href="@{/{damage_report_id}/delete_damage_report(damage_report_id = ${damageReport.damage_report_id})}">
-                    <button class="btn btn-danger" type="button">Slet Skadesrapport</button>
-                </a>
-            <td class="col-sm" th:if="${damageReport} == ${null}">
-                <a th:if="${damageReport} == ${null}"
-                   th:href="@{/{contract_id}/{car_id}/create_damage_report_form(contract_id = ${Lease.contractID}, car_id = ${Lease.CarID})}">
-                    <button class="btn btn-primary" type="button">Opret Skadesrapport</button>
-                </a>
-            </td>
-        </tr>
-    </table>
+
+<header th:replace="fragments/headers :: header-normal">
+    header will be here
+</header>
+<div th:replace="fragments/page_menu :: normal_menu">
+    link menu will be here
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+
+<div class="content">
+
+
+    <table class="table">
+
+
+        <div th:each="Contract : ${allContracts}">
+            <tr class="table-dark">
+                <td>Kontrakt ID: [[${Contract.contractID}]]</td>
+                <td>Kunde ID: [[${Contract.customerID}]]</td>
+                <td colspan="5"></td>
+            </tr>
+
+
+            <div th:each="Lease : ${listOfLeases}">
+                <tr th:if="${Lease.contractID} == ${Contract.contractID}">
+                    <td>
+                        <p>Lease ID: [[${Lease.leaseID}]]</p>
+                    </td>
+
+                    <td>
+                        <p>Car ID: [[${Lease.carID}]]</p>
+                    </td>
+
+                    <!-- If lease has a damageReport this show-->
+                    <div th:each="damageReport : ${listOfDamageReports}">
+                        <div th:if="${damageReport.car_id} == ${Lease.contractID}">
+                            <td>Skadesrapport ID :
+                                [[${damageReport.damage_report_id}]]
+                            </td>
+
+
+                            <td>
+                                <a th:href="@{'damage_report/'+${damageReport.contract_id}+'/'${damageReport.car_id}}">
+                                    <button class="btn btn-primary btn-sm" type="button">Åben</button>
+                                </a>
+
+                                <a th:href="@{'/edit_damage_report/'+${damageReport.contract_id}+'/'+${damageReport.car_id}}">
+                                    <button class="btn btn-primary btn-sm" type="button">Redigere</button>
+                                </a>
+
+                                <a th:href="@{/{damage_report_id}/delete_damage_report(damage_report_id = ${damageReport.damage_report_id})}">
+                                    <button class="btn btn-danger btn-sm" type="button">Slet</button>
+                                </a>
+                            </td>
+                        </div>
+
+
+                        <!-- If does not have a damageReport this show-->
+                        <div th:unless="${damageReport.car_id} == ${Lease.contractID}">
+                            <td colspan="3"></td>
+
+                            <td >
+                                <a th:href="@{/{contract_id}/{car_id}/create_damage_report_form(contract_id = ${Lease.contractID}, car_id = ${Lease.CarID})}">
+                                    <button class="btn btn-primary btn-sm" type="button">Ny Skaderapport</button>
+                                </a>
+                            </td>
+                        </div>
+                    </div>
+                </tr>
+            </div>
+        </div>
+    </table>
+
+
+
+</div>
+
+
 </body>
 </html>
