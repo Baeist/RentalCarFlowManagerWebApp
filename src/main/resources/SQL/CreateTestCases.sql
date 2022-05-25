@@ -58,3 +58,5 @@ INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, da
 INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, damage_price_dkk, garage_name) Values (2, 1, 2, "Punkteret", 400, "RepairShop");
 INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, damage_price_dkk, garage_name) Values (3, 2, 3, "Ridse", 100, "CarlsRepair");
 INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, damage_price_dkk, garage_name) Values (4, 3, 4, "Hul i rude", 1000, "Autorepair");
+INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, damage_price_dkk, garage_name) Values (5, 4, 5, "Ødelagt baglygte", 4000, "Autorepair");
+INSERT INTO damage_report(damage_report_id, contract_id, car_id, description, damage_price_dkk, garage_name) Values (6, 4, 6, "Mangler dæk", 500, "Autorepair");
