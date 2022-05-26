@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Controller
@@ -126,16 +128,27 @@ public class CarController {
     }
 
     @GetMapping("/forms/status_form")
-  public String carStatusForm(){
+    public String carStatusForm(Model model, HttpSession session){
 
+      model.addAttribute("car_id", session.getAttribute("car_id"));
 
     return "/forms/status_form";
     }
 
     @PostMapping("/forms/status_form")
-  public String editedStatus(){
+  public String carStatusForm(@RequestParam("car_id") int carID, HttpSession session, Model model){
+      session.setAttribute("car_id", carID);
+      model.addAttribute("car_id", session.getAttribute("car_id"));
+    return "/forms/status_form";
+    }
 
+    @PostMapping("/forms/confirm_status_form")
+  public String newStatus(@RequestParam("status_description") String statusDescription,
+                             @RequestParam("start_date") String startDate, @RequestParam("days_left") int daysLeft, HttpSession session){
 
+    int carID = (int)session.getAttribute("car_id");
+
+    statusService.newStatus(carID, statusDescription, startDate, daysLeft);
 
     return "redirect:/car_stats";
     }

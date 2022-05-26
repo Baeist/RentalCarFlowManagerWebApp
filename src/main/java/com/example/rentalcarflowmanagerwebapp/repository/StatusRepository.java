@@ -34,7 +34,6 @@ public class StatusRepository {
                 if(rs.getDate(5) != null)
                 status.setEndDate(rs.getDate(5).toLocalDate());
 
-
                 return status;
             }
         }
@@ -72,8 +71,8 @@ public class StatusRepository {
 
         try {
 
-            final String SQL_QUERY = "INSERT INTO status( status_id, car_id, status_description, status_start_date, status_end_date)" +
-                    " VALUES default , ?, ?, ?, ?";
+            final String SQL_QUERY = "INSERT INTO status( status_id, car_id, status_description, status_start_date, expected_status_end_date)" +
+                    " VALUES(default , ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
             preparedStatement.setInt(1, carID);
             preparedStatement.setString(2, statusDescription);

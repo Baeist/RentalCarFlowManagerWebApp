@@ -57,22 +57,25 @@
 
         </tr>
         <tr th:each="car,iterStat : ${available_cars}">
+            <form method="post" action="/forms/status_form">
 
             <td th:if="${available_status_and_days[iterStat.index].statusDescription == 'udlejet'}">
-                <a href="/forms/status_form"><div class="status_circle" style="background-color: orange;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a>
+                <button type="submit"><a href="/forms/status_form"><input name="car_id" type="text" th:value="${car.carID}" hidden><div class="status_circle" style="background-color: orange;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a></button>
             </td>
             <td th:if="${available_status_and_days[iterStat.index].statusDescription == 'reparation'}">
-                <a href="/forms/status_form"><div class="status_circle" style="background-color: darkred;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a>
+                <button type="submit"><a href="/forms/status_form"><input name="car_id" type="text" th:value="${car.carID}" hidden><div class="status_circle" style="background-color: darkred;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a></button>
             </td>
             <td th:if="${available_status_and_days[iterStat.index].statusDescription == 'solgt'}">
-                <a href="/forms/status_form"><div class="status_circle" style="background-color: mediumpurple;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a>
+                <button type="submit"><a href="/forms/status_form"><input name="car_id" type="text" th:value="${car.carID}" hidden><div class="status_circle" style="background-color: mediumpurple;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a></button>
             </td>
             <td th:if="${available_status_and_days[iterStat.index].statusDescription == 'ledig'}">
-                <a href="/forms/status_form"><div class="status_circle" style="background-color: mediumspringgreen;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a>
+                <button type="submit"><a href="/forms/status_form"><input name="car_id" type="text" th:value="${car.carID}" hidden><div class="status_circle" style="background-color: mediumspringgreen;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a></button>
             </td>
             <td th:if="${available_status_and_days[iterStat.index].statusDescription == 'ingen'}">
-                <a href="/forms/status_form"><div class="status_circle" style="background-color: powderblue;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a>
+                <button type="submit"><a href="/forms/status_form"><input name="car_id" type="text" th:value="${car.carID}" hidden><div class="status_circle" style="background-color: powderblue;" th:text="${available_status_and_days[iterStat.index].daysLeft}">5</div></a></button>
             </td>
+
+            </form>
             <td th:text="${car.carID}"> test  id</td>
             <td th:text="${car.color}"> color</td>
             <td th:text="${car.manufacturer}"> </td>
@@ -106,19 +109,19 @@
         <tr th:each="car,iterStat : ${leased_out_cars}">
 
             <td th:if="${leased_status_and_days[iterStat.index].statusDescription == 'udlejet'}">
-                <a href="/forms/status_form"><div class="status_circle" style="background-color: orange;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a>
+                <button type="submit"><a href="/forms/status_form"><input name="car_id" type="text" th:value="${car.carID}" hidden><div class="status_circle" style="background-color: orange;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a></button>
             </td>
             <td th:if="${leased_status_and_days[iterStat.index].statusDescription == 'reparation'}">
-                <a href="/forms/status_form"><div class="status_circle" style="background-color: darkred;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a>
+                <button type="submit"><a href="/forms/status_form"><input name="car_id" type="text" th:value="${car.carID}" hidden><div class="status_circle" style="background-color: darkred;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a></button>
             </td>
             <td th:if="${leased_status_and_days[iterStat.index].statusDescription == 'solgt'}">
-                <a href="/forms/status_form"><div class="status_circle" style="background-color: mediumpurple;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a>
+                <button type="submit"><a href="/forms/status_form"><input name="car_id" type="text" th:value="${car.carID}" hidden><div class="status_circle" style="background-color: mediumpurple;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a></button>
             </td>
             <td th:if="${leased_status_and_days[iterStat.index].statusDescription == 'ledig'}">
-                <a href="/forms/status_form"><div class="status_circle" style="background-color: mediumspringgreen;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a>
+                <button type="submit"><a href="/forms/status_form"><input name="car_id" type="text" th:value="${car.carID}" hidden><div class="status_circle" style="background-color: mediumspringgreen;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a></button>
             </td>
             <td th:if="${leased_status_and_days[iterStat.index].statusDescription == 'ingen'}">
-                <a href="/forms/status_form"><div class="status_circle" style="background-color: powderblue;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a>
+                <button type="submit"><a href="/forms/status_form"><input name="car_id" type="text" th:value="${car.carID}" hidden><div class="status_circle" style="background-color: powderblue;" th:text="${leased_status_and_days[iterStat.index].daysLeft}">5</div></a></button>
             </td>
             <td th:text="${car.carID}"> test  id</td>
             <td th:text="${car.color}"> color</td>
