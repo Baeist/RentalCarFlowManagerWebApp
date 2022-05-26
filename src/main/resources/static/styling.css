@@ -204,3 +204,67 @@ button a{
     padding-right: 15em;
     margin-bottom: 2em;
 }
+
+/* DAMAGE REPORT */
+.damage-report{
+    background: var(--Bagground);
+    padding: 3em;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 60%;
+
+    border-radius: 1em;
+    box-shadow: var(--boxShadow);
+
+}
+.damage-report-head{
+    color: var(--darkText);
+    text-align: left;
+    margin-bottom: 3em;
+}
+.damage-report-info{
+    padding: 0.5em;
+    width: 70%;
+    text-align: left;
+    background: var(--Bagground);
+}
+.damage-report-desc{
+    padding: 0.5em;
+    margin-top: 1.5em;
+    height: 15em;
+    width: 70%;
+    background: var(--Bagground);
+}
+.damage-report-price{
+    padding: 0.5em;
+    margin-top: 2em;
+    width: 70%;
+    background: var(--Bagground);
+}
+.damage-report-button{
+    margin-top: 2em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
