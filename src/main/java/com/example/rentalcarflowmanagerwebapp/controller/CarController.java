@@ -143,9 +143,12 @@ public class CarController {
     }
 
     @PostMapping("/forms/confirm_status_form")
-  public String editedStatus(@RequestParam("car_id") int carID, @RequestParam("status_description") String statusDescription,
+  public String newStatus(@RequestParam("status_description") String statusDescription,
                              @RequestParam("start_date") String startDate, @RequestParam("days_left") int daysLeft, HttpSession session){
 
+    int carID = (int)session.getAttribute("car_id");
+
+    statusService.newStatus(carID, statusDescription, startDate, daysLeft);
 
     return "redirect:/car_stats";
     }

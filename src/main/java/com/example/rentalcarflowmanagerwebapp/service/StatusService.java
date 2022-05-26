@@ -52,4 +52,18 @@ public class StatusService {
 
         return 0;
     }
+
+    public void newStatus(int carID, String statusDescription, String startDate, int daysLeft){
+
+        String[] date = startDate.split("-", 3);
+        int year = Integer.parseInt(date[0]);
+        int month = Integer.parseInt(date[1]);
+        int day = Integer.parseInt(date[2]);
+
+        LocalDate startingDate = LocalDate.of(year, month, day);
+
+        LocalDate endDate = startingDate.plusDays(daysLeft);
+
+        statusRepository.newStatus(carID, statusDescription, startingDate, endDate);
+    }
 }
