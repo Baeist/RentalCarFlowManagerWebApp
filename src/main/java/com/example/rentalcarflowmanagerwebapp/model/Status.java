@@ -28,6 +28,13 @@ public class Status {
         this.statusDescription = statusDescription;
         this.daysLeft = daysLeft;
     }
+
+    public Status(int statusID, int carID, String statusDescription, int daysLeft){
+        this.statusID = statusID;
+        this.carID = carID;
+        this.statusDescription = statusDescription;
+        this.daysLeft = daysLeft;
+    }
     public Status(int statusID, int carID, String statusDescription, LocalDate startDate, LocalDate endDate){
         this.statusID = statusID;
         this.carID = carID;

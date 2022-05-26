@@ -30,7 +30,7 @@ public class StatusService {
             if(status != null){
             status.setDaysLeft(calculateDaysLeft(status.getEndDate()));
 
-            smallStatus = new Status(allCarID.get(i), status.getStatusDescription(), status.getDaysLeft());
+            smallStatus = new Status(status.getStatusID(), allCarID.get(i), status.getStatusDescription(), status.getDaysLeft());
 
             descDaysList.add(smallStatus);
             }
@@ -55,15 +55,33 @@ public class StatusService {
 
     public void newStatus(int carID, String statusDescription, String startDate, int daysLeft){
 
-        String[] date = startDate.split("-", 3);
-        int year = Integer.parseInt(date[0]);
-        int month = Integer.parseInt(date[1]);
-        int day = Integer.parseInt(date[2]);
-
-        LocalDate startingDate = LocalDate.of(year, month, day);
+        LocalDate startingDate = fromStringToDate(startDate);
 
         LocalDate endDate = startingDate.plusDays(daysLeft);
 
         statusRepository.newStatus(carID, statusDescription, startingDate, endDate);
+    }
+
+    public Status getStatusFromCarID(int carID){
+       return statusRepository.getStatusFromCarID(carID);
+    }
+    public void editStatus(int statusID, int carID, String statusDescription, String startDate, int daysLeft){
+
+        LocalDate startingDate = fromStringToDate(startDate);
+
+        LocalDate endDate = startingDate.plusDays(daysLeft);
+
+        statusRepository.editStatus(statusID, carID, statusDescription, startingDate, endDate);
+    }
+    public LocalDate fromStringToDate(String input){
+
+        String[] date = input.split("-", 3);
+        int year = Integer.parseInt(date[0]);
+        int month = Integer.parseInt(date[1]);
+        int day = Integer.parseInt(date[2]);
+
+        LocalDate returnDate = LocalDate.of(year, month, day);
+
+        return returnDate;
     }
 }

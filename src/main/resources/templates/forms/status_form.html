@@ -13,7 +13,7 @@
 <header th:replace="fragments/headers :: header-normal">
     header will be here
 </header>
-<form action="/forms/confirm_status_form" method="post" style="max-width: 500px; margin: 0 auto; margin-top: 150px">
+<form th:unless="${session.has_status}" action="/forms/confirm_status_form" method="post" style="max-width: 500px; margin: 0 auto; margin-top: 150px">
 
     <div class="border border-secondary rounded">
 
@@ -21,14 +21,15 @@
                 <h2>Bil status </h2>
             </div>
 
-        <!-- status ID
-        <div th:if="${hasStatus}"><input type="number" th:value="${}" name="status_id" hidden> </div>
-        -->
+        <!-- status ID-->
+        <div th:if="${session.has_status}"><input type="number" th:value="${session.status_id}" name="status_id" hidden> </div>
+
         <!-- car ID  -->
             <div class="form-group row m-2">
                 <label class="col-sm-3 col-form-label">Bil ID</label>
-                <div class="col-sm-3" th:text="${car_id}"> </div>
+                <div class="col-sm-3" th:text="${car_id}">
                     <input type="number" class="form-control" name="carID" hidden>
+            </div>
             </div>
 
             <!-- Car status descriptor -->
@@ -72,7 +73,66 @@
     </div>
 
 </form>
+<form th:if="${session.has_status}" action="/forms/edit_status" method="post" style="max-width: 500px; margin: 0 auto; margin-top: 150px">
 
+    <div class="border border-secondary rounded">
+
+        <div class="text-center border-bottom border-secondary" style="margin: 0; margin-bottom: 2em">
+            <h2>Bil status </h2>
+        </div>
+
+        <!-- status ID-->
+        <div th:if="${session.has_status}"><input type="number" th:value="${session.status_id}" name="status_id" hidden> </div>
+
+        <!-- car ID  -->
+        <div class="form-group row m-2">
+            <label class="col-sm-3 col-form-label">Bil ID</label>
+            <div class="col-sm-3" th:text="${car_id}">
+                <input type="number" class="form-control" name="carID" hidden>
+            </div>
+        </div>
+
+        <!-- Car status descriptor -->
+        <div class="form-group row m-2">
+            <label class="col-sm-3 col-form-label">Status</label>
+            <div class="col-sm-3">
+                <input list="status_type" class="form-control" name="status_description" required>
+            </div>
+        </div>
+        <datalist id="status_type">
+            <option value="ledig">
+            <option value="udlejet">
+            <option value="reparation">
+            <option value="solgt">
+        </datalist>
+
+        <!-- START DATE -->
+        <div class="form-group row m-2">
+            <label class="col-sm-3 col-form-label">Start dato</label>
+            <div class="col-sm-9">
+                <input type="date" class="form-control" name="start_date" required>
+            </div>
+        </div>
+
+        <!-- expected time in days -->
+        <div class="form-group row m-2">
+            <label class="col-sm-3 col-form-label">Antal dage</label>
+            <div class="col-sm-9">
+                <input type="number" class="form-control" name="days_left" required>
+            </div>
+        </div>
+
+        <div class="text-center border-top border-secondary" style="margin: 0; margin-top: 2em;">
+            <button type="submit" class="btn btn-primary m-2">accepter</button>
+
+            <a href="/car_stats">
+                <button type="button" class="btn btn-secondary m-2">fortryd</button>
+            </a>
+        </div>
+
+    </div>
+
+</form>
 </body>
 
 

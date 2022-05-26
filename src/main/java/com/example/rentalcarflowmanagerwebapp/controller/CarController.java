@@ -131,6 +131,7 @@ public class CarController {
     public String carStatusForm(Model model, HttpSession session){
 
       model.addAttribute("car_id", session.getAttribute("car_id"));
+      // model.addAttribute("status", statusService.getStatusFromCarID((int)session.getAttribute("car_id")));
 
     return "/forms/status_form";
     }
@@ -141,12 +142,32 @@ public class CarController {
       model.addAttribute("car_id", session.getAttribute("car_id"));
     return "/forms/status_form";
     }
+  @PostMapping("/forms/status_form/edit")
+  public String carStatusForm(@RequestParam("status_id") int statusID, @RequestParam("car_id") int carID, HttpSession session, Model model){
+    session.setAttribute("status_id", statusID);
+    session.setAttribute("has_status", true);
+    session.setAttribute("car_id", carID);
+    model.addAttribute("car_id", session.getAttribute("car_id"));
+    return "/forms/status_form";
+  }
+  @PostMapping("/forms/edit_status")
+  public String editStatus(@RequestParam("status_description") String statusDescription,
+                          @RequestParam("start_date") String startDate, @RequestParam("days_left") int daysLeft, HttpSession session){
+
+    int carID = (int)session.getAttribute("car_id");
+    int statusID = (int)session.getAttribute("status_id");
+
+    statusService.editStatus(statusID, carID, statusDescription, startDate, daysLeft);
+
+    return "redirect:/car_stats";
+  }
 
     @PostMapping("/forms/confirm_status_form")
   public String newStatus(@RequestParam("status_description") String statusDescription,
                              @RequestParam("start_date") String startDate, @RequestParam("days_left") int daysLeft, HttpSession session){
 
     int carID = (int)session.getAttribute("car_id");
+
 
     statusService.newStatus(carID, statusDescription, startDate, daysLeft);
 

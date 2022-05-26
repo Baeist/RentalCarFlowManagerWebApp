@@ -48,18 +48,17 @@ public class StatusRepository {
 
         try {
 
-            final String SQL_QUERY = "UPDATE status SET status_id = ?," +
-                    "car_id = ?, status_description = ?, status_start_date = ?, status_end_date = ? WHERE status_id =" + statusID + ";";
+            final String SQL_QUERY = "UPDATE status SET car_id = ?, status_description = ?, status_start_date = ?, expected_status_end_date = ? WHERE status_id =" + statusID + ";";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY);
-            preparedStatement.setInt(1, statusID);
-            preparedStatement.setInt(2, carID);
-            preparedStatement.setString(3, statusDescription);
+
+            preparedStatement.setInt(1, carID);
+            preparedStatement.setString(2, statusDescription);
 
             Date sqlStartDate = Date.valueOf(startDate);
             Date sqlEndDate = Date.valueOf(endDate);
 
-            preparedStatement.setDate(4, sqlStartDate);
-            preparedStatement.setDate(5, sqlEndDate);
+            preparedStatement.setDate(3, sqlStartDate);
+            preparedStatement.setDate(4, sqlEndDate);
 
             preparedStatement.executeUpdate();
         } catch (Exception e) {
