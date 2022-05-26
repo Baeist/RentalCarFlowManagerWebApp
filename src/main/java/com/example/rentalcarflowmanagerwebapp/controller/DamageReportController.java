@@ -1,5 +1,6 @@
 package com.example.rentalcarflowmanagerwebapp.controller;
 
+import com.example.rentalcarflowmanagerwebapp.model.Lease;
 import com.example.rentalcarflowmanagerwebapp.repository.ContractRepository;
 import com.example.rentalcarflowmanagerwebapp.service.CarService;
 import com.example.rentalcarflowmanagerwebapp.service.ContractService;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
 
 // Klasse lavet af Arjaco
 @Controller
@@ -37,15 +40,22 @@ public class DamageReportController {
 
         model.addAttribute("location", "damageRapport");
 
+        ArrayList<Lease> allLeases = leaseService.getAllLeases();
+
+        ArrayList<Lease> leases = damageReportService.doesLeaseHaveDamageReport(allLeases);
+
+
+
+
         model.addAttribute("allContracts", contractService.GetAllContractsWithCars());
-        model.addAttribute("listOfLeases", leaseService.getAllLeases());
+        model.addAttribute("listOfLeases", damageReportService.doesLeaseHaveDamageReport(allLeases));
         model.addAttribute("listOfDamageReports", damageReportService.getAllDamageReports());
 
 
         return "damage_report_dashboard";
     }
 
-    @GetMapping("/damage_report/{contract_id}/{carId}/")
+    @GetMapping("/damage_report/{contract_id}/{carId}")
     public String getDamageReport(@PathVariable("carId") int carId, @PathVariable("contract_id") int contract_id, Model model) {
         model.addAttribute("damageReport", damageReportService.getDamageReport(carId, contract_id));
         return "damage_report_view";

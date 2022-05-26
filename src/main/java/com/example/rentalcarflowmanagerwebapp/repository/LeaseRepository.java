@@ -102,6 +102,10 @@ public class LeaseRepository {
         final String SQL = "SELECT * FROM lease " +
                 "WHERE lease_ID = ?;";
 
+
+
+
+
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, leaseID);
@@ -117,8 +121,6 @@ public class LeaseRepository {
             int leasePeriodDays = resultSet.getInt(5);
 
             return lease = new Lease(leaseFromDatabaseID, startDate, contractID, leasePeriodDays, carID);
-
-
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -126,6 +128,11 @@ public class LeaseRepository {
 
 
     }
+
+
+
+
+
 
     public ArrayList<Lease> getAllLease() {
         ArrayList<Lease> leases = new ArrayList<>();

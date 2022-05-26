@@ -11,6 +11,9 @@ public class Lease {
     private int leasePeriodDays;
     private int carID;
 
+    // used for displaying create new damage report
+    private boolean hasDamageReport;
+
     public Lease(int leaseID, LocalDate startDate, int contractID, int leasePeriodDays, int carID) {
         this.leaseID = leaseID;
         this.startDate = startDate;
@@ -54,7 +57,16 @@ public class Lease {
         this.carID = carID;
     }
 
+    public boolean isHasDamageReport() {
+        return hasDamageReport;
+    }
+    public void setHasDamageReport(boolean hasDamageReport) {
+        this.hasDamageReport = hasDamageReport;
+    }
+
     public String toString(){
         return "lease ID: " + leaseID;
     }
+
+
 }

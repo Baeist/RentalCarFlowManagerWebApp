@@ -24,8 +24,6 @@
 
 
     <table class="table">
-
-
         <div th:each="Contract : ${allContracts}">
             <tr class="table-dark">
                 <td>Kontrakt ID: [[${Contract.contractID}]]</td>
@@ -35,7 +33,7 @@
 
 
             <div th:each="Lease : ${listOfLeases}">
-                <tr th:if="${Lease.contractID} == ${Contract.contractID}">
+                <tr class="table-light table-sm" th:if="${Lease.contractID} == ${Contract.contractID}">
                     <td>
                         <p>Lease ID: [[${Lease.leaseID}]]</p>
                     </td>
@@ -44,16 +42,19 @@
                         <p>Car ID: [[${Lease.carID}]]</p>
                     </td>
 
-                    <!-- If lease has a damageReport this show-->
+
+
+
+                    <!-- If lease has a damageReport-->
                     <div th:each="damageReport : ${listOfDamageReports}">
-                        <div th:if="${damageReport.car_id} == ${Lease.contractID}">
-                            <td>Skadesrapport ID :
-                                [[${damageReport.damage_report_id}]]
+                        <div th:if="${damageReport.car_id} == ${Lease.carID}">
+                            <td colspan="2">
+                                Skadesrapport ID: [[${damageReport.damage_report_id}]]
                             </td>
 
 
-                            <td>
-                                <a th:href="@{'damage_report/'+${damageReport.contract_id}+'/'${damageReport.car_id}}">
+                            <td class="td-buttons">
+                                <a th:href="@{'damage_report/'+${damageReport.contract_id}+'/'+${damageReport.car_id}}">
                                     <button class="btn btn-primary btn-sm" type="button">Åben</button>
                                 </a>
 
@@ -66,24 +67,26 @@
                                 </a>
                             </td>
                         </div>
-
-
-                        <!-- If does not have a damageReport this show-->
-                        <div th:unless="${damageReport.car_id} == ${Lease.contractID}">
-                            <td colspan="3"></td>
-
-                            <td >
-                                <a th:href="@{/{contract_id}/{car_id}/create_damage_report_form(contract_id = ${Lease.contractID}, car_id = ${Lease.CarID})}">
-                                    <button class="btn btn-primary btn-sm" type="button">Ny Skaderapport</button>
-                                </a>
-                            </td>
-                        </div>
                     </div>
+
+
+                    <div th:unless="${Lease.hasDamageReport}">
+                        <td>Ingen Skades rapport</td>
+                        <td></td>
+                        <td class="td-buttons">
+                            <a th:href="@{/{contract_id}/{car_id}/create_damage_report_form(contract_id = ${Lease.contractID}, car_id = ${Lease.CarID})}">
+                                <button class="btn btn-primary btn-sm" type="button">Ny Skaderapport</button>
+                            </a>
+                        </td>
+                    </div>
+
                 </tr>
+
+
             </div>
+
         </div>
     </table>
-
 
 
 </div>
