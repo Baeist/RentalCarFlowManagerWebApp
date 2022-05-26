@@ -34,7 +34,6 @@ public class StatusRepository {
                 if(rs.getDate(5) != null)
                 status.setEndDate(rs.getDate(5).toLocalDate());
 
-
                 return status;
             }
         }
