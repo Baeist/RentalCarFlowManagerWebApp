@@ -42,11 +42,6 @@ public class DamageReportController {
 
         ArrayList<Lease> allLeases = leaseService.getAllLeases();
 
-        ArrayList<Lease> leases = damageReportService.doesLeaseHaveDamageReport(allLeases);
-
-
-
-
         model.addAttribute("allContracts", contractService.GetAllContractsWithCars());
         model.addAttribute("listOfLeases", damageReportService.doesLeaseHaveDamageReport(allLeases));
         model.addAttribute("listOfDamageReports", damageReportService.getAllDamageReports());
@@ -61,17 +56,21 @@ public class DamageReportController {
         return "damage_report_view";
     }
 
+
+
     @GetMapping("/{contract_id}/{carId}/create_damage_report_form")
     public String createDamageReportForm(
             @PathVariable("contract_id") int contract_id,
             @PathVariable("carId") int carId,
             Model model) {
+
         model.addAttribute("contract_id", contract_id);
         model.addAttribute("carId", carId);
         return "damage_report_create_form";
     }
 
-    @PostMapping("/{contract_id}/{carId}/create_damage_report")
+
+    @PostMapping("/create/damage_report/{contract_id}/{carId}")
     public String createDamageReport(
             @PathVariable("contract_id") int contract_id,
             @PathVariable("carId") int carId,
@@ -82,7 +81,11 @@ public class DamageReportController {
         return "redirect:/damage_report_dashboard";
     }
 
-    @GetMapping("/edit_damage_report/{contract_id}/{car_id}/")
+
+
+
+
+    @GetMapping("/edit_damage_report/{contract_id}/{car_id}")
     public String editDamageReportForm(Model model, @PathVariable("contract_id") int contract_id, @PathVariable("car_id") int car_id) {
         model.addAttribute("damageReport", damageReportService.getDamageReport(car_id, contract_id));
         return "damage_report_edit_form";

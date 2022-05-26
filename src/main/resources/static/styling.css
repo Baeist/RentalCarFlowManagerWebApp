@@ -216,6 +216,8 @@ button a{
     border-radius: 1em;
     box-shadow: var(--boxShadow);
 
+    margin-bottom: 10em;
+
 }
 .damage-report-head{
     color: var(--darkText);
