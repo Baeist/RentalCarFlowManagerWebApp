@@ -1,5 +1,6 @@
 package com.example.rentalcarflowmanagerwebapp.model;
 
+// Valdemar
 public class Car {
 
     private int carID;

@@ -10,7 +10,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 
-// this class has been mostly copied from https://www.appsdeveloperblog.com/encrypt-user-password-example-java/ Article from March 29, 2017 by Sergey Kargopolov
+// Lars + this class has been mostly copied from https://www.appsdeveloperblog.com/encrypt-user-password-example-java/ Article from March 29, 2017 by Sergey Kargopolov
 public class PasswordEncryption {
         private static final Random RANDOM = new SecureRandom();
         private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";

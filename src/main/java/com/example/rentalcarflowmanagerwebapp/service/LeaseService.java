@@ -12,18 +12,9 @@ import java.time.LocalDate;
 import java.util.Scanner;
 import static org.springframework.http.HttpHeaders.FROM;
 
-
-
-
-
-
+// Tobias
 @Service
 public class LeaseService {
-
-
-
-
-
 
     private LeaseRepository leaseRepository;
 

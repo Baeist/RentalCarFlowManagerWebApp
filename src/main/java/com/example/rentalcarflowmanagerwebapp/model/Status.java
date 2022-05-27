@@ -3,6 +3,7 @@ package com.example.rentalcarflowmanagerwebapp.model;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+// Lars
 public class Status {
 
 

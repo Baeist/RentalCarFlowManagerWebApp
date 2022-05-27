@@ -1,5 +1,6 @@
 package com.example.rentalcarflowmanagerwebapp.model;
 
+// Lars
 public class User {
 
     private int employeeID;

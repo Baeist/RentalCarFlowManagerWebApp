@@ -1,5 +1,6 @@
 package com.example.rentalcarflowmanagerwebapp.model;
 
+// Tobias
 public class Contract {
     private int contractID;
     private int customerID;

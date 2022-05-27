@@ -1,3 +1,4 @@
+-- Alle
 -- Cars
 INSERT INTO car(car_id, chassis_number, color, car_manufactorer, car_type, car_name, car_gear_level, car_steel_price_dkk, car_registration_fee_dkk, car_co2_emission_per_km, car_rental_price_per_month_dkk) Values (default, '123frt123frg123fr', 'blue', 'Nissan', 'stationcar', 'NX2020', 1, 45000, 12000, 20.65, 2650);
 INSERT INTO car(car_id, chassis_number, color, car_manufactorer, car_type, car_name, car_gear_level, car_steel_price_dkk, car_registration_fee_dkk, car_co2_emission_per_km, car_rental_price_per_month_dkk) Values (default, '456frt123frg123fr', 'red', 'Nissan', 'stationcar', 'NX2019', 1, 55000, 13900, 19.05, 2650);
