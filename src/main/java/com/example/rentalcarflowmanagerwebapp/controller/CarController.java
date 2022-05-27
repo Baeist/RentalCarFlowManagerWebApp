@@ -30,7 +30,12 @@ public class CarController {
   }
 
   @GetMapping("/car_stats")
-  public String carStatistics(Model model){
+  public String carStatistics(Model model, HttpSession session){
+
+    // check that its a logged in person accessing the page, redirects to log in page if not
+    if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+      return "index";
+    }
 
     model.addAttribute("location", "economy");
 
@@ -51,7 +56,12 @@ public class CarController {
   }
 
   @GetMapping("/create_car")
-    public String createCar(){
+    public String createCar(HttpSession session){
+
+    // check that its a logged in person accessing the page, redirects to log in page if not
+    if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+      return "index";
+    }
 
       return "/forms/car_form";
     }
@@ -60,8 +70,12 @@ public class CarController {
   public String carCreated(@RequestParam("chassis_number") String chassisNumber, @RequestParam("car_color")  String color, @RequestParam("manufacturer")  String manufacturer,
                            @RequestParam("car_type") String carType, @RequestParam("car_name") String carName, @RequestParam("gear_level")  int gearLevel,
                            @RequestParam("steel_price") double steelPriceDKK, @RequestParam("registration_fee")  double registrationFeeDKK,
-                           @RequestParam("CO2_emission") double CO2EmissionPerKM, @RequestParam("price_per_month") double carPricePerMonthDKK, RedirectAttributes ra){
+                           @RequestParam("CO2_emission") double CO2EmissionPerKM, @RequestParam("price_per_month") double carPricePerMonthDKK, RedirectAttributes ra, HttpSession session){
 
+      // check that its a logged in person accessing the page, redirects to log in page if not
+      if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+        return "index";
+      }
 
     if(carService.findCarFromChassisNumber(chassisNumber) != null){
 
@@ -78,6 +92,11 @@ public class CarController {
 
     @GetMapping("/edit_car/{chassis_number}")
     public String editCar(@PathVariable("chassis_number") String chassisNumber, HttpSession session, Model model){
+
+      // check that its a logged in person accessing the page, redirects to log in page if not
+      if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+        return "index";
+      }
 
     model.addAttribute("carToEdit", carService.findCarFromChassisNumber(chassisNumber));
     session.setAttribute("isEditCar", true);
@@ -96,6 +115,11 @@ public class CarController {
                                  @RequestParam("steel_price") double steelPriceDKK, @RequestParam("registration_fee")  double registrationFeeDKK,
                                  @RequestParam("CO2_emission") double CO2EmissionPerKM, @RequestParam("price_per_month") double carPricePerMonthDKK, @RequestParam("car_id") int carID,
                                  HttpSession session, Model model){
+
+    // check that its a logged in person accessing the page, redirects to log in page if not
+      if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+        return "index";
+      }
 
       carService.updateCarInfo(carID, chassisNumber, color, manufacturer, carType,
               carName, gearLevel, steelPriceDKK, registrationFeeDKK,
@@ -116,6 +140,11 @@ public class CarController {
     @GetMapping("/regret_edit_car")
     public String regretEditCar(HttpSession session, Model model){
 
+      // check that its a logged in person accessing the page, redirects to log in page if not
+      if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+        return "index";
+      }
+
     session.removeAttribute("isEditCar");
 
       ArrayList<Car> carsAvailable = carService.availableCars();
@@ -131,6 +160,11 @@ public class CarController {
     @GetMapping("/forms/status_form")
     public String carStatusForm(Model model, HttpSession session){
 
+      // check that its a logged in person accessing the page, redirects to log in page if not
+      if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+        return "index";
+      }
+
       model.addAttribute("car_id", session.getAttribute("car_id"));
       // model.addAttribute("status", statusService.getStatusFromCarID((int)session.getAttribute("car_id")));
 
@@ -139,12 +173,24 @@ public class CarController {
 
     @PostMapping("/forms/status_form")
   public String carStatusForm(@RequestParam("car_id") int carID, HttpSession session, Model model){
-      session.setAttribute("car_id", carID);
+
+      // check that its a logged in person accessing the page, redirects to log in page if not
+      if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+        return "index";
+      }
+
+    session.setAttribute("car_id", carID);
       model.addAttribute("car_id", session.getAttribute("car_id"));
     return "/forms/status_form";
     }
   @PostMapping("/forms/status_form/edit")
   public String carStatusForm(@RequestParam("status_id") int statusID, @RequestParam("car_id") int carID, HttpSession session, Model model){
+
+    // check that its a logged in person accessing the page, redirects to log in page if not
+    if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+      return "index";
+    }
+
     session.setAttribute("status_id", statusID);
     session.setAttribute("has_status", true);
     session.setAttribute("car_id", carID);
@@ -154,6 +200,11 @@ public class CarController {
   @PostMapping("/forms/edit_status")
   public String editStatus(@RequestParam("status_description") String statusDescription,
                           @RequestParam("start_date") String startDate, @RequestParam("days_left") int daysLeft, HttpSession session){
+
+    // check that its a logged in person accessing the page, redirects to log in page if not
+    if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+      return "index";
+    }
 
     int carID = (int)session.getAttribute("car_id");
     int statusID = (int)session.getAttribute("status_id");
@@ -167,8 +218,12 @@ public class CarController {
   public String newStatus(@RequestParam("status_description") String statusDescription,
                              @RequestParam("start_date") String startDate, @RequestParam("days_left") int daysLeft, HttpSession session){
 
-    int carID = (int)session.getAttribute("car_id");
+      // check that its a logged in person accessing the page, redirects to log in page if not
+      if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+        return "index";
+      }
 
+    int carID = (int)session.getAttribute("car_id");
 
     statusService.newStatus(carID, statusDescription, startDate, daysLeft);
 

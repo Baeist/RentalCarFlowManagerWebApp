@@ -101,7 +101,7 @@ public class UserController {
     @GetMapping("/administrator/{logInName}")
     public String administrator(@PathVariable("logInName") String logInName, HttpSession session, Model model) {
 
-        // TODO bør være i de fleste side kald, tjekker man ikke bare hopper ind gennem url uden log in
+        // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
@@ -130,6 +130,7 @@ public class UserController {
     @GetMapping("/change_password")
     public String changePassword(HttpSession session, Model model) {
 
+        // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
@@ -144,6 +145,7 @@ public class UserController {
                                   @RequestParam("first_new_password") String firstNewPassword,
                                   @RequestParam("second_new_password") String secondNewPassword) {
 
+        // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
@@ -163,6 +165,7 @@ public class UserController {
     @GetMapping("/update_user/{logInName}")
     public String updateUser(@PathVariable("logInName") String logInName, HttpSession session) {
 
+        // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
@@ -177,6 +180,7 @@ public class UserController {
     public String changeUserInfo(HttpSession session, @RequestParam("user_id") int employeeID, @RequestParam("first_name") String firstName, @RequestParam("last_name") String lastName,
                                  @RequestParam("log_in_name") String logInName, @RequestParam("user_type") String employeeType){
 
+        // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
@@ -189,6 +193,7 @@ public class UserController {
     @GetMapping("/cancel_update_user")
     public String cancelUpdateUser(HttpSession session){
 
+        // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
@@ -201,6 +206,7 @@ public class UserController {
     @PostMapping("/delete_user/{logInName}")
     public String deleteUser(@PathVariable("logInName") String logInName, HttpSession session, @RequestParam("delete") String delete) {
 
+        // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
@@ -214,6 +220,7 @@ public class UserController {
     @GetMapping("/final_delete_user/{logInName}")
     public String finalDeleteUser(@PathVariable("logInName") String logInName, HttpSession session) {
 
+        // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
@@ -229,6 +236,7 @@ public class UserController {
     @GetMapping("/regret_delete_user/{logInName}")
     public String regretDeleteUser(HttpSession session) {
 
+        // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
@@ -241,6 +249,7 @@ public class UserController {
     @GetMapping("/create_user")
     public String createUser(HttpSession session){
 
+        // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
@@ -254,6 +263,7 @@ public class UserController {
                                       @RequestParam("log_in_name") String logInName, @RequestParam("user_type") String employeeType,
                                       @RequestParam("user_password") String employeePassword, RedirectAttributes ra){
 
+        // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }
@@ -274,6 +284,7 @@ public class UserController {
     @GetMapping("/cancel_create_user")
     public String cancelCreate(HttpSession session){
 
+        // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";
         }

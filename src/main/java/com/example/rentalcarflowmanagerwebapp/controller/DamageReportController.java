@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 // Klasse lavet af Arjaco
@@ -36,7 +37,12 @@ public class DamageReportController {
 
 
     @GetMapping("/damage_report_dashboard")
-    public String getDamageReportDashboard(Model model) {
+    public String getDamageReportDashboard(Model model, HttpSession session) {
+
+        // check that its a logged in person accessing the page, redirects to log in page if not
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
 
         model.addAttribute("location", "damageRapport");
 
@@ -51,18 +57,26 @@ public class DamageReportController {
     }
 
     @GetMapping("/damage_report/{contract_id}/{carId}")
-    public String getDamageReport(@PathVariable("carId") int carId, @PathVariable("contract_id") int contract_id, Model model) {
+    public String getDamageReport(@PathVariable("carId") int carId, @PathVariable("contract_id") int contract_id, Model model, HttpSession session) {
+        // check that its a logged in person accessing the page, redirects to log in page if not
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         model.addAttribute("damageReport", damageReportService.getDamageReport(carId, contract_id));
         return "damage_report_view";
     }
-
-
 
     @GetMapping("/{contract_id}/{carId}/create_damage_report_form")
     public String createDamageReportForm(
             @PathVariable("contract_id") int contract_id,
             @PathVariable("carId") int carId,
-            Model model) {
+            Model model, HttpSession session) {
+
+        // check that its a logged in person accessing the page, redirects to log in page if not
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
 
         model.addAttribute("contract_id", contract_id);
         model.addAttribute("carId", carId);
@@ -76,17 +90,24 @@ public class DamageReportController {
             @PathVariable("carId") int carId,
             @RequestParam("description") String description,
             @RequestParam("damage_price_dkk") int damage_price_dkk,
-            @RequestParam("garage_name") String garage_name) {
+            @RequestParam("garage_name") String garage_name, HttpSession session) {
+
+        // check that its a logged in person accessing the page, redirects to log in page if not
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         damageReportService.createDamageReport(contract_id, carId, description, damage_price_dkk, garage_name);
         return "redirect:/damage_report_dashboard";
     }
 
-
-
-
-
     @GetMapping("/edit_damage_report/{contract_id}/{car_id}")
-    public String editDamageReportForm(Model model, @PathVariable("contract_id") int contract_id, @PathVariable("car_id") int car_id) {
+    public String editDamageReportForm(Model model, @PathVariable("contract_id") int contract_id, @PathVariable("car_id") int car_id, HttpSession session) {
+        // check that its a logged in person accessing the page, redirects to log in page if not
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         model.addAttribute("damageReport", damageReportService.getDamageReport(car_id, contract_id));
         return "damage_report_edit_form";
     }
@@ -96,13 +117,25 @@ public class DamageReportController {
             @RequestParam("damage_report_id") int damage_report_id,
             @RequestParam("description") String description,
             @RequestParam("damage_price_dkk") int damage_price_dkk,
-            @RequestParam("garage_name") String garage_name) {
+            @RequestParam("garage_name") String garage_name, HttpSession session) {
+
+        // check that its a logged in person accessing the page, redirects to log in page if not
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         damageReportService.editDamageReport(damage_report_id, description, damage_price_dkk, garage_name);
         return "redirect:/damage_report_dashboard";
     }
 
     @GetMapping("/{damage_report_id}/delete_damage_report")
-    public String deleteDamageReport(@PathVariable("damage_report_id") int damage_report_id) {
+    public String deleteDamageReport(@PathVariable("damage_report_id") int damage_report_id, HttpSession session) {
+
+        // check that its a logged in person accessing the page, redirects to log in page if not
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         damageReportService.deleteDamageReport(damage_report_id);
         return "redirect:/damage_report_dashboard";
     }

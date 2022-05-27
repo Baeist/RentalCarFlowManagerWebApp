@@ -31,7 +31,13 @@ public class LeaseController {
     }
 
     @GetMapping("/lease")
-    public String dashboardLease(Model model){
+    public String dashboardLease(Model model, HttpSession session){
+
+        // check that its a logged in person accessing the page, redirects to log in page if not
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         List<Lease> allLeases = leaseService.getAllLeases();
         List<Contract> allContracts = contractService.GetAllContracts();
 
@@ -50,11 +56,13 @@ public class LeaseController {
                             @RequestParam("startDate") String startDate,
                             @RequestParam("contractID") int contractID,
                             @RequestParam("leasePeriodDays") int periodDays,
-                            @RequestParam("carID") int carID
+                            @RequestParam("carID") int carID, HttpSession session
                             ){
 
-
-
+        // check that its a logged in person accessing the page, redirects to log in page if not
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
 
         LocalDate startLocalDate = leaseService.convertStringtoLocalDate(startDate);
 
@@ -65,7 +73,13 @@ public class LeaseController {
     }
 
     @GetMapping("/lease/delete/{leaseID}")
-    public String deleteLease(@PathVariable("leaseID") int leaseID){
+    public String deleteLease(@PathVariable("leaseID") int leaseID, HttpSession session){
+
+        // check that its a logged in person accessing the page, redirects to log in page if not
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         leaseService.deleteLease(leaseID);
         return "redirect:/lease";
     }
@@ -76,7 +90,12 @@ public class LeaseController {
                             @PathVariable("totalDays") int totalDays,
                             @PathVariable("carID") int carID,
                             @PathVariable("contractID") int contractID,
-                            Model model){
+                            Model model, HttpSession session){
+
+        // check that its a logged in person accessing the page, redirects to log in page if not
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
 
         List<Contract> allContracts = contractService.GetAllContracts();
         List<Car> allAvailableCars = carService.availableCars();
@@ -96,7 +115,13 @@ public class LeaseController {
     }
 
     @GetMapping("/lease/create")
-    public String createLease(Model model){
+    public String createLease(Model model, HttpSession session){
+
+        // check that its a logged in person accessing the page, redirects to log in page if not
+        if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+            return "index";
+        }
+
         model.addAttribute("pageTitle", "Opret lejeaftale");
 
         List<Contract> allContracts = contractService.GetAllContracts();
