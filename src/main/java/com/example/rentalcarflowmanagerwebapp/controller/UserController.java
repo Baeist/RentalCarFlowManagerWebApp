@@ -79,10 +79,14 @@ public class UserController {
 
 
             if(session.getAttribute("isTypeAdmin").equals(true)) {
-                return "redirect:/administrator/" + session.getAttribute("logInName"); // TODO redirect to type of employee that logged in, mangler for alle typer medarbejdere
+                return "redirect:/administrator/" + session.getAttribute("logInName");
             }
             if(session.getAttribute("isTypeRegistering").equals(true)){
                 return "redirect:/lease";}
+            if(session.getAttribute("isTypeBusiness").equals(true)){
+                return "redirect:/car_stats";}
+            if(session.getAttribute("isTypeDamage").equals(true)){
+                return "redirect:/damage_report_dashboard";}
         }
 
         return "redirect:/index";
