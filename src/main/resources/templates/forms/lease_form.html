@@ -24,7 +24,8 @@
             <h2>[[${pageTitle}]] </h2>
         </div>
 
-        <div class="form-group row m-2" th:unless="${leaseID} == -1">
+
+        <div class="form-group row m-2">
             <div class="col-sm-3" th:if="${leaseID} == -1">
                 <input type="number" hidden th:with="int=*{leaseID}" th:value="${leaseID}" name="leaseID">
             </div>
