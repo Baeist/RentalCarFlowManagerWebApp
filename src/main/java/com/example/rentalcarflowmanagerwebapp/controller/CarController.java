@@ -154,7 +154,7 @@ public class CarController {
       double monthlyEarnings = carsLeased.stream().map(Car::getCarPricePerMonthDKK).reduce(0.0,(subtotal,element) -> subtotal + element);
       model.addAttribute("monthly_earnings", monthlyEarnings);
 
-    return "car_stats";
+    return "redirect:/car_stats";
     }
 
     @GetMapping("/regret_edit_car")
