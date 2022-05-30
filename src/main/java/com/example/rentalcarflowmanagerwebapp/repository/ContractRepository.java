@@ -39,32 +39,6 @@ public class ContractRepository {
         }
     }
 
-    public Contract getContract(int contractID){
-
-
-        final String SQL =  "SELECT * FROM contract WHERE contract_id = ?";
-
-        try {
-
-            PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setInt(1, contractID);
-
-            ResultSet resultSet = ps.executeQuery();
-
-            resultSet.next();
-            int contractIDSQL = resultSet.getInt(1);
-            int customerID = resultSet.getInt(2);
-            int employeeID = resultSet.getInt(3);
-
-            Contract contract = new Contract(contractIDSQL ,customerID, employeeID);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-
     public ArrayList<Contract> getAllContract(){
         ArrayList<Contract> contracts = new ArrayList<>();
 

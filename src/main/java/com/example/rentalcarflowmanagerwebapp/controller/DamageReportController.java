@@ -24,7 +24,6 @@ public class DamageReportController {
     DamageReportService damageReportService;
     ContractService contractService;
     LeaseService leaseService;
-    CarService carService;
 
 
     public DamageReportController(DamageReportService damageReportService, ContractService contractService,

@@ -54,6 +54,7 @@ public class CarService {
             CO2EmissionPerKM, carPricePerMonthDKK);
   }
 
+
   public ArrayList<Integer> getAvailableCarID(){
 
     ArrayList<Integer> availableCarID = new ArrayList<>();

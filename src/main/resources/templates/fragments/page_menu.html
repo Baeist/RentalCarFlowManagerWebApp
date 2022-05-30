@@ -28,28 +28,27 @@
     </div>
 
 
-
     <div class="menu" th:unless="${location} == 'car'">
         <a class="menu-link">
-            <h4>Biler</h4>
+            <h4>Økonomi</h4>
         </a>
     </div>
     <div class="menu menu-select" th:if="${location} == 'car'">
         <a class="menu-link">
-            <h4>Biler</h4>
+            <h4>Økonomi</h4>
         </a>
     </div>
 
 
     <div class="menu" th:unless="${location} == 'economy'">
         <a href="/car_stats" class="menu-link">
-            <h4>Økonomi</h4>
+            <h4>Biler</h4>
         </a>
     </div>
 
     <div class="menu menu-select" th:if="${location} == 'economy'">
         <a class="menu-link">
-            <h4>Økonomi</h4>
+            <h4>Biler</h4>
         </a>
     </div>
 

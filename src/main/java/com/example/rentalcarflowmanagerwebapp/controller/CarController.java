@@ -157,6 +157,7 @@ public class CarController {
     return "car_stats";
     }
 
+
     @GetMapping("/forms/status_form")
     public String carStatusForm(Model model, HttpSession session){
 

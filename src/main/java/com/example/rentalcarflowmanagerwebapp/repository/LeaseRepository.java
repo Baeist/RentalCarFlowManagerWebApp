@@ -47,13 +47,7 @@ public class LeaseRepository {
         }
     }
 
-    public void saveLeases(ArrayList<Lease> leases) {
-        for (int i = 0; i < leases.size(); i++) {
-            saveLease(leases.get(i));
-        }
-    }
-
-    public boolean updateLease(Lease newLease) {
+    public boolean updateLease(Lease updatedLease) {
         final String SQL = "UPDATE lease " +
                 "SET contract_id = ?, car_id = ?, lease_start_date = ?, lease_period_number_of_days = ? " +
                 "WHERE lease_id = ?;";
@@ -61,14 +55,14 @@ public class LeaseRepository {
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setInt(1, newLease.getContractID());
-            ps.setInt(2, newLease.getCarID());
+            ps.setInt(1, updatedLease.getContractID());
+            ps.setInt(2, updatedLease.getCarID());
 
-            Date sqlDate = Date.valueOf(newLease.getStartDate());
+            Date sqlDate = Date.valueOf(updatedLease.getStartDate());
 
             ps.setDate(3, sqlDate);
-            ps.setInt(4, newLease.getLeasePeriodDays());
-            ps.setInt(5, newLease.getLeaseID());
+            ps.setInt(4, updatedLease.getLeasePeriodDays());
+            ps.setInt(5, updatedLease.getLeaseID());
 
             ps.execute();
             return true;
@@ -128,11 +122,6 @@ public class LeaseRepository {
 
 
     }
-
-
-
-
-
 
     public ArrayList<Lease> getAllLease() {
         ArrayList<Lease> leases = new ArrayList<>();

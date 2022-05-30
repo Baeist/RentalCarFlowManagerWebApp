@@ -161,11 +161,15 @@
 }
 .status_circle {
     width: 45px;
-    height: 25px;
+    height: 30px;
     position: relative;
     text-align: center;
-    border-radius: 50%;
+    border-radius: 10%;
     display: inline-block;
+    border-style: none;
+}
+.status_circle text{
+    margin-bottom: 1em;
 }
 
 /* ADMIN */
@@ -204,6 +208,9 @@ button a{
 .car-edit{
     padding-right: 15em;
     margin-bottom: 2em;
+}
+.car-header{
+    margin-top: 0.5em;
 }
 
 /* DAMAGE REPORT */
