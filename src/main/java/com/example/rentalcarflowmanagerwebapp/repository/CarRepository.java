@@ -82,8 +82,8 @@ public class CarRepository {
                 cars.add(car);
             }
             return cars;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }

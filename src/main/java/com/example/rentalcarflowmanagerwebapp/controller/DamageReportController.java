@@ -27,7 +27,7 @@ public class DamageReportController {
 
 
     public DamageReportController(DamageReportService damageReportService, ContractService contractService,
-                                  LeaseService leaseService, CarService carService) {
+                                  LeaseService leaseService) {
 
         this.damageReportService = damageReportService;
         this.contractService = contractService;
@@ -56,7 +56,10 @@ public class DamageReportController {
     }
 
     @GetMapping("/damage_report/{contract_id}/{carId}")
-    public String getDamageReport(@PathVariable("carId") int carId, @PathVariable("contract_id") int contract_id, Model model, HttpSession session) {
+    public String getDamageReport(@PathVariable("carId") int carId,
+                                  @PathVariable("contract_id") int contract_id,
+                                  Model model,
+                                  HttpSession session) {
         // check that its a logged in person accessing the page, redirects to log in page if not
         if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
             return "index";

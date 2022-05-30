@@ -16,7 +16,6 @@ import java.util.List;
 public class CarService {
 
   private CarRepository carRepository;
-  private CarController carController;
 
   public CarService(CarRepository carRepository) {
     this.carRepository = carRepository;
