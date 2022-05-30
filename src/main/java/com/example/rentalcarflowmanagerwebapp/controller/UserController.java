@@ -293,6 +293,12 @@ public class UserController {
 
         return "redirect:/administrator/" + session.getAttribute("logInName");
     }
+
+
+    @GetMapping("/error")
+    public String error(){
+        return "error";
+    }
 }
 
 
