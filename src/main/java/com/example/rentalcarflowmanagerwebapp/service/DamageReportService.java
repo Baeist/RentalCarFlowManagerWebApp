@@ -17,14 +17,6 @@ public class DamageReportService {
     @Autowired
     DamageReportRepository damageReportRepository;
 
-    public List<Integer> getAllContractIds() {
-        return damageReportRepository.getAllContractIds();
-    }
-
-    public List<Lease> getAllLeases() {
-        return damageReportRepository.getAllLeases();
-    }
-
     public List<DamageReport> getAllDamageReports() {
         return damageReportRepository.getAllDamageReports();
     }

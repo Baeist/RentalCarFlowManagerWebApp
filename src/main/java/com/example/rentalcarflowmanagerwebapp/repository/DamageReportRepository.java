@@ -1,6 +1,5 @@
 package com.example.rentalcarflowmanagerwebapp.repository;
 
-import com.example.rentalcarflowmanagerwebapp.model.Contract;
 import com.example.rentalcarflowmanagerwebapp.model.DamageReport;
 import com.example.rentalcarflowmanagerwebapp.model.Lease;
 import com.example.rentalcarflowmanagerwebapp.utility.ConnectionManager;
