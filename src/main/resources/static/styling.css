@@ -99,6 +99,13 @@
     margin-bottom: 0.5em;
 }
 
+.content-form{
+    margin-top: 2em;
+    padding-left: 7em;
+    padding-right: 40em;
+}
+
+
 .td-buttons{
     text-align: right;
 }
@@ -190,6 +197,14 @@
     padding-bottom: 1em;
 }
 
+.edit-car-header{
+    margin-top: 2em;
+}
+
+.car-table{
+    border-style: none;
+
+}
 
 /* ADMIN */
 .user-form{

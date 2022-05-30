@@ -18,7 +18,7 @@ class LeaseRepositoryTest {
 
     @Test
     void getAllLease() {
-        final int TOTAL_LENGTH_LEASES_TEST_DATA = 9;
+        final int TOTAL_LENGTH_LEASES_TEST_DATA = 8;
 
         ArrayList<Lease> allData = leaseRepository.getAllLease();
 
@@ -51,15 +51,14 @@ class LeaseRepositoryTest {
 
         Lease oldLease1 = leaseRepository.getLease(2);
 
-        Lease updatedLease = new Lease(1, newDate, 2, 999, 14);
-        Lease updatedLeaseSameCarID = new Lease(2, newDate, 1, 120, 5000);
-        Lease updatedLeaseNoContract = new Lease(3, newDate, -5, 120, -5);
-        Lease updatedLeaseNoExistingCarID = new Lease(4, newDate, 1, 120, -5);
+        Lease updatedLease = new Lease(2, newDate, 2, 999, 14);
 
         // checks if methods returns true
         assertTrue(leaseRepository.updateLease(updatedLease));
+
         // checks if both objects have same lease ID
         assertEquals(oldLease1.getLeaseID(), updatedLease.getLeaseID());
+
         //checks that leasePeriod has changed
         assertNotEquals(oldLease1.getLeasePeriodDays(), updatedLease.getLeasePeriodDays());
     }
@@ -77,7 +76,8 @@ class LeaseRepositoryTest {
     @Test
     void deleteLease() {
         ArrayList<Lease> oldList = leaseRepository.getAllLease();
-        leaseRepository.deleteLease(10);
+
+        leaseRepository.deleteLease(9);
         ArrayList<Lease> newList= leaseRepository.getAllLease();
 
         // Old list should be bigger than new list
