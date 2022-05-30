@@ -240,7 +240,17 @@ public class CarRepository {
         }
         return null;
     }
-        public void deleteCar(){}
+        public void deleteCar(String chassisNumber){
+
+            final String SQL = "DELETE FROM car WHERE chassis_number = ?";
+                try {
+                    PreparedStatement ps = con.prepareStatement(SQL);
+                    ps.setString(1, chassisNumber);
+                    ps.execute();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+        }
     }
 
 

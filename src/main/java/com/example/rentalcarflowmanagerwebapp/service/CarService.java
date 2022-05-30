@@ -53,7 +53,10 @@ public class CarService {
             carName, gearLevel, steelPriceDKK, registrationFeeDKK,
             CO2EmissionPerKM, carPricePerMonthDKK);
   }
+  public void deleteCar(String chassisNumber){
 
+    carRepository.deleteCar(chassisNumber);
+  }
 
   public ArrayList<Integer> getAvailableCarID(){
 

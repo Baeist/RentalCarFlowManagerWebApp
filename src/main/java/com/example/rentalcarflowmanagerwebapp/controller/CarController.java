@@ -123,8 +123,8 @@ public class CarController {
       return "index";
     }
 
-    // TODO fix here
 
+  carService.deleteCar(chassisNumber);
 
     return "redirect:/car_stats";
   }
