@@ -1,15 +1,17 @@
 -- Alle
 use rentalcarflow;
 SET foreign_key_checks = 0;
+SET @@auto_increment_increment = 1;
 drop table if exists employee;
 drop table if exists car;
 drop table if exists contract;
 drop table if exists lease;
 drop table if exists damage_report;
+drop table if exists status;
 SET foreign_key_checks = 1;
 create table if not exists employee
 (
-    employee_id   int auto_increment
+    employee_id int auto_increment
     primary key unique,
     employee_first_name varchar(45) not null,
     employee_last_name varchar(45) not null,
