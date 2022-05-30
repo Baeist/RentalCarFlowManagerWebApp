@@ -240,7 +240,7 @@ public class CarRepository {
         }
         return null;
     }
-
+        public void deleteCar(){}
     }
 
 

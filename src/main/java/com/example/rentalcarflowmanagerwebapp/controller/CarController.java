@@ -106,8 +106,28 @@ public class CarController {
     ArrayList<Car> carsLeased = carService.rentedOutCars();
     model.addAttribute("leased_out_cars", carsLeased);
 
+      ArrayList<Integer> availableCarID = carService.getAvailableCarID();
+      model.addAttribute("available_status_and_days", statusService.getStatusAndDaysLeft(availableCarID));
+
+      ArrayList<Integer> leasedCarID = carService.getLeasedCarID();
+      model.addAttribute("leased_status_and_days", statusService.getStatusAndDaysLeft(leasedCarID));
+
     return "car_stats";
     }
+
+  @GetMapping("/delete_car/{chassis_number}")
+  public String deleteCar(@PathVariable("chassis_number") String chassisNumber, HttpSession session, Model model) {
+
+    // check that its a logged in person accessing the page, redirects to log in page if not
+    if (session.getAttribute("isLoggedIn") == null || !((boolean) session.getAttribute("isLoggedIn"))) {
+      return "index";
+    }
+
+    // TODO fix here
+
+
+    return "redirect:/car_stats";
+  }
 
     @PostMapping("/edited_car")
     public String confirmCarEdit(@RequestParam("chassis_number") String chassisNumber, @RequestParam("color")  String color, @RequestParam("manufacturer")  String manufacturer,
