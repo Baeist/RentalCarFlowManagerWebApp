@@ -3,7 +3,6 @@ For at andre skal kunne se din hjemmeside på internettet skal den hostes et ell
 
 ## Hvordan hoster man programmet på Heroku?
 1. Gå til Herokus hjemmeside [her](https//:www.heroku.com).
-1. Gå til Herokus hjemmeside [her](https://www.heroku.com).
 2. Opret en bruger og log in.
 3. Gå til [dashboard](https://dashboard.heroku.com/apps).
 4. Klik på "new" og "Create new app".
