@@ -33,10 +33,10 @@
     </div>
 
 
-    <div class="contract-form">
+    <div class="contract-form" th:if="${session.isTypeRegistering}" >
         <form th:action="'/create/contract/' + ${session.employeeID}"  method="post">
                 <span class="input-group-text bg-primary" id="inputGroup-sizing-sm"><label>Opret kontrakt</label>
-                    <input class="form-control" placeholder="Indtast kunde id" type="number" name="customerID">
+                    <input class="form-control" placeholder="Indtast kunde id" type="number" name="customerID" required>
                     <button type="submit" class="btn btn-success btn-sm">Opret</button>
                 </span>
         </form>

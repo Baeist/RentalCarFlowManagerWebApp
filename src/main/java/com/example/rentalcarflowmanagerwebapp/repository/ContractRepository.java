@@ -52,8 +52,8 @@ public class ContractRepository {
             while (resultSet.next()){
 
                 int contractID = resultSet.getInt(1);
-                int customerID = resultSet.getInt(2);
-                int employeeID = resultSet.getInt(3);
+                int customerID = resultSet.getInt(3);
+                int employeeID = resultSet.getInt(2);
 
                 Contract contract = new Contract(contractID ,customerID, employeeID);
 
