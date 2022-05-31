@@ -14,7 +14,7 @@ Den nemmeste måde at deploye sit program på Heroku er at tilslutte sit github 
 Nu eksisterer projektet på vores Heroku app, men der er ikke nogen database tilknyttet så du kan hverken se nogen data eller indsætte dem. Selve hjemmesiden er hostet på Heroku, men vores database skal også hostes et sted og det sted er ClearDB.
 
 7. Gå tilbage til dashboardet og klik på "resources".
-8. Klikl på "addons" søgefeltet og indtast `ClearDB` og vælg den som addon.
+8. Klik på "addons" søgefeltet og indtast `ClearDB` og vælg den som addon.
 9. Vælg "Ignite" planen da den er gratis (hvis du gider at bruge penge er det op til dig selv hvilken plan du vælger) og klik "submit order".
 10. Klik så på "settings" og "reveal config vars".
 11. Opret tre vars kaldet `url`, `pass`, `user`.
