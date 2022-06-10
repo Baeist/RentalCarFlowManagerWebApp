@@ -23,8 +23,8 @@ public class ContractController {
     }
 
     @PostMapping("create/contract/{employeeID}")
-    public String createContract(@RequestParam("customerID") int customerID,
-                                 @PathVariable("employeeID") int employeeID,
+    public String createContract(@PathVariable("employeeID") int employeeID,
+                                    @RequestParam("customerID") int customerID,
                                  RedirectAttributes ra, HttpSession session){
 
         // check that its a logged in person accessing the page, redirects to log in page if not

@@ -111,7 +111,7 @@ public class LeaseController {
         model.addAttribute("carID", carID);
         model.addAttribute("contractID", contractID);
 
-        return "Forms/lease_form";
+        return "forms/lease_form";
     }
 
     @GetMapping("/lease/create")
@@ -133,7 +133,7 @@ public class LeaseController {
         // gives none existing id
         model.addAttribute("leaseID", -1);
 
-        return "Forms/lease_form";
+        return "forms/lease_form";
     }
 
 }
